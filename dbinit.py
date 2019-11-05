@@ -5,14 +5,20 @@ import psycopg2 as dbapi2
 
 
 INIT_STATEMENTS = [
-    """CREATE TABLE FACULTIES (
+    """CREATE TABLE PEOPLE (
+    P_ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(100),
+    EMAIL VARCHAR(120),
+    PHOTO VARCHAR(120)
+)""",
+    """CREATE TABLE IF NOT EXISTS FACULTIES (
     FAC_ID SERIAL PRIMARY KEY,
     FAC_NAME VARCHAR(100) NOT NULL,
     FAC_BUILDING INTEGER,
     FOREIGN KEY FAC_BUILDING REFERENCES BUILDINGS(BU_ID)
 )""",
 
-    """CREATE TABLE ASSISTANTS (
+    """CREATE TABLE IF NOT EXISTS ASSISTANTS (
     AS_ID SERIAL PRIMARY KEY,
     AS_PERSON INTEGER NOT NULL,
     LAB INTEGER,
@@ -21,7 +27,7 @@ INIT_STATEMENTS = [
     FOREIGN KEY LAB REFERENCES LABS(LAB_ID)
 )""",
 
-    """CREATE TABLE LABS (
+    """CREATE TABLE IF NOT EXISTS LABS (
     LAB_ID SERIAL PRIMARY KEY,
     LAB_NAME VARCHAR(100) UNIQUE,
     DEPARTMENT INTEGER,
@@ -35,7 +41,7 @@ INIT_STATEMENTS = [
     FOREIGN KEY ROOM REFERENCES ROOMS(ROOM_ID)
 )""",
 
-    """CREATE TABLE DEPARTMENTS (
+    """CREATE TABLE IF NOT EXISTS DEPARTMENTS (
     DEP_ID SERIAL PRIMARY KEY,
     DEP_NAME VARCHAR(100),
     FACULTY INTEGER,
@@ -74,15 +80,34 @@ INIT_STATEMENTS = [
     BU_NAME VARCHAR(100),
     BU_CODE VARCHAR(5)
 )"""
+
+    """CREATE TABLE IF NOT EXISTS LESSONS (
+    LESSON_ID SERIAL PRIMARY KEY,
+    CAP INTEGER,
+    ENROLLED INTEGER,
+    DATE INTEGER,
+    CRN INTEGER UNIQUE NOT NULL,
+    CODE VARCHAR(5),
+    INSTRUCTOR INTEGER,
+    LOCATION INTEGER, 
+    ASSISTANT INTEGER,
+    CREDIT INTEGER,
+    FOREIGN KEY INSTRUCTOR REFERENCES INSTRUCTORS(INS_ID),
+    FOREIGN KEY ASSISTANT REFERENCES ASSISTANTS(AS_ID),
+    FOREIGN KEY LOCATION REFERENCES CLASSES(CL_ID)
+    )""",
 ]
 
 
 def initialize(url):
-    with dbapi2.connect(url) as connection:
-        cursor = connection.cursor()
-        for statement in INIT_STATEMENTS:
-            cursor.execute(statement)
-        cursor.close()
+    try:
+        with dbapi2.connect(url) as connection:
+            cursor = connection.cursor()
+            for statement in INIT_STATEMENTS:
+                cursor.execute(statement)
+            cursor.close()
+    except Exception as err:
+        print("Error: ", err)
 
 
 if __name__ == "__main__":
