@@ -33,7 +33,7 @@
 			</form>
 		</div>
 		<div class="col-sm">
-		    <button id="student_create_dd" class="btn btn-primary" onclick="dropdown($('#instructor_create'))">Instructor Creation Form</button>
+		    <button id="instructor_create_dd" class="btn btn-primary" onclick="dropdown($('#instructor_create'))">Instructor Creation Form</button>
 		    <form method="post" action="" id="instructor_create" style="visibility: hidden"> <!-- INSTRUCTOR CREATION FORM -->
 		    	<div class="form-group>"
 		    		<a>Name: </a><input class="form-control" name="name" type="text"> <br/>
@@ -45,17 +45,21 @@
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
+		<div class="col-sm">
+			<button id="room_create_dd" class="btn btn-primary" onclick="dropdown($('#room_create'))">Room Creation Form</button>
+			<form method="post" action="">
+				<!-- ROOM CREATION FORM -->
+				<a>Name: </a><input class="form-control" name="name" type="text">	
+				<a>Building: </a><input class="form-control" name="building" type="text">
+				<a>Capacity: </a><input class="form-control" name="capacity" type="text">
+				<a>Room : </a><input class="form-control" name="room" type="text">
+				<input type="radio" class="form-control" name="type" value="class"> Class
+				<input type="radio" class="form-control" name="type" value="lab"> Lab
+				<input type="radio" class="form-control" name="type" value="room"> Room 
+				<!--<button type="submit" name="submit_button" value="save_room">Save</button> -->
+		</div>
 	</div>
-		<a>Room Creation Form: </a> <br/>
-<form method="post" action=""> <!-- ROOM CREATION FORM -->
-	<a>Name: </a><input name="name" type="text"> <br/>
-	<a>Building: </a><input name="building" type="text"> <br/>
-	<a>Capacity: </a><input name="capacity" type="text"> <br/>
-	<a>Room : </a><input name="room" type="text"> <br/>
-	<input type="radio" name="type" value="class"> Class
-	<input type="radio" name="type" value="lab"> Lab
-	<input type="radio" name="type" value="room"> Room <br/>  
-	<!--<button type="submit" name="submit_button" value="save_room">Save</button> -->
+	
 </form>
 <a>Classroom Creation Form: </a> <br/>
 <form method="post" action=""> <!-- CLASSROOM CREATION FORM -->
