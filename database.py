@@ -3,16 +3,21 @@ import sys
 
 import psycopg2 as dbapi2
 
-from instructor import Instructor
-from student import Student
+from models.instructor import Instructor
+from models.student import Student
+from models.people import People
 
 class Database:
 
     def __init__(self):
         self.instructors = {}
         self.students = {}
-        self._last_stu_key = 0
+        self.people = {}
+        
         self._last_inst_key = 0
+        self._last_stu_key = 0
+        self._last_people_key = 0
+
         self.url = os.getenv("DATABASE_URL")
 
     def add_instructor(self, instructor):
@@ -37,6 +42,49 @@ class Database:
             instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room, instructor.lab)
             instructors.append((instructor_key, instructor_))
         return instructors
+
+
+    ############# PEOPLE   ###############
+
+    def add_person(self, people):
+        self._last_people_key += 1
+        self.people[self._last_people_key] = people
+
+        try:
+            with dbapi2.connect(url) as connection:
+                cursor = connection.cursor()
+                statement = "INSERT INTO PEOPLE VALUES (%s, %s, %s, %s)"
+                data = [people.id, people.name, people.mail, people.photo]
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+        return self._last_people_key
+
+    def get_person(self, person_key):
+        person = self.people.get(person_key)
+        if not person:
+            return None
+        return person
+
+    def get_people(self):
+        if not len(self.people):
+            try:
+                with dbapi2.connect(url) as connection:
+                    cursor = connection.cursor()
+                    statement = "SELECT * FROM PEOPLE"
+                    cursor.execute(statement)
+                    datas = cursor.fetchall()
+                    for data in datas:
+                        person = People(data[0], data[1], data[2], data[3])
+                        self._last_people_key += 1
+                        self.people[_last_people_key] = person
+                    cursor.close()
+            except Exception as err:
+                print("Error: ", err)
+
+        return self.people.copy()
 
 
     ############# STUDENTS ###############
@@ -120,7 +168,3 @@ class Database:
                     del self.students[student_key]
             except Exception as err:
                 print("Error: ", err)
-
-
-
-
