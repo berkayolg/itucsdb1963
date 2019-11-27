@@ -20,5 +20,21 @@
     	<a>Room : </a><input name="room" type="text"> <br/>
 		<a>Lab (if any): </a><input name="lab" type="text"> <br/>
 		<button type="submit" name="submit_button" value="save_instructor">Save</button>
-    </form>
+	</form>
+	<a>Room Creation Form: </a> <br/>
+    <form method="post" action=""> <!-- ROOM CREATION FORM -->
+    	<a>Name: </a><input name="name" type="text"> <br/>
+    	<a>Building: </a><input name="building" type="text"> <br/>
+    	<a>Capacity: </a><input name="capacity" type="text"> <br/>
+    	<a>Room : </a><input name="room" type="text"> <br/>
+		<input type="radio" name="type" value="class"> Class
+		<input type="radio" name="type" value="lab"> Lab
+		<input type="radio" name="type" value="room"> Room <br/>  
+		<!--<button type="submit" name="submit_button" value="save_room">Save</button> -->
+	</form>
+	<a>Classroom Creation Form: </a> <br/>
+    <form method="post" action=""> <!-- CLASSROOM CREATION FORM -->
+    	<a>Building: </a><input name="building" type="text"> <br/>
+		<!--<button type="submit" name="submit_button" value="save_classroom">Save</button> -->
+	</form>
 {% endblock %}
