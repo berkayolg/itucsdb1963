@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, current_app
 from datetime import datetime
 
+from database import Database, Instructor
 
 app = Flask(__name__)
 
@@ -85,14 +86,42 @@ def exams():
     return render_template("exams.html")
 
 
-@app.route("/su")
+@app.route("/su", methods = ["GET", "POST"])
 def admin_page():
     """
     God mode.
     :return:
     """
-    return render_template("admin_page.html")
+    if request.method == "GET":
+        return render_template("admin_page.html")
+    else:
+        if request.form["submit_button"] == "save_instructor":
+            form_name = request.form["name"]
+            form_department = request.form["department"]
+            form_lecture_id = request.form["lecture_id"]
+            form_room = request.form["room"]
+            form_lab = request.form["lab"]
+            instructor = Instructor(form_name, form_department, form_lecture_id, form_room, form_lab)
+            db = current_app.config["db"]
+            instructor_key = db.add_instructor(instructor)
+            return redirect(url_for("instructors_page"))
+        return render_template("admin_page.html")
 
+@app.route("/instructors", methods = ["GET", "POST"])
+def instructors_page():
+    '''
+    In this page we will show the instructors
+    :return:
+    '''
+    db = current_app.config["db"]
+    if request.method == "GET":
+        return render_template("instructors.html", instructors = db.get_instructors())
+    else:
+        form_inst_keys = request.form.getlist("instructor_keys")
+        for form_inst_key in form_inst_keys:
+            db.delete_instructor(int(form_inst_key))
+        return redirect(url_for("instructors_page"))
 
 if __name__ == "__main__":
-    app.run()
+    app.config["db"] = Database()
+    app.run(debug=True)

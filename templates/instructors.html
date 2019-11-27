@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Instructors{% endblock %}
+{% block content %}
+    <h1>Instructors</h1>
+
+    {% if instructors %}
+    <form action="" method="post" name="instructor_list">
+      <table>
+        <tr>
+            <th>Name</th>
+            <th>Room</th>
+            <th>Lab</th>
+        </tr>
+        {% for instructor_key, instructor in instructors %}
+        <tr>
+          <td>
+            <label class="checkbox">
+              <input type="checkbox" name="instructor_keys" value="{{ instructor_key }}"/>
+            </label>
+              <td>{{ instructor.name }}</td>
+              <td>{{ instructor.room }}</td>
+              <td>{{ instructor.lab }}</td>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    <button>Delete</button>
+    </form>
+    {% endif %}
+{% endblock %}
