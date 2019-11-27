@@ -1,40 +1,81 @@
 {% extends "layout.html" %}
 {% block title %}Super User{% endblock %}
 {% block content %}
-    <p>Nothing here yet :(</p>
+	
+<div class="container">
+	<div class="row">
+		<div class="col-sm">
+		    <button id="student_create_dd" class="btn btn-primary" onclick="dropdown($('#student_create'))">Student Creation Form</button>
+		    <form method="post" action="" id="student_create" style="visibility: hidden"> 
+		    	<!-- USER CREATION FORM -->
+		    	<div class="form-group">
+		    		<label for="name">Name</label>
+		    		<input class="form-control" name="name" type="text">
+		    	</div>
+		    	<div class="form-group">
+		    		<a>ID: </a><input class="form-control" name="id" type="text">
+		    	</div>
+		    	<div class="form-group">
+		    		<a>Departmant: </a><input class="form-control" name="departmant" type="text">
+		    	</div>
+		    	<div class="form-group">
+		    		<a>Faculty: </a><input class="form-control" name="faculty" type="text">
+		    	</div>
+		    	<div class="form-group">
+		    		<a>Club (if any): </a><input class="form-control" name="faculty" type="text">
+		    	</div>
+		    	<div class="form-group">
+		    		<a>Lab (if any): </a><input class="form-control" name="faculty" type="text">
+		    	</div>
+		    	<div class="form-group">
+		    		<button type="submit" class="btn btn-primary">Submit</button>
+		    	</div>
+			</form>
+		</div>
+		<div class="col-sm">
+		    <button id="student_create_dd" class="btn btn-primary" onclick="dropdown($('#instructor_create'))">Instructor Creation Form</button>
+		    <form method="post" action="" id="instructor_create" style="visibility: hidden"> <!-- INSTRUCTOR CREATION FORM -->
+		    	<div class="form-group>"
+		    		<a>Name: </a><input class="form-control" name="name" type="text"> <br/>
+		    	</div>
+		    	<a>Department: </a><input class="form-control" name="department" type="text"> <br/>
+		    	<a>Lecture ID: </a><input class="form-control" name="lecture_id" type="text"> <br/>
+		    	<a>Room : </a><input class="form-control" name="room" type="text"> <br/>
+				<a>Lab (if any): </a><input class="form-control" name="lab" type="text"> <br/>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+		<a>Room Creation Form: </a> <br/>
+<form method="post" action=""> <!-- ROOM CREATION FORM -->
+	<a>Name: </a><input name="name" type="text"> <br/>
+	<a>Building: </a><input name="building" type="text"> <br/>
+	<a>Capacity: </a><input name="capacity" type="text"> <br/>
+	<a>Room : </a><input name="room" type="text"> <br/>
+	<input type="radio" name="type" value="class"> Class
+	<input type="radio" name="type" value="lab"> Lab
+	<input type="radio" name="type" value="room"> Room <br/>  
+	<!--<button type="submit" name="submit_button" value="save_room">Save</button> -->
+</form>
+<a>Classroom Creation Form: </a> <br/>
+<form method="post" action=""> <!-- CLASSROOM CREATION FORM -->
+	<a>Building: </a><input name="building" type="text"> <br/>
+	<!--<button type="submit" name="submit_button" value="save_classroom">Save</button> -->
+</form>
+</div>
 
-    <a>Student Creation Form: </a> <br/>
-    <form method="post" action=""> <!-- USER CREATION FORM -->
-    	<a>Name: </a><input name="name" type="text"> <br/>
-    	<a>ID: </a><input name="id" type="text"> <br/>
-    	<a>Departmant: </a><input name="departmant" type="text"> <br/>
-    	<a>Faculty: </a><input name="faculty" type="text"> <br/>
-    	<a>Club (if any): </a><input name="faculty" type="text"> <br/>
-    	<a>Lab (if any): </a><input name="faculty" type="text"> <br/>
-	</form>
-	<a>Instructors Creation Form: </a> <br/>
-    <form method="post" action=""> <!-- INSTRUCTOR CREATION FORM -->
-    	<a>Name: </a><input name="name" type="text"> <br/>
-    	<a>Department: </a><input name="department" type="text"> <br/>
-    	<a>Lecture ID: </a><input name="lecture_id" type="text"> <br/>
-    	<a>Room : </a><input name="room" type="text"> <br/>
-		<a>Lab (if any): </a><input name="lab" type="text"> <br/>
-		<button type="submit" name="submit_button" value="save_instructor">Save</button>
-	</form>
-	<a>Room Creation Form: </a> <br/>
-    <form method="post" action=""> <!-- ROOM CREATION FORM -->
-    	<a>Name: </a><input name="name" type="text"> <br/>
-    	<a>Building: </a><input name="building" type="text"> <br/>
-    	<a>Capacity: </a><input name="capacity" type="text"> <br/>
-    	<a>Room : </a><input name="room" type="text"> <br/>
-		<input type="radio" name="type" value="class"> Class
-		<input type="radio" name="type" value="lab"> Lab
-		<input type="radio" name="type" value="room"> Room <br/>  
-		<!--<button type="submit" name="submit_button" value="save_room">Save</button> -->
-	</form>
-	<a>Classroom Creation Form: </a> <br/>
-    <form method="post" action=""> <!-- CLASSROOM CREATION FORM -->
-    	<a>Building: </a><input name="building" type="text"> <br/>
-		<!--<button type="submit" name="submit_button" value="save_classroom">Save</button> -->
-	</form>
+
+
+<script>
+	function dropdown($param){
+		if($param.css("visibility") == "hidden"){
+			$param.css("visibility", "visible");
+		}else{
+			$param.css("visibility", "hidden");
+		}
+	}
+
+
+</script>
+
 {% endblock %}
