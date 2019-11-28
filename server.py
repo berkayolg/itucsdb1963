@@ -96,7 +96,7 @@ def admin_page():
     if request.method == "GET":
         return render_template("admin_page.html")
     else:
-        if request.form["submit_button"] == "save_instructor":
+        if "instructor" in request.form:
             form_name = request.form["name"]
             form_department = request.form["department"]
             form_lecture_id = request.form["lecture_id"]

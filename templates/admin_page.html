@@ -40,14 +40,24 @@
 		<div class="col-sm">
 		    <button id="instructor_create_dd" class="btn btn-primary" onclick="dropdown($('#instructor_create'))">Instructor Creation Form</button>
 		    <form method="post" action="" id="instructor_create" style="visibility: hidden"> <!-- INSTRUCTOR CREATION FORM -->
-		    	<div class="form-group>"
+		    	<div class="form-group">
 		    		<a>Name: </a><input class="form-control" name="name" type="text"> <br/>
-		    	</div>
-		    	<a>Department: </a><input class="form-control" name="department" type="text"> <br/>
-		    	<a>Lecture ID: </a><input class="form-control" name="lecture_id" type="text"> <br/>
-		    	<a>Room : </a><input class="form-control" name="room" type="text"> <br/>
-				<a>Lab (if any): </a><input class="form-control" name="lab" type="text"> <br/>
-				<button type="submit" class="btn btn-primary">Submit</button>
+				</div>
+				<div class="form-group">
+					<a>Department: </a><input class="form-control" name="department" type="text"> <br/>
+				</div>
+				<div class="form-group">
+					<a>Lecture ID: </a><input class="form-control" name="lecture_id" type="text"> <br/>
+				</div>
+				<div class="form-group">
+					<a>Room : </a><input class="form-control" name="room" type="text"> <br/>
+				</div>
+				<div class="form-group">
+					<a>Lab (if any): </a><input class="form-control" name="lab" type="text"> <br/>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" name="instructor">Submit</button>
+				</div>
 			</form>
 		</div>
 		<div class="col-sm">
@@ -57,7 +67,6 @@
 				<a>Name: </a><input class="form-control" name="name" type="text">	
 				<a>Building: </a><input class="form-control" name="building" type="text">
 				<a>Capacity: </a><input class="form-control" name="capacity" type="text">
-				<a>Room : </a><input class="form-control" name="room" type="text">
 				<input type="radio" class="form-control" name="type" value="class"> Class
 				<input type="radio" class="form-control" name="type" value="lab"> Lab
 				<input type="radio" class="form-control" name="type" value="room"> Room 
