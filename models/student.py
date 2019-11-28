@@ -1,4 +1,6 @@
-class Student:
+from .people import People
+
+class Student(People):
 	def __init__(self, id, number, cred, depart, facu, club=None, lab=None):
 		self.id = id
 		self.number = number
