@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, current_ap
 from datetime import datetime
 
 from database import Database, Instructor
+from models.student import Student
 
 app = Flask(__name__)
 
@@ -121,6 +122,21 @@ def instructors_page():
         for form_inst_key in form_inst_keys:
             db.delete_instructor(int(form_inst_key))
         return redirect(url_for("instructors_page"))
+
+@app.route("/student_create", methods= ["POST", "GET"])
+def student_create():
+    db = current_app.config["db"]
+    data = request.form
+    student = Student(1, data["number"], data["cred"], data["depart"], data["facu"], data["club"], data["lab"])
+    key = db.add_student(student)
+    print(db.get_student(key).number)
+    return redirect(url_for("admin_page"))
+
+@app.route("/students_list", methods = ["GET", ])
+def students_list():
+    db = current_app.config["db"]
+    students = db.get_students().values()
+    return render_template("students_list.html", students = students)
 
 if __name__ == "__main__":
     app.config["db"] = Database()

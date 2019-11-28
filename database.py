@@ -1,5 +1,6 @@
 import os
 import sys
+import copy
 
 import psycopg2 as dbapi2
 
@@ -91,7 +92,7 @@ class Database:
 
     def add_student(self, student):
         self._last_inst_key += 1
-        self.instructor[self._last_stu_key] = student
+        self.students[self._last_stu_key] = student
 
         try:
             with dbapi2.connect(url) as connection:
@@ -109,7 +110,7 @@ class Database:
         student = self.students.get(student_key)
         if not student:
             return None
-        return student.copy()
+        return copy.copy(student)
 
     def get_students(self):
         if not len(self.students):
@@ -125,9 +126,9 @@ class Database:
                         self.students[_last_stu_key] = student
                     cursor.close()
             except Exception as err:
-                print("Error: ", err)
+                print("DB Error: ", err)
 
-        return self.students.copy()
+        return copy.copy(self.students)
 
     def delete_student(self, student_key):
         student = self.students.get(student_key)
