@@ -47,19 +47,24 @@ class Database:
 
     ############# PEOPLE   ###############
 
-    def add_person(self, people):
-        self._last_people_key += 1
-        self.people[self._last_people_key] = people
-
+    def add_person(self, person):
         try:
             with dbapi2.connect(url) as connection:
                 cursor = connection.cursor()
-                statement = "INSERT INTO PEOPLE VALUES (%s, %s, %s, %s)"
-                data = [people.id, people.name, people.mail, people.photo]
+                statement = "INSERT INTO PEOPLE VALUES (%s, %s, %s)"
+                data = [person.name, person.mail, person.photo]
                 cursor.execute(statement, data)
+                statement = "SELECT P_ID FROM PEOPLE WHERE NAME = '%s'"
+                data = [person.name]
+                cursor.execute(statement, data)
+                value = cursor.fetchall()
+                person.id = value["P_ID"]
                 cursor.close()
         except Exception as err:
             print("Error: ", err)
+
+        self._last_people_key += 1
+        self.people[self._last_people_key] = person
 
         return self._last_people_key
 
@@ -91,14 +96,17 @@ class Database:
     ############# STUDENTS ###############
 
     def add_student(self, student):
-        self._last_inst_key += 1
+        self._last_stu_key += 1
         self.students[self._last_stu_key] = student
+        person_obj = People(student.name)
+        person = get_person(add_person(person_obj))
 
         try:
             with dbapi2.connect(url) as connection:
                 cursor = connection.cursor()
+
                 statement = "INSERT INTO STUDENTS VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                data = [student.id, student.number, student.cred, student.depart, student.facu, student.club, student.lab]
+                data = [person.id, student.number, student.cred, student.depart, student.facu, student.club, student.lab]
                 cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:

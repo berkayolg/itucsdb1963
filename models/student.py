@@ -1,8 +1,8 @@
 from .people import People
 
-class Student(People):
-	def __init__(self, id, number, cred, depart, facu, club=None, lab=None):
-		self.id = id
+class Student:
+	def __init__(self, name, number, cred, depart, facu, club=None, lab=None):
+		People.__init__(name)
 		self.number = number
 		self.cred = cred
 		self.depart = depart
