@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block title %}Rooms{% endblock %}
+{% block content %}
+    <h1>Rooms</h1>
+
+    {% if rooms %}
+    <form action="" method="post" name="rooms_list">
+      <table>
+        <tr>
+            <th>Name</th>
+            <th>Building</th>
+            <th>Capacity</th>
+            <th>Type</th>
+        </tr>
+        {% for room_key, room in rooms %}
+        <tr>
+          <td>
+            <label class="checkbox">
+              <input type="checkbox" name="room_keys" value="{{ room_key }}"/>
+            </label>
+              <td>{{ room.name }}</td>
+              <td>{{ room.building }}</td>
+              <td>{{ room.cap }}</td>
+              {% if room.lab %}
+              <td>Laboratory</td>
+              {% endif %}
+              {% if room.room %}
+              <td>Instructor Room</td>
+              {% endif %}
+              {% if room.classroom %}
+              <td>Classroom</td>
+              {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    <button>Delete</button>
+    </form>
+    {% endif %}
+{% endblock %}

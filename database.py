@@ -4,6 +4,7 @@ import copy
 
 import psycopg2 as dbapi2
 
+from models.room import Room
 from models.instructor import Instructor
 from models.student import Student
 from models.people import People
@@ -11,15 +12,44 @@ from models.people import People
 class Database:
 
     def __init__(self):
+        self.rooms = {}
         self.instructors = {}
         self.students = {}
         self.people = {}
         
+        self._last_room_key = 0
         self._last_inst_key = 0
         self._last_stu_key = 0
         self._last_people_key = 0
 
         self.url = os.getenv("DATABASE_URL")
+
+    ############# ROOMS ###############
+
+    def add_room(self, room):
+        self._last_room_key += 1
+        self.rooms[self._last_room_key] = room
+        return self._last_room_key
+
+    def delete_room(self, room_key):
+        if room_key in self.rooms:
+            del self.rooms[room_key]
+
+    def get_room(self, room_key):
+        room = self.rooms.get(room_key)
+        if room is None:
+            return None
+        room_ = Room(room.building, room.name, room.cap, room.classroom, room.room, room.lab)
+        return room_
+        
+    def get_rooms(self):
+        rooms = []
+        for room_key, room in self.rooms.items():
+            room_ = Room(room.building, room.name, room.cap, room.classroom, room.room, room.lab)
+            rooms.append((room_key, room_))
+        return rooms
+
+    ############# INSTRUCTORS ###############
 
     def add_instructor(self, instructor):
         self._last_inst_key += 1
