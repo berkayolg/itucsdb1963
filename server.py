@@ -4,6 +4,7 @@ from datetime import datetime
 from database import Database, Instructor
 from models.student import Student
 from models.room import Room
+from models.classroom import Classroom
 
 app = Flask(__name__)
 
@@ -117,10 +118,21 @@ def admin_page():
             room = Room(form_building, form_name, form_capacity, form_is_class, form_is_room, form_is_lab)
             db = current_app.config["db"]
             room_key = db.add_room(room)
-            print(room.classroom)
-            print(room.room)
-            print(room.lab)
             return redirect(url_for("rooms_page"))
+        elif "classroom" in request.form:
+            form_id = request.form["id"]
+            form_type = request.form["type"]
+            form_board_type = request.form["board_type"]
+            form_building = request.form["building"]
+            form_restoration_date = request.form["restoration_date"]
+            form_board_type = request.form["board_type"]
+            form_availability = request.form["availability"] == "available"
+            form_conditioner = request.form["conditioner"] == "yes"
+
+            classroom = Classroom(form_id, form_building, form_type, form_restoration_date, form_availability, form_conditioner, form_board_type)
+            db = current_app.config["db"]
+            classroom_key = db.add_classroom(classroom)
+            return redirect(url_for("classrooms_page"))
         return render_template("admin_page.html")
 
 @app.route("/rooms_list", methods = ["GET", "POST"])
@@ -137,6 +149,21 @@ def rooms_page():
         for form_room_key in form_room_keys:
             db.delete_room(int(form_room_key))
         return redirect(url_for("rooms_page"))
+
+@app.route("/classrooms_list", methods = ["GET", "POST"])
+def classrooms_page():
+    '''
+    In this page we will show the classrooms
+    :return:
+    '''
+    db = current_app.config["db"]
+    if request.method == "GET":
+        return render_template("classrooms_list.html", classrooms = db.get_classrooms())
+    else:
+        form_classroom_keys = request.form.getlist("classroom_keys")
+        for form_classroom_key in form_classroom_keys:
+            db.delete_classroom(int(form_classroom_key))
+        return redirect(url_for("classrooms_page"))
 
 @app.route("/instructors", methods = ["GET", "POST"])
 def instructors_page():

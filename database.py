@@ -5,6 +5,7 @@ import copy
 import psycopg2 as dbapi2
 
 from models.room import Room
+from models.classroom import Classroom
 from models.instructor import Instructor
 from models.student import Student
 from models.people import People
@@ -13,11 +14,13 @@ class Database:
 
     def __init__(self):
         self.rooms = {}
+        self.classrooms = {}
         self.instructors = {}
         self.students = {}
         self.people = {}
         
         self._last_room_key = 0
+        self._last_classroom_key = 0
         self._last_inst_key = 0
         self._last_stu_key = 0
         self._last_people_key = 0
@@ -48,6 +51,31 @@ class Database:
             room_ = Room(room.building, room.name, room.cap, room.classroom, room.room, room.lab)
             rooms.append((room_key, room_))
         return rooms
+
+   ############# CLASSROOMS ###############
+
+    def add_classroom(self, classroom):
+        self._last_classroom_key += 1
+        self.classrooms[self._last_classroom_key] = classroom
+        return self._last_classroom_key
+
+    def delete_classroom(self, classroom_key):
+        if classroom_key in self.classrooms:
+            del self.classrooms[classroom_key]
+
+    def get_classroom(self, classroom_key):
+        classroom = self.classrooms.get(classroom_key)
+        if classroom is None:
+            return None
+        classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date, classroom.availability, classroom.conditioner, classroom.board_type)
+        return classroom_
+        
+    def get_classrooms(self):
+        classrooms = []
+        for classroom_key, classroom in self.classrooms.items():
+            classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date, classroom.availability, classroom.conditioner, classroom.board_type)
+            classrooms.append((classroom_key, classroom_))
+        return classrooms
 
     ############# INSTRUCTORS ###############
 

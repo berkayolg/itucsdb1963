@@ -39,7 +39,7 @@
 		</div>
 		<div class="col-sm">
 		    <button id="instructor_create_dd" class="btn btn-primary" onclick="dropdown($('#instructor_create'))">Instructor Creation Form</button>
-		    <form method="post" action="" id="instructor_create" style="visibility: hidden"> <!-- INSTRUCTOR CREATION FORM -->
+		    <form method="post" action="/instructor_create" id="instructor_create" style="visibility: hidden"> <!-- INSTRUCTOR CREATION FORM -->
 		    	<div class="form-group">
 		    		<a>Name: </a><input class="form-control" name="name" type="text"> <br/>
 				</div>
@@ -62,36 +62,65 @@
 		</div>
 		<div class="col-sm">
 			<button id="room_create_dd" class="btn btn-primary" onclick="dropdown($('#room_create'))">Room Creation Form</button>
-			<form method="post" action="" id="room_create" style="visibility:hidden">
-				<!-- ROOM CREATION FORM -->
-				<a>Name: </a><input class="form-control" name="name" type="text">	
-				<a>Building: </a><input class="form-control" name="building" type="text">
-				<a>Capacity: </a><input class="form-control" name="capacity" type="text">
-				<input type="radio" class="form-control" name="type" value="class" checked> Classroom <br/>
-				<input type="radio" class="form-control" name="type" value="lab"> Laboratory <br/>
-				<input type="radio" class="form-control" name="type" value="room"> Room <br/>
-				<button type="submit" class="btn btn-primary" name="room">Save</button>
+			<form method="post" action="/room_create" id="room_create" style="visibility:hidden"> <!-- ROOM CREATION FORM -->
+				<div class="form-group">
+					<a>Name: </a><input class="form-control" name="name" type="text">
+				</div>
+				<div class="form-group">	
+					<a>Building: </a><input class="form-control" name="building" type="text">
+				</div>
+				<div class="form-group">
+					<a>Capacity: </a><input class="form-control" name="capacity" type="text">
+				</div>
+				<div class="form-group">
+					<input type="radio" class="form-control" name="type" value="class" checked> Classroom <br/>
+					<input type="radio" class="form-control" name="type" value="lab"> Laboratory <br/>
+					<input type="radio" class="form-control" name="type" value="room"> Room <br/>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary" name="room">Save</button>
+				</div>
+			</form>
 		</div>
 		<div class="col-sm">
 		    <button id="classroom_create_dd" class="btn btn-primary" onclick="dropdown($('#classroom_create'))">Classroom Creation Form</button>
-		    <form method="post" action="" id="classroom_create" style="visibility: hidden"> <!-- CLASSROOM CREATION FORM -->
+			<form method="post" action="/classroom_create" id="classroom_create" style="visibility: hidden"> <!-- CLASSROOM CREATION FORM -->
+				<div class="form-group">
+					<a>ID: </a><input class="form-control" name="id" type="text"> <br/>
+				</div>
 		    	<div class="form-group">
 		    		<a>Building: </a><input class="form-control" name="building" type="text"> <br/>
 				</div>
 				<div class="form-group">
-					<a>Type: </a><input class="form-control" name="type" type="text"> <br/>
-				</div>
-				<div class="form-group">
 					<a>Last Restoration Date: </a><input class="form-control" name="restoration_date" type="text"> <br/>
 				</div>
+				<div class="form-group">	
+					<a>Available: </a><input class="form-control" name="availability" value = "available" type="checkbox" checked> <br/>
+									  <input class="form-control" name="availability" value = "no" type="hidden">	
+				</div>
+				<div class="form-group">	
+					<a>Air Conditioner: </a><input class="form-control" name="conditioner" value = "yes" type="checkbox"> <br/>
+											<input class="form-control" name="conditioner" value = "no" type="hidden" checked>		
+				</div>
 				<div class="form-group">
-					<a>Board Type : </a><input class="form-control" name="board_type" type="text"> <br/>
+					<a>Classroom Type:</a><br/>
+					<a>Lecture:</a>
+					<input type="radio" class="form-control" name="type" value="lecture" checked>
+					<a>Auditoria:</a>
+					<input type="radio" class="form-control" name="type" value="auditoria">
+					<a>Seminar:</a> 
+					<input type="radio" class="form-control" name="type" value="seminar">
+					<a>Interactive:</a>
+					<input type="radio" class="form-control" name="type" value="interactive">
 				</div>
-				<div class="form-group">	
-					<a>Available: </a><input class="form-control" name="availability" value = "available" type="checkbox"> <br/>
-				</div>
-				<div class="form-group">	
-					<a>Air Conditioner: </a><input class="form-control" name="conditioner" value = "exists" type="checkbox"> <br/>
+				<div class="form-group">
+					<a>Board Type:</a><br/>
+					<a>Mixed:</a>
+					<input type="radio" class="form-control" name="board_type" value="MIXED" checked>
+					<a>Black:</a>
+					<input type="radio" class="form-control" name="board_type" value="BLACK">
+					<a>White:</a>
+					<input type="radio" class="form-control" name="board_type" value="WHITE">
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary" name="classroom">Submit</button>

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block title %}Classrooms{% endblock %}
+{% block content %}
+    <h1>Classrooms</h1>
+
+    {% if classrooms %}
+    <form action="" method="post" name="classrooms_list">
+      <table>
+        <tr>
+            <th>Building</th>
+            <th>Type</th>
+            <th>Restoration Date</th>
+            <th>Board Type</th>
+            <th>Availability</th>
+            <th>Air Conditioner</th>
+            
+        </tr>
+        {% for classroom_key, classroom in classrooms %}
+        <tr>
+          <td>
+            <label class="checkbox">
+              <input type="checkbox" name="classroom_keys" value="{{ classroom_key }}"/>
+            </label>
+              <td>{{ classroom.id }}</td>
+              <td>{{ classroom.building }}</td>
+              <td>{{ classroom.type }}</td>
+              <td>{{ classroom.restoration_date }}</td>
+              <td>{{ classroom.board_type }}</td>
+              {% if classroom.availability %}
+              <td>Yes</td>
+              {% endif %}
+              {% if classroom.conditioner %}
+              <td>Yes</td>
+              {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    <button>Delete</button>
+    </form>
+    {% endif %}
+{% endblock %}
