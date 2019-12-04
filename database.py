@@ -109,14 +109,14 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "INSERT INTO PEOPLE VALUES (%s, %s, %s)"
+                statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO) VALUES (%s, %s, %s)"
                 data = [person.name, person.mail, person.photo]
                 cursor.execute(statement, data)
-                statement = "SELECT P_ID FROM PEOPLE WHERE NAME = '%s'"
+                statement = "SELECT P_ID FROM PEOPLE WHERE NAME = %s"
                 data = [person.name]
                 cursor.execute(statement, data)
                 value = cursor.fetchall()
-                person.id = value["P_ID"]
+                person.id = value[0]
                 cursor.close()
         except Exception as err:
             print("Error: ", err)
@@ -165,7 +165,7 @@ class Database:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
 
-                statement = "INSERT INTO STUDENTS VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                statement = "INSERT INTO STUDENTS (STU_ID, NUMBER, EARNED_CREDITS, DEPARTMENT, FACULTY, CLUB, LAB) VALUES (%s, %s, %s, %s, %s, %s, %s)"
                 data = [person.id, student.number, student.cred, student.depart, student.facu, student.club, student.lab]
                 cursor.execute(statement, data)
                 cursor.close()
@@ -189,18 +189,18 @@ class Database:
         return None
 
     def get_students(self):
-        if not len(self.students):
-            try:
-                with dbapi2.connect(self.url) as connection:
-                    cursor = connection.cursor()
-                    statement = "SELECT * FROM STUDENTS"
-                    cursor.execute(statement)
-                    datas = cursor.fetchall()
-                    cursor.close()
-            except Exception as err:
-                print("DB Error: ", err)
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM STUDENTS"
+                cursor.execute(statement)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error: ", err)
 
-        return datas
+        return None
 
     def delete_student(self, student_key):
         student = self.students.get(student_key)

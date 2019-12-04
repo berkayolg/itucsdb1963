@@ -184,17 +184,19 @@ def instructors_page():
 def student_create():
     db = Database()
     data = request.form
-    print(data["name"])
     student = Student(data["name"], data["number"], data["cred"], data["depart"], data["facu"])
     key = db.add_student(student)
-    #print(db.get_student(key).number)
     return redirect(url_for("admin_page"))
 
 @app.route("/student_list", methods = ["GET", ])
 def students_list():
     #db = current_app.config["db"]
     #students = db.get_students().values()
-    students = [1, 2, 3]
+    db = Database()
+    students = db.get_students()
+    if not students:
+        return redirect("/")
+    
     return render_template("students_list.html", students = students)
 
 if __name__ == "__main__":
