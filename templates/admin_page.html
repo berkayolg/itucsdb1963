@@ -128,9 +128,45 @@
 			</form>
 		</div>
 	</div>
-	
-</form>
-</div>
+<!--
+    <div class="row">
+        <div class="col-sm">
+            <button id="club_create_dd" class="btn btn-primary" onclick="dropdown($('#club_create'))">Club Creation Form</button>
+            <form method="post" action="/club_create" id="club_create" style="visibility: hidden">
+		    	<div class="form-group">
+		    		<label for="name">Name</label>
+		    		<input class="form-control" name="name" type="text">
+		    	</div>
+
+		    	<div class="form-group">
+		    		<label for="faculty">Faculty</label>
+                    <select name="faculty">
+                    {% for faculty in faculty_list %}
+                        <option>faculty.name</option>
+                    {% endfor %}
+                    </select>
+		    	</div>
+
+		    	<div class="form-group">
+		    		<label for="advisor">Advisor</label>
+		    		<select name="advisor">
+                    {% for professor in prof_list %}
+                        <option>professor.name</option>
+                    {% endfor %}
+                    </select>
+		    	</div>
+
+		    	<div class="form-group">
+		    		<a>Department: </a><input class="form-control" name="depart" type="text">
+		    	</div>
+
+		    	<div class="form-group">
+		    		<button type="submit" class="btn btn-primary">Submit</button>
+		    	</div>
+			</form>
+        </div>
+    </div> -->
+
 
 
 
