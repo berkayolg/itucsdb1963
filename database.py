@@ -165,7 +165,7 @@ class Database:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
 
-                statement = "INSERT INTO STUDENTS VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                statement = "INSERT INTO STUDENTS (STU_ID, NUMBER, EARNED_CREDITS, DEPARTMENT, FACULTY, CLUB, LAB) VALUES (%s, %s, %s, %s, %s, %s, %s)"
                 data = [person.id, student.number, student.cred, student.depart, student.facu, student.club, student.lab]
                 cursor.execute(statement, data)
                 cursor.close()
