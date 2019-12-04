@@ -116,7 +116,7 @@ class Database:
                 data = [person.name]
                 cursor.execute(statement, data)
                 value = cursor.fetchall()
-                person.id = value["P_ID"]
+                person.id = value[0]
                 cursor.close()
         except Exception as err:
             print("Error: ", err)
