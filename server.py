@@ -194,9 +194,9 @@ def students_list():
     #students = db.get_students().values()
     db = Database()
     students = db.get_students()
-    if not students:
-        return redirect("/")
     
+    
+        
     return render_template("students_list.html", students = students)
 
 if __name__ == "__main__":

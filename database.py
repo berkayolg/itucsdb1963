@@ -184,7 +184,7 @@ class Database:
                 cursor.close()
                 return datas
         except Exception as err:
-            print("Error: ", err)
+            print("DB Error: ", err)
 
         return None
 
@@ -192,7 +192,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM STUDENTS"
+                statement = "SELECT * FROM STUDENTS JOIN PEOPLE ON (STUDENTS.STU_ID = PEOPLE.P_ID)"
                 cursor.execute(statement)
                 datas = cursor.fetchall()
                 cursor.close()
@@ -212,7 +212,6 @@ class Database:
                     values = [student.number]
                     cursor.execute(statement, values)
                     cursor.close()
-                    del self.students[student_key]
             except Exception as err:
                 print("Error: ", err)
 
@@ -222,7 +221,7 @@ class Database:
             "id": "STU_ID",
             "number": "NUMBER",
             "cred": "EARNED_CREDITS",
-            "depart": "DEPARTMANT",
+            "depart": "DEPARTMENT",
             "facu": "FACULTY",
             "club": "CLUB",
             "lab": "LAB"
