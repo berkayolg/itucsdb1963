@@ -109,8 +109,8 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO) VALUES (%s, %s, %s)"
-                data = [person.name, person.mail, person.photo]
+                statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO, PASSWORD) VALUES (%s, %s, %s, %s)"
+                data = [person.name, person.mail, person.photo, person.password]
                 cursor.execute(statement, data)
                 statement = "SELECT P_ID FROM PEOPLE WHERE NAME = %s"
                 data = [person.name]

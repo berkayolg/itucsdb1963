@@ -6,6 +6,9 @@ from models.student import Student
 from models.room import Room
 from models.classroom import Classroom
 
+import hashlib
+import os
+
 app = Flask(__name__)
 
 
@@ -196,6 +199,32 @@ def students_list():
     students = db.get_students()
 
     return render_template("students_list.html", name = students[0]["Name"], students = students)
+
+
+@app.route("/login", methods = ["GET", ])
+def login_page():
+    return render_template("login_page.html")
+
+@app.route("/signup", methods = ["GET", ])
+def signup_page():
+    return render_template("signup_page.html")
+
+@app.route("/signup_action", methods = ["GET", ])
+def signup_action():
+    data = request.form 
+    
+    salt = os.urandom(32)
+    key = hashlib.pbkdf2_hmac(
+        'sha256', # The hash digest algorithm for HMAC
+        password.encode('utf-8'), # Convert the password to bytes
+        salt, # Provide the salt
+        100000 # It is recommended to use at least 100,000 iterations of SHA-256 
+    )
+    
+    person = People(name=data["name"], password=salt+key)
+    db = Database()
+    db.add_person(person)
+    return redirect(url_for("home_page"))
 
 if __name__ == "__main__":
     app.config["db"] = Database()
