@@ -195,7 +195,7 @@ def students_list():
     db = Database()
     students = db.get_students()
 
-    return render_template("students_list.html", students = students)
+    return render_template("students_list.html", name = students[0]["Name"])
 
 if __name__ == "__main__":
     app.config["db"] = Database()

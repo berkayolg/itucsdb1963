@@ -2,7 +2,11 @@
 
 {% block content %}
 
-	{% for student in students %}
+	{{ name }}
+
+{% endblock %}
+
+{% for student in students %}
 		
 		{% for key, value in student %}
 
@@ -11,5 +15,3 @@
 		{% endfor %}
 
 	{% endfor %}
-
-{% endblock %}
