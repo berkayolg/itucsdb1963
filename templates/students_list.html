@@ -4,13 +4,9 @@
 
 	{{ name }}
 
-	{% for student in students %}
+	{% for key, value in students.items %}
 		
-		{% for key, value in student.items %}
-
-			<a> {{key}} : {{value}} </a> <br/>
-
-		{% endfor %}
+		<a> {{key}} : {{value}} </a> <br/>
 
 	{% endfor %}
 
