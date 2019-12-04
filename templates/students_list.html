@@ -1,6 +1,11 @@
 {% extends "layout.html" %}
-{% for student in students %}
 
-	{{ student.number }}
+{% block content %}
 
-{% endfor %}
+	{% for student in students %}
+		
+		{{ student }}
+
+	{% endfor %}
+
+{% endblock %}
