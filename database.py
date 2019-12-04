@@ -189,18 +189,18 @@ class Database:
         return None
 
     def get_students(self):
-        if not len(self.students):
-            try:
-                with dbapi2.connect(self.url) as connection:
-                    cursor = connection.cursor()
-                    statement = "SELECT * FROM STUDENTS"
-                    cursor.execute(statement)
-                    datas = cursor.fetchall()
-                    cursor.close()
-            except Exception as err:
-                print("DB Error: ", err)
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM STUDENTS"
+                cursor.execute(statement)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error: ", err)
 
-        return datas
+        return None
 
     def delete_student(self, student_key):
         student = self.students.get(student_key)
