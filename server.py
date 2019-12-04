@@ -192,9 +192,8 @@ def student_create():
 
 @app.route("/student_list", methods = ["GET", ])
 def students_list():
-    db = current_app.config["db"]
+    #db = current_app.config["db"]
     #students = db.get_students().values()
-    students = [1, 2, 3]
     return render_template("students_list.html", students = students)
 
 if __name__ == "__main__":
