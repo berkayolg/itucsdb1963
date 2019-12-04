@@ -121,16 +121,23 @@ class Database:
         except Exception as err:
             print("Error: ", err)
 
-        self._last_people_key += 1
-        self.people[self._last_people_key] = person
-
-        return self._last_people_key
-
-    def get_person(self, person_key):
-        person = self.people.get(person_key)
-        if not person:
-            return None
         return person
+
+    def get_person(self, p_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM PEOPLE WHERE P_ID = '%s'"
+                data = [person.name]
+                cursor.execute(statement, data)
+                value = cursor.fetchall()
+                cursor.close()
+                person = People(value["P_ID"], value["NAME"], value["EMAIL"], value["PHOTO"])
+                return person
+        except Exception as err:
+            print("Error: ", err)
+
+        return None
 
     def get_people(self):
         if not len(self.people):
@@ -140,24 +147,19 @@ class Database:
                     statement = "SELECT * FROM PEOPLE"
                     cursor.execute(statement)
                     datas = cursor.fetchall()
-                    for data in datas:
-                        person = People(data[0], data[1], data[2], data[3])
-                        self._last_people_key += 1
-                        self.people[_last_people_key] = person
+                    return datas
                     cursor.close()
             except Exception as err:
                 print("Error: ", err)
 
-        return self.people.copy()
+        return None
 
 
     ############# STUDENTS ###############
 
     def add_student(self, student):
-        self._last_stu_key += 1
-        self.students[self._last_stu_key] = student
         person_obj = People(student.name)
-        person = get_person(add_person(person_obj))
+        person = self.add_person(person_obj)
 
         try:
             with dbapi2.connect(self.url) as connection:
@@ -170,13 +172,21 @@ class Database:
         except Exception as err:
             print("Error: ", err)
 
-        return self._last_stu_key
+    def get_student(self, stu_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM STUDENTS WHERE STU_ID = %s"
+                data = [stu_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("Error: ", err)
 
-    def get_student(self, student_key):
-        student = self.students.get(student_key)
-        if not student:
-            return None
-        return copy.copy(student)
+        return None
 
     def get_students(self):
         if not len(self.students):
@@ -186,15 +196,11 @@ class Database:
                     statement = "SELECT * FROM STUDENTS"
                     cursor.execute(statement)
                     datas = cursor.fetchall()
-                    for data in datas:
-                        student = Student(data[0], data[1], data[2], data[3], data[4], data[5], data[6])
-                        self._last_stu_key += 1
-                        self.students[_last_stu_key] = student
                     cursor.close()
             except Exception as err:
                 print("DB Error: ", err)
 
-        return copy.copy(self.students)
+        return datas
 
     def delete_student(self, student_key):
         student = self.students.get(student_key)
