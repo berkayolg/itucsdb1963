@@ -107,7 +107,7 @@ class Database:
 
     def add_person(self, person):
         try:
-            with dbapi2.connect(url) as connection:
+            with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
                 statement = "INSERT INTO PEOPLE VALUES (%s, %s, %s)"
                 data = [person.name, person.mail, person.photo]
@@ -135,7 +135,7 @@ class Database:
     def get_people(self):
         if not len(self.people):
             try:
-                with dbapi2.connect(url) as connection:
+                with dbapi2.connect(self.url) as connection:
                     cursor = connection.cursor()
                     statement = "SELECT * FROM PEOPLE"
                     cursor.execute(statement)
@@ -160,7 +160,7 @@ class Database:
         person = get_person(add_person(person_obj))
 
         try:
-            with dbapi2.connect(url) as connection:
+            with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
 
                 statement = "INSERT INTO STUDENTS VALUES (%s, %s, %s, %s, %s, %s, %s)"
@@ -181,7 +181,7 @@ class Database:
     def get_students(self):
         if not len(self.students):
             try:
-                with dbapi2.connect(url) as connection:
+                with dbapi2.connect(self.url) as connection:
                     cursor = connection.cursor()
                     statement = "SELECT * FROM STUDENTS"
                     cursor.execute(statement)
