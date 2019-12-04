@@ -4,8 +4,10 @@
 
 	{{ name }} <br/>
 
-	{% for student in students %}
-		{{ student[Name] }} <br/>
+	{% for key, value in students.items() %}
+
+		{{ key }} : {{ value }} <br/>
+
 	{% endfor %}
 
 {% endblock %}
