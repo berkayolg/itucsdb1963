@@ -196,7 +196,14 @@ class Database:
                 cursor.execute(statement)
                 datas = cursor.fetchall()
                 cursor.close()
-                return datas
+                retval = []
+                for data in datas:
+                    val = {
+                        "Name": data[8],
+                        "Number": data[1]
+                    }
+                    retval.append(val)
+                return retval
         except Exception as err:
             print("DB Error: ", err)
 

@@ -4,7 +4,11 @@
 
 	{% for student in students %}
 		
-		{{ student }}
+		{% for key, value in student %}
+
+			<a> {{key}} : {{value}} </a> <br/>
+
+		{% endfor %}
 
 	{% endfor %}
 
