@@ -112,7 +112,7 @@ class Database:
                 statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO) VALUES (%s, %s, %s)"
                 data = [person.name, person.mail, person.photo]
                 cursor.execute(statement, data)
-                statement = "SELECT P_ID FROM PEOPLE WHERE NAME = '%s'"
+                statement = "SELECT P_ID FROM PEOPLE WHERE NAME = %s"
                 data = [person.name]
                 cursor.execute(statement, data)
                 value = cursor.fetchall()

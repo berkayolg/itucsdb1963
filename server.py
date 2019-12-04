@@ -184,10 +184,8 @@ def instructors_page():
 def student_create():
     db = Database()
     data = request.form
-    print(data["name"])
     student = Student(data["name"], data["number"], data["cred"], data["depart"], data["facu"])
     key = db.add_student(student)
-    #print(db.get_student(key).number)
     return redirect(url_for("admin_page"))
 
 @app.route("/student_list", methods = ["GET", ])
