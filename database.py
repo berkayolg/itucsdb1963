@@ -26,6 +26,8 @@ class Database:
         self._last_people_key = 0
 
         self.url = os.getenv("DATABASE_URL")
+        if not self.url:
+            self.url = "postgres://iaksomyxyzootw:d9a1a786933ba99327d701e93ac741a5242fa801abf686cfce029df4fa887f68@ec2-54-225-115-177.compute-1.amazonaws.com:5432/daq4rhn32jb4v7"
 
     ############# ROOMS ###############
 
@@ -112,8 +114,9 @@ class Database:
                 statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO, PASSWORD) VALUES (%s, %s, %s, %s)"
                 data = [person.name, person.mail, person.photo, person.password]
                 cursor.execute(statement, data)
-                statement = "SELECT P_ID FROM PEOPLE WHERE NAME = %s"
-                data = [person.name]
+                print(data)
+                statement = "SELECT P_ID FROM PEOPLE WHERE EMAIL = %s"
+                data = [person.mail]
                 cursor.execute(statement, data)
                 value = cursor.fetchall()
                 person.id = value[0]
@@ -127,17 +130,38 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM PEOPLE WHERE P_ID = '%s'"
-                data = [person.name]
+                statement = "SELECT * FROM PEOPLE WHERE P_ID = %s"
+                data = [p_id]
                 cursor.execute(statement, data)
-                value = cursor.fetchall()
+                value = cursor.fetchone()
                 cursor.close()
-                person = People(value["P_ID"], value["NAME"], value["EMAIL"], value["PHOTO"])
+                if not value:
+                    return None
+                person = People(value[0], value[1], value[2], value[3])
                 return person
         except Exception as err:
             print("Error: ", err)
 
         return None
+
+    def get_person_by_mail(self, mail):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM PEOPLE WHERE EMAIL = %s"
+                data = [mail]
+                cursor.execute(statement, data)
+                value = cursor.fetchone()
+                cursor.close()
+                if not value:
+                    return None
+                person = People(value[0], value[1], value[2], value[3])
+                return person
+        except Exception as err:
+            print("Error: ", err)
+
+        return None
+
 
     def get_people(self):
         if not len(self.people):

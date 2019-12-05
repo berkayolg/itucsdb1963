@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for, current_app
+from flask import Flask, render_template, request, redirect, url_for, current_app, session
 from datetime import datetime
 
 from database import Database, Instructor
 from models.student import Student
 from models.room import Room
 from models.classroom import Classroom
+from models.people import People
 
 import hashlib
 import os
@@ -19,7 +20,11 @@ def home_page():
 
     :return:
     """
-    return render_template("home.html")
+
+    return render_template("home.html", 
+        authenticated = session["logged_in"],
+        username = "anon" if not session["logged_in"] else session["user_name"]
+        )
 
 
 @app.route("/add_course")
@@ -205,27 +210,67 @@ def students_list():
 def login_page():
     return render_template("login_page.html")
 
+@app.route("/login_action", methods = ["POST", ])
+def login_action():
+    data = request.form
+    db = Database()
+
+    salt = os.urandom(32)
+    key = hashlib.pbkdf2_hmac(
+        'sha256', # The hash digest algorithm for HMAC
+        data["password"].encode('utf-8'), # Convert the password to bytes
+        salt, # Provide the salt
+        100000 # It is recommended to use at least 100,000 iterations of SHA-256 
+    )
+
+    username = data["name"]
+    password = salt + key
+
+    person = db.get_person_by_un_passw(username = data["name"], password = password)
+    print(person)
+    if not person:
+        return redirect(url_for("login_page"))
+    session["logged_in"] = 1
+    session["name"] = person.name
+    return redirect(url_for("home_page"))
+
 @app.route("/signup", methods = ["GET", ])
 def signup_page():
     return render_template("signup_page.html")
 
-@app.route("/signup_action", methods = ["GET", ])
+@app.route("/signup_action", methods = ["POST", ])
 def signup_action():
     data = request.form 
     
     salt = os.urandom(32)
     key = hashlib.pbkdf2_hmac(
         'sha256', # The hash digest algorithm for HMAC
-        password.encode('utf-8'), # Convert the password to bytes
+        data["password"].encode('utf-8'), # Convert the password to bytes
         salt, # Provide the salt
         100000 # It is recommended to use at least 100,000 iterations of SHA-256 
     )
     
-    person = People(name=data["name"], password=salt+key)
+    person = People(name=data["name"], password=salt+key, mail=data["mail"])
     db = Database()
     db.add_person(person)
+
+    session["logged_in"] = 1
+    session["user_name"]= data["name"]
+    session["user_mail"] = data["mail"]
+
+    print("user_name")
+
+    return redirect(url_for("home_page"))
+
+
+@app.route("/logout", methods = ["GET", ])
+def logout():
+    if session["logged_in"]:
+        session["logged_in"] = 0
+        session["user_name"] = None
+
     return redirect(url_for("home_page"))
 
 if __name__ == "__main__":
-    app.config["db"] = Database()
+    app.config['SECRET_KEY'] = 'betterthanoriginalsis'
     app.run(debug=True)

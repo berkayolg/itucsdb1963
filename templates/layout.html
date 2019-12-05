@@ -34,9 +34,11 @@
                     <a class="nav-link" href="/su">Top Secret Admin Page</a>
                 </li>
             </ul>
+            {% if authenticated %}
             <span class="navbar-text">
-            Practical Navbar for Developing
+                <a class="nav-link" href="/logout"> Logout </a>
             </span>
+            {% endif %}
         </div>
     </nav>
 {% block content %}
