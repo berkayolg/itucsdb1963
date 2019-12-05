@@ -103,8 +103,12 @@ def admin_page():
     God mode.
     :return:
     """
+    db = Database()
+    faculty_list = db.get_faculty(0)
+    prof_list = db.get_instructors()
+
     if request.method == "GET":
-        return render_template("admin_page.html")
+        return render_template("admin_page.html", faculty_list, prof_list)
     '''
     else:
         if "instructor" in request.form:
