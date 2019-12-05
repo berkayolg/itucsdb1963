@@ -107,7 +107,8 @@ class Database:
                 cursor = connection.cursor()
 
                 statement = "INSERT INTO INSTRUCTORS (INS_ID, BACHELORS, MASTERS, DOCTORATES, DEPARTMENT, ROOM, LAB) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                data = [person.id, instructor.bachelors, instructor.masters, instructor.doctorates, instructor.department, instructor.room, instructor.lab]
+                data = [person.id, instructor.bachelors, instructor.masters, instructor.doctorates,
+                        instructor.department, instructor.room, instructor.lab]
                 cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:
@@ -196,7 +197,6 @@ class Database:
             print("Error while getting person: ", err)
 
         return None
-
 
     def get_people(self):
         if not len(self.people):
@@ -381,9 +381,69 @@ class Database:
 
     ############# ASSISTANTS ###############
 
+    def add_assistant(self, assistant):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                data = [assistant.person, assistant.lab, assistant.degree, assistant.department, assistant.faculty]
+                statement = "INSERT INTO ASSISTANTS (AS_PERSON, LAB, DEGREE, DEPARTMENT, FACULTY) VALUES (%s, %s, %s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Add assistant Error: ", err)
+
+    def get_assistant(self, as_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM ASSISTANTS WHERE AS_ID = %s"
+                data = [as_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("Get assistant DB Error: ", err)
+
+        return None
+
+    def delete_assistant(self, as_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM ASSISTANTS WHERE AS_ID = %s"
+                values = [as_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Delete assistant Error: ", err)
+
+    def update_lab(self, lab_id, attrs, values):
+        attrs_lookup_table = {
+            "person": "AS_PERSON",
+            "lab": "LAB",
+            "degree": "DEGREE",
+            "department": "DEPARTMENT",
+            "faculty": "FACULTY",
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE ASSISTANTS SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE AS_ID = %s"
+                values.append(lab_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Update assistant Error: ", err)
+
     ############# LABS ###############
 
-    # Create
     def add_lab(self, lab):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -395,7 +455,6 @@ class Database:
         except Exception as err:
             print("Add lab Error: ", err)
 
-    # Read
     def get_lab(self, lab_id):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -412,7 +471,6 @@ class Database:
 
         return None
 
-    # Delete
     def delete_lab(self, lab_id):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -424,7 +482,6 @@ class Database:
         except Exception as err:
             print("Delete lab Error: ", err)
 
-    # Update
     def update_lab(self, lab_id, attrs, values):
         attrs_lookup_table = {
             "name": "LAB_NAME",
@@ -451,7 +508,6 @@ class Database:
 
     ############# DEPARTMENTS ###############
 
-    # Create
     def add_department(self, department):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -463,7 +519,6 @@ class Database:
         except Exception as err:
             print(" Add department Error: ", err)
 
-    # Read
     def get_department(self, dep_id):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -480,7 +535,6 @@ class Database:
 
         return None
 
-    # Delete
     def delete_department(self, dep_id):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -492,7 +546,6 @@ class Database:
         except Exception as err:
             print("Delete Department Error: ", err)
 
-    # Update
     def update_department(self, dep_id, attrs, values):
         attrs_lookup_table = {
             "name": "LAB_NAME",
