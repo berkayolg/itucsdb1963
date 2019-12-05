@@ -348,7 +348,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM FACULTIES WHERE fac_id = %s"
+                statement = "DELETE FROM FACULTIES WHERE FAC_ID = %s"
                 values = [fac_id]
                 cursor.execute(statement, values)
                 cursor.close()
@@ -417,7 +417,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM LABS WHERE lab_id = %s"
+                statement = "DELETE FROM LABS WHERE LAB_ID = %s"
                 values = [lab_id]
                 cursor.execute(statement, values)
                 cursor.close()
@@ -485,7 +485,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM DEPARTMENTS WHERE dep_id = %s"
+                statement = "DELETE FROM DEPARTMENTS WHERE DEP_ID = %s"
                 values = [dep_id]
                 cursor.execute(statement, values)
                 cursor.close()
@@ -560,7 +560,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM BUILDINGS WHERE bu_id = %s"
+                statement = "DELETE FROM BUILDINGS WHERE BU_ID = %s"
                 values = [bu_id]
                 cursor.execute(statement, values)
                 cursor.close()
@@ -589,3 +589,65 @@ class Database:
             print("Update Department Error: ", err)
 
     ############# CLUBS ###############
+
+    def add_club(self, club):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                data = [club.name, club.faculty, club.advisor, club.chairman, club.vice_1, club.vice_2]
+                statement = "INSERT INTO CLUBS (NAME, FACULTY, ADVISOR, CHAIRMAN, V_CHAIRMAN_1, V_CHAIRMAN_2) VALUES (%s, %s, %s, %s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Add Club Error: ", err)
+
+    def get_club(self, club_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM CLUBS WHERE CLUB_ID = %s"
+                data = [club_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("Get club DB Error: ", err)
+
+        return None
+
+    def delete_club(self, club_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM CLUBS WHERE CLUB_ID = %s"
+                values = [club_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Delete club error: ", err)
+
+    def update_club(self, club_id, attrs, values):
+        attrs_lookup_table = {
+            "name": "NAME",
+            "faculty": "FACULTY",
+            "advisor": "ADVISOR",
+            "chairman": "CHAIRMAN",
+            "vice_1": "V_CHAIRMAN_1",
+            "vice_2": "V_CHAIRMAN_2"
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE CLUBS SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE CLUB_ID = %s"
+                values.append(club_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Update Club Error: ", err)
