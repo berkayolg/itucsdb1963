@@ -10,6 +10,7 @@ from models.instructor import Instructor
 from models.student import Student
 from models.people import People
 
+
 class Database:
 
     def __init__(self):
@@ -18,7 +19,7 @@ class Database:
         self.instructors = {}
         self.students = {}
         self.people = {}
-        
+
         self._last_room_key = 0
         self._last_classroom_key = 0
         self._last_inst_key = 0
@@ -44,7 +45,7 @@ class Database:
             return None
         room_ = Room(room.building, room.name, room.cap, room.classroom, room.room, room.lab)
         return room_
-        
+
     def get_rooms(self):
         rooms = []
         for room_key, room in self.rooms.items():
@@ -52,7 +53,7 @@ class Database:
             rooms.append((room_key, room_))
         return rooms
 
-   ############# CLASSROOMS ###############
+    ############# CLASSROOMS ###############
 
     def add_classroom(self, classroom):
         self._last_classroom_key += 1
@@ -67,13 +68,15 @@ class Database:
         classroom = self.classrooms.get(classroom_key)
         if classroom is None:
             return None
-        classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date, classroom.availability, classroom.conditioner, classroom.board_type)
+        classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date,
+                               classroom.availability, classroom.conditioner, classroom.board_type)
         return classroom_
-        
+
     def get_classrooms(self):
         classrooms = []
         for classroom_key, classroom in self.classrooms.items():
-            classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date, classroom.availability, classroom.conditioner, classroom.board_type)
+            classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date,
+                                   classroom.availability, classroom.conditioner, classroom.board_type)
             classrooms.append((classroom_key, classroom_))
         return classrooms
 
@@ -92,16 +95,17 @@ class Database:
         instructor = self.instructors.get(instructor_key)
         if instructor is None:
             return None
-        instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room, instructor.lab)
+        instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room,
+                                 instructor.lab)
         return instructor_
-        
+
     def get_instructors(self):
         instructors = []
         for instructor_key, instructor in self.instructors.items():
-            instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room, instructor.lab)
+            instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room,
+                                     instructor.lab)
             instructors.append((instructor_key, instructor_))
         return instructors
-
 
     ############# PEOPLE   ###############
 
@@ -154,7 +158,6 @@ class Database:
 
         return None
 
-
     ############# STUDENTS ###############
 
     def add_student(self, student):
@@ -166,7 +169,8 @@ class Database:
                 cursor = connection.cursor()
 
                 statement = "INSERT INTO STUDENTS (STU_ID, NUMBER, EARNED_CREDITS, DEPARTMENT, FACULTY, CLUB, LAB) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                data = [person.id, student.number, student.cred, student.depart, student.facu, student.club, student.lab]
+                data = [person.id, student.number, student.cred, student.depart, student.facu, student.club,
+                        student.lab]
                 cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:
@@ -247,3 +251,88 @@ class Database:
                     del self.students[student_key]
             except Exception as err:
                 print("Error: ", err)
+
+    ############# FACULTIES ###############
+
+    # Create
+    def add_faculty(self, faculty):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                data = [faculty.name, faculty.building, faculty.dean, faculty.assistant_dean_1]
+                if faculty.assistant_dean_2 is not None:
+                    data.append(faculty.assistant_dean_2)
+                    statement = "INSERT INTO FACULTIES (FAC_NAME, FAC_BUILDING, DEAN, DEAN_ASST_1, DEAN_ASST_2) VALUES (%s, %s, %s, %s, %s)"
+                    cursor.execute(statement, data)
+                else:
+                    statement = "INSERT INTO FACULTIES (FAC_NAME, FAC_BUILDING, DEAN, DEAN_ASST_1) VALUES (%s, %s, %s, %s)"
+                    cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+    # Read
+    def get_faculty(self, fac_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM FACULTIES WHERE FAC_ID = %s"
+                data = [fac_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error: ", err)
+
+        return None
+
+    # Delete
+    def delete_faculty(self, fac_id):
+        if student:
+            try:
+                with dbapi2.connect(self.url) as connection:
+                    cursor = connection.cursor()
+                    statement = "DELETE FROM FACULTIES WHERE fac_id = %s"
+                    values = [fac_id]
+                    cursor.execute(statement, values)
+                    cursor.close()
+            except Exception as err:
+                print("Error: ", err)
+
+    # Update
+    def update_faculty(self, fac_id, attrs, values):
+        attrs_lookup_table = {
+            "name": "FAC_NAME",
+            "cred": "FAC_BUILDING",
+            "dean": "DEAN",
+            "vdean_1": "DEAN_ASST_1",
+            "vdean_2": "DEAN_ASST_2",
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE FACULTIES SET "
+                for attr in attrs:
+                    statement += attrs_lookup_table[attr] + " = %s "
+                statement += " WHERE FAC_ID = %s"
+                values.append(fac_id)
+                cursor.execute(statement, values)
+                cursor.close()
+                
+        except Exception as err:
+            print("Error: ", err)
+
+    ############# ASSISTANTS ###############
+
+    ############# LABS ###############
+
+    ############# DEPARTMENTS ###############
+
+    ############# PAPERS ###############
+
+    ############# BUILDINGS ###############
+
+    ############# CLUBS ###############
