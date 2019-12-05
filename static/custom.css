@@ -1,3 +1,7 @@
 footer {
     text-align: center;
 }
+
+.table>tbody .hidden-row {
+   padding: 0 8px;
+}
