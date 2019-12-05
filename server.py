@@ -108,7 +108,7 @@ def admin_page():
     prof_list = db.get_instructors()
 
     if request.method == "GET":
-        return render_template("admin_page.html", faculty_list, prof_list)
+        return render_template("admin_page.html", faculty_list=faculty_list, prof_list=prof_list)
     '''
     else:
         if "instructor" in request.form:
