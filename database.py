@@ -321,16 +321,15 @@ class Database:
 
     # Delete
     def delete_faculty(self, fac_id):
-        if student:
-            try:
-                with dbapi2.connect(self.url) as connection:
-                    cursor = connection.cursor()
-                    statement = "DELETE FROM FACULTIES WHERE fac_id = %s"
-                    values = [fac_id]
-                    cursor.execute(statement, values)
-                    cursor.close()
-            except Exception as err:
-                print("Error: ", err)
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM FACULTIES WHERE fac_id = %s"
+                values = [fac_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
 
     # Update
     def update_faculty(self, fac_id, attrs, values):
@@ -346,9 +345,9 @@ class Database:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
                 statement = "UPDATE FACULTIES SET "
-                for attr in attrs:
-                    statement += attrs_lookup_table[attr] + " = %s "
-                statement += " WHERE FAC_ID = %s"
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE FAC_ID = %s"
                 values.append(fac_id)
                 cursor.execute(statement, values)
                 cursor.close()
@@ -359,6 +358,72 @@ class Database:
     ############# ASSISTANTS ###############
 
     ############# LABS ###############
+
+    # Create
+    def add_lab(self, lab):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                data = [lab.name, lab.department, lab.faculty, lab.building, lab.room, lab.investigator]
+                statement = "INSERT INTO LABS (LAB_NAME, DEPARTMENT, FACULTY, BUILDING, ROOM, INVESTIGATOR) VALUES (%s, %s, %s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+    # Read
+    def get_lab(self, lab_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM LABS WHERE LAB_ID = %s"
+                data = [lab_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error: ", err)
+
+        return None
+
+    # Delete
+    def delete_lab(self, lab_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM LABS WHERE lab_id = %s"
+                values = [lab_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+    # Update
+    def update_faculty(self, lab_id, attrs, values):
+        attrs_lookup_table = {
+            "name": "LAB_NAME",
+            "department": "DEPARTMENT",
+            "faculty": "FACULTY",
+            "building": "BUILDING",
+            "room": "ROOM",
+            "investigator": "INVESTIGATOR"
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE LABS SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE LAB_ID = %s"
+                values.append(lab_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Error: ", err)
 
     ############# DEPARTMENTS ###############
 
