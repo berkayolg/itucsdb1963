@@ -10,6 +10,7 @@ from models.instructor import Instructor
 from models.student import Student
 from models.people import People
 
+
 class Database:
 
     def __init__(self):
@@ -18,7 +19,7 @@ class Database:
         self.instructors = {}
         self.students = {}
         self.people = {}
-        
+
         self._last_room_key = 0
         self._last_classroom_key = 0
         self._last_inst_key = 0
@@ -32,9 +33,16 @@ class Database:
     ############# ROOMS ###############
 
     def add_room(self, room):
-        self._last_room_key += 1
-        self.rooms[self._last_room_key] = room
-        return self._last_room_key
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "INSERT INTO ROOMS (BUILDING, ROOM_NAME, CAP, CLASS, LAB, ROOM) VALUES (%s, %s, %s, %s, %s, %s)"
+                data = [room.building, room.name, room.cap, room.classroom, room.lab, room.room]
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error while adding room: ", err)
+        return room
 
     def delete_room(self, room_key):
         if room_key in self.rooms:
@@ -46,15 +54,22 @@ class Database:
             return None
         room_ = Room(room.building, room.name, room.cap, room.classroom, room.room, room.lab)
         return room_
-        
-    def get_rooms(self):
-        rooms = []
-        for room_key, room in self.rooms.items():
-            room_ = Room(room.building, room.name, room.cap, room.classroom, room.room, room.lab)
-            rooms.append((room_key, room_))
-        return rooms
 
-   ############# CLASSROOMS ###############
+    def get_rooms(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM ROOMS"
+                cursor.execute(statement)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error while getting rooms: ", err)
+
+        return None
+
+    ############# CLASSROOMS ###############
 
     def add_classroom(self, classroom):
         self._last_classroom_key += 1
@@ -69,22 +84,35 @@ class Database:
         classroom = self.classrooms.get(classroom_key)
         if classroom is None:
             return None
-        classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date, classroom.availability, classroom.conditioner, classroom.board_type)
+        classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date,
+                               classroom.availability, classroom.conditioner, classroom.board_type)
         return classroom_
-        
+
     def get_classrooms(self):
         classrooms = []
         for classroom_key, classroom in self.classrooms.items():
-            classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date, classroom.availability, classroom.conditioner, classroom.board_type)
+            classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date,
+                                   classroom.availability, classroom.conditioner, classroom.board_type)
             classrooms.append((classroom_key, classroom_))
         return classrooms
 
     ############# INSTRUCTORS ###############
 
     def add_instructor(self, instructor):
-        self._last_inst_key += 1
-        self.instructors[self._last_inst_key] = instructor
-        return self._last_inst_key
+        person_obj = People(instructor.name)
+        person = self.add_person(person_obj)
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+
+                statement = "INSERT INTO INSTRUCTORS (INS_ID, BACHELORS, MASTERS, DOCTORATES, DEPARTMENT, ROOM, LAB) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                data = [person.id, instructor.bachelors, instructor.masters, instructor.doctorates, instructor.department, instructor.room, instructor.lab]
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error while adding instructor: ", err)
+        return instructor
 
     def delete_instructor(self, instructor_key):
         if instructor_key in self.instructors:
@@ -94,16 +122,23 @@ class Database:
         instructor = self.instructors.get(instructor_key)
         if instructor is None:
             return None
-        instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room, instructor.lab)
+        instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room,
+                                 instructor.lab)
         return instructor_
-        
-    def get_instructors(self):
-        instructors = []
-        for instructor_key, instructor in self.instructors.items():
-            instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room, instructor.lab)
-            instructors.append((instructor_key, instructor_))
-        return instructors
 
+    def get_instructors(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM INSTRUCTORS"
+                cursor.execute(statement)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error while getting instructors: ", err)
+
+        return None
 
     ############# PEOPLE   ###############
 
@@ -122,7 +157,7 @@ class Database:
                 person.id = value[0]
                 cursor.close()
         except Exception as err:
-            print("Error: ", err)
+            print("Error while adding person: ", err)
 
         return person
 
@@ -158,7 +193,7 @@ class Database:
                 person = People(value[0], value[1], value[2], value[3])
                 return person
         except Exception as err:
-            print("Error: ", err)
+            print("Error while getting person: ", err)
 
         return None
 
@@ -174,10 +209,9 @@ class Database:
                     return datas
                     cursor.close()
             except Exception as err:
-                print("Error: ", err)
+                print("Error while getting people: ", err)
 
         return None
-
 
     ############# STUDENTS ###############
 
@@ -190,7 +224,8 @@ class Database:
                 cursor = connection.cursor()
 
                 statement = "INSERT INTO STUDENTS (STU_ID, NUMBER, EARNED_CREDITS, DEPARTMENT, FACULTY, CLUB, LAB) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                data = [person.id, student.number, student.cred, student.depart, student.facu, student.club, student.lab]
+                data = [person.id, student.number, student.cred, student.depart, student.facu, student.club,
+                        student.lab]
                 cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:
@@ -271,3 +306,153 @@ class Database:
                     del self.students[student_key]
             except Exception as err:
                 print("Error: ", err)
+
+    ############# FACULTIES ###############
+
+    # Create
+    def add_faculty(self, faculty):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                data = [faculty.name, faculty.building, faculty.dean, faculty.assistant_dean_1]
+                if faculty.assistant_dean_2 is not None:
+                    data.append(faculty.assistant_dean_2)
+                    statement = "INSERT INTO FACULTIES (FAC_NAME, FAC_BUILDING, DEAN, DEAN_ASST_1, DEAN_ASST_2) VALUES (%s, %s, %s, %s, %s)"
+                    cursor.execute(statement, data)
+                else:
+                    statement = "INSERT INTO FACULTIES (FAC_NAME, FAC_BUILDING, DEAN, DEAN_ASST_1) VALUES (%s, %s, %s, %s)"
+                    cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+    # Read
+    def get_faculty(self, fac_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM FACULTIES WHERE FAC_ID = %s"
+                data = [fac_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error: ", err)
+
+        return None
+
+    # Delete
+    def delete_faculty(self, fac_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM FACULTIES WHERE fac_id = %s"
+                values = [fac_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+    # Update
+    def update_faculty(self, fac_id, attrs, values):
+        attrs_lookup_table = {
+            "name": "FAC_NAME",
+            "cred": "FAC_BUILDING",
+            "dean": "DEAN",
+            "vdean_1": "DEAN_ASST_1",
+            "vdean_2": "DEAN_ASST_2",
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE FACULTIES SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE FAC_ID = %s"
+                values.append(fac_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Error: ", err)
+
+    ############# ASSISTANTS ###############
+
+    ############# LABS ###############
+
+    # Create
+    def add_lab(self, lab):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                data = [lab.name, lab.department, lab.faculty, lab.building, lab.room, lab.investigator]
+                statement = "INSERT INTO LABS (LAB_NAME, DEPARTMENT, FACULTY, BUILDING, ROOM, INVESTIGATOR) VALUES (%s, %s, %s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+    # Read
+    def get_lab(self, lab_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM LABS WHERE LAB_ID = %s"
+                data = [lab_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error: ", err)
+
+        return None
+
+    # Delete
+    def delete_lab(self, lab_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM LABS WHERE lab_id = %s"
+                values = [lab_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+    # Update
+    def update_faculty(self, lab_id, attrs, values):
+        attrs_lookup_table = {
+            "name": "LAB_NAME",
+            "department": "DEPARTMENT",
+            "faculty": "FACULTY",
+            "building": "BUILDING",
+            "room": "ROOM",
+            "investigator": "INVESTIGATOR"
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE LABS SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE LAB_ID = %s"
+                values.append(lab_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Error: ", err)
+
+    ############# DEPARTMENTS ###############
+
+    ############# PAPERS ###############
+
+    ############# BUILDINGS ###############
+
+    ############# CLUBS ###############

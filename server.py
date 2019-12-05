@@ -105,6 +105,7 @@ def admin_page():
     """
     if request.method == "GET":
         return render_template("admin_page.html")
+    '''
     else:
         if "instructor" in request.form:
             form_name = request.form["name"]
@@ -128,7 +129,6 @@ def admin_page():
             room_key = db.add_room(room)
             return redirect(url_for("rooms_page"))
         elif "classroom" in request.form:
-            form_id = request.form["id"]
             form_type = request.form["type"]
             form_board_type = request.form["board_type"]
             form_building = request.form["building"]
@@ -137,11 +137,12 @@ def admin_page():
             form_availability = request.form["availability"] == "available"
             form_conditioner = request.form["conditioner"] == "yes"
 
-            classroom = Classroom(form_id, form_building, form_type, form_restoration_date, form_availability, form_conditioner, form_board_type)
+            classroom = Classroom(form_building, form_type, form_restoration_date, form_availability, form_conditioner, form_board_type)
             db = current_app.config["db"]
             classroom_key = db.add_classroom(classroom)
             return redirect(url_for("classrooms_page"))
-        return render_template("admin_page.html")
+        '''
+    return render_template("admin_page.html")
 
 @app.route("/rooms_list", methods = ["GET", "POST"])
 def rooms_page():
@@ -149,14 +150,26 @@ def rooms_page():
     In this page we will show the rooms
     :return:
     '''
-    db = current_app.config["db"]
-    if request.method == "GET":
-        return render_template("rooms_list.html", rooms = db.get_rooms())
-    else:
-        form_room_keys = request.form.getlist("room_keys")
-        for form_room_key in form_room_keys:
-            db.delete_room(int(form_room_key))
-        return redirect(url_for("rooms_page"))
+    db = Database()
+    rooms = db.get_rooms()
+    return render_template("rooms_list.html", rooms = rooms)
+
+@app.route("/room_create", methods= ["POST", "GET"])
+def room_create():
+    db = Database()
+    data = request.form
+    is_class = 'FALSE'
+    is_room = 'FALSE'
+    is_lab = 'FALSE'
+    if data["type"] == "class":
+        is_class = 'TRUE'
+    elif data["type"] == "room":
+        is_room = 'TRUE'
+    elif data["type"] == "lab":
+        is_lab = 'TRUE'
+    room = Room(data["building"], data["name"], data["capacity"], is_class, is_room, is_lab)
+    key = db.add_room(room)
+    return redirect(url_for("admin_page"))
 
 @app.route("/classrooms_list", methods = ["GET", "POST"])
 def classrooms_page():
@@ -179,14 +192,18 @@ def instructors_page():
     In this page we will show the instructors
     :return:
     '''
-    db = current_app.config["db"]
-    if request.method == "GET":
-        return render_template("instructors.html", instructors = db.get_instructors())
-    else:
-        form_inst_keys = request.form.getlist("instructor_keys")
-        for form_inst_key in form_inst_keys:
-            db.delete_instructor(int(form_inst_key))
-        return redirect(url_for("instructors_page"))
+    db = Database()
+    instructors = db.get_instructors()
+
+    return render_template("instructors.html", instructors = instructors)
+
+@app.route("/instructor_create", methods= ["POST", "GET"])
+def instructor_create():
+    db = Database()
+    data = request.form
+    instructor = Instructor(data["instructor_id"], data["name"], data["bachelors"], data["masters"], data["doctorates"], data["department"], data["lecture_id"], data["room"], data["lab"])
+    key = db.add_instructor(instructor)
+    return redirect(url_for("admin_page"))
 
 @app.route("/student_create", methods= ["POST", "GET"])
 def student_create():
