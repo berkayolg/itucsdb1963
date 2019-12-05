@@ -517,6 +517,67 @@ class Database:
 
     ############# PAPERS ###############
 
+    def add_paper(self, paper):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                data = [paper.title, paper.platform, paper.citation, paper.author, paper.isConference]
+                statement = "INSERT INTO PAPERS (TITLE, PLAT, CITATION_COUNT, AUTHOR, CONFERENCE) VALUES (%s, %s, %s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Add Paper Error: ", err)
+
+    def get_paper(self, paper_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM PAPERS WHERE PAPER_ID = %s"
+                data = [paper_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("Get paper DB Error: ", err)
+
+        return None
+
+    def delete_paper(self, paper_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM PAPERS WHERE PAPER_ID = %s"
+                values = [paper_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Delete paper error: ", err)
+
+    def update_paper(self, paper_id, attrs, values):
+        attrs_lookup_table = {
+            "title": "TITLE",
+            "platform": "PLAT",
+            "citation": "CITATION_COUNT",
+            "author": "AUTHOR",
+            "isConference": "CONFERENCE"
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE PAPERS SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE PAPER_ID = %s"
+                values.append(paper_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Update Paper Error: ", err)
+
     ############# BUILDINGS ###############
 
     def add_building(self, building):
