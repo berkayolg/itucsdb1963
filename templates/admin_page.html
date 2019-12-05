@@ -39,9 +39,21 @@
 		</div>
 		<div class="col-sm">
 		    <button id="instructor_create_dd" class="btn btn-primary" onclick="dropdown($('#instructor_create'))">Instructor Creation Form</button>
-		    <form method="post" action="" id="instructor_create" style="visibility: hidden"> <!-- INSTRUCTOR CREATION FORM -->
+		    <form method="post" action="/instructor_create" id="instructor_create" style="visibility: hidden"> <!-- INSTRUCTOR CREATION FORM -->
 		    	<div class="form-group">
+		    		<a>Instructor ID: </a><input class="form-control" name="instructor_id" type="text"> <br/>
+				</div>
+				<div class="form-group">
 		    		<a>Name: </a><input class="form-control" name="name" type="text"> <br/>
+				</div>
+				<div class="form-group">
+		    		<a>Bachelor: </a><input class="form-control" name="bachelors" type="text"> <br/>
+				</div>
+				<div class="form-group">
+		    		<a>Master: </a><input class="form-control" name="masters" type="text"> <br/>
+				</div>
+				<div class="form-group">
+		    		<a>Doctorate: </a><input class="form-control" name="doctorates" type="text"> <br/>
 				</div>
 				<div class="form-group">
 					<a>Department: </a><input class="form-control" name="department" type="text"> <br/>
@@ -62,7 +74,7 @@
 		</div>
 		<div class="col-sm">
 			<button id="room_create_dd" class="btn btn-primary" onclick="dropdown($('#room_create'))">Room Creation Form</button>
-			<form method="post" action="" id="room_create" style="visibility:hidden"> <!-- ROOM CREATION FORM -->
+			<form method="post" action="/room_create" id="room_create" style="visibility:hidden"> <!-- ROOM CREATION FORM -->
 				<div class="form-group">
 					<a>Name: </a><input class="form-control" name="name" type="text">
 				</div>
@@ -84,7 +96,7 @@
 		</div>
 		<div class="col-sm">
 		    <button id="classroom_create_dd" class="btn btn-primary" onclick="dropdown($('#classroom_create'))">Classroom Creation Form</button>
-			<form method="post" action="" id="classroom_create" style="visibility: hidden"> <!-- CLASSROOM CREATION FORM -->
+			<form method="post" action="/classroom_create" id="classroom_create" style="visibility: hidden"> <!-- CLASSROOM CREATION FORM -->
 				<div class="form-group">
 					<a>ID: </a><input class="form-control" name="id" type="text"> <br/>
 				</div>
