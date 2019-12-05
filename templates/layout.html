@@ -19,19 +19,19 @@
                 <a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="/instructors">Instructors</a>
+                    <a class="nav-link" href="{{ url_for('instructors_page') }}">Instructors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/students_list">Students</a>
+                <a class="nav-link" href="{{ url_for('students_list') }}">Students</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/rooms_list">Rooms</a>
+                <a class="nav-link" href="{{ url_for('rooms_page') }}">Rooms</a>
             </li>
             <li class="nav-item">
-                    <a class="nav-link" href="/classrooms_list">Classrooms</a>
+                    <a class="nav-link" href="{{ url_for('classrooms_page') }}">Classrooms</a>
                 </li>
             <li class="nav-item">
-                    <a class="nav-link" href="/su">Top Secret Admin Page</a>
+                    <a class="nav-link" href="{{ url_for('admin_page') }}">Top Secret Admin Page</a>
                 </li>
             </ul>
             <span class="navbar-text">
