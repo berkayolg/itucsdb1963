@@ -153,7 +153,16 @@ def rooms_page():
 def room_create():
     db = Database()
     data = request.form
-    room = Room(data["building"], data["name"], data["capacity"], data["type"] == "class", data["type"] == "room", data["type"] == "lab")
+    is_class = 'FALSE'
+    is_room = 'FALSE'
+    is_lab = 'FALSE'
+    if data["type"] == "class":
+        is_class = 'TRUE'
+    elif data["type"] == "room":
+        is_room = 'TRUE'
+    elif data["type"] == "lab":
+        is_lab = 'TRUE'
+    room = Room(data["building"], data["name"], data["capacity"], is_class, is_room, is_lab)
     key = db.add_room(room)
     return redirect(url_for("admin_page"))
 

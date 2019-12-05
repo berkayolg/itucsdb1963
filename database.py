@@ -34,8 +34,8 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "INSERT INTO ROOMS (BUILDING, ROOM_NAME, CAP, CLASS, LAB) VALUES (%s, %s, %s, %s, %s)"
-                data = [room.building, room.name, room.cap, room.cap, room.classroom, room.lab]
+                statement = "INSERT INTO ROOMS (BUILDING, ROOM_NAME, CAP, CLASS, LAB, ROOM) VALUES (%s, %s, %s, %s, %s, %s)"
+                data = [room.building, room.name, room.cap, room.classroom, room.lab, room.room]
                 cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:
