@@ -80,9 +80,20 @@ class Database:
     ############# INSTRUCTORS ###############
 
     def add_instructor(self, instructor):
-        self._last_inst_key += 1
-        self.instructors[self._last_inst_key] = instructor
-        return self._last_inst_key
+        person_obj = People(instructor.name)
+        person = self.add_person(person_obj)
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+
+                statement = "INSERT INTO INSTRUCTORS (INS_ID, BACHELORS, MASTERS, DOCTORATES, DEPARTMENT, ROOM, LAB) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+                data = [person.id, instructor.bachelors, instructor.masters, instructor.doctorates, instructor.department, instructor.room, instructor.lab]
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error while adding instructor: ", err)
+        return instructor
 
     def delete_instructor(self, instructor_key):
         if instructor_key in self.instructors:
@@ -96,11 +107,18 @@ class Database:
         return instructor_
         
     def get_instructors(self):
-        instructors = []
-        for instructor_key, instructor in self.instructors.items():
-            instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room, instructor.lab)
-            instructors.append((instructor_key, instructor_))
-        return instructors
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM INSTRUCTORS"
+                cursor.execute(statement)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error: ", err)
+
+        return None
 
 
     ############# PEOPLE   ###############
@@ -119,7 +137,7 @@ class Database:
                 person.id = value[0]
                 cursor.close()
         except Exception as err:
-            print("Error: ", err)
+            print("Error while adding person: ", err)
 
         return person
 
@@ -135,7 +153,7 @@ class Database:
                 person = People(value["P_ID"], value["NAME"], value["EMAIL"], value["PHOTO"])
                 return person
         except Exception as err:
-            print("Error: ", err)
+            print("Error while getting person: ", err)
 
         return None
 
@@ -150,7 +168,7 @@ class Database:
                     return datas
                     cursor.close()
             except Exception as err:
-                print("Error: ", err)
+                print("Error while getting people: ", err)
 
         return None
 
