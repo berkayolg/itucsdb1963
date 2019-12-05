@@ -162,7 +162,6 @@ def room_create():
         is_room = 'TRUE'
     elif data["type"] == "lab":
         is_lab = 'TRUE'
-
     room = Room(data["building"], data["name"], data["capacity"], is_class, is_room, is_lab)
     key = db.add_room(room)
     return redirect(url_for("admin_page"))
