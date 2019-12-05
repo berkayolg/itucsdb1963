@@ -190,7 +190,7 @@ class Database:
                 cursor.close()
                 if not value:
                     return None
-                person = People(value[0], value[1], value[2], value[3])
+                person = People(value[0], value[1], value[2], value[3], value[4])
                 return person
         except Exception as err:
             print("Error while getting person: ", err)

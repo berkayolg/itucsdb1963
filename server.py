@@ -230,23 +230,20 @@ def login_page():
 @app.route("/login_action", methods = ["POST", ])
 def login_action():
     data = request.form
+    
     db = Database()
+    person = db.get_person_by_mail(data["mail"])
 
-    salt = os.urandom(32)
     key = hashlib.pbkdf2_hmac(
         'sha256', # The hash digest algorithm for HMAC
         data["password"].encode('utf-8'), # Convert the password to bytes
-        salt, # Provide the salt
+        person.password[:32], # Provide the salt
         100000 # It is recommended to use at least 100,000 iterations of SHA-256 
     )
 
-    username = data["name"]
-    password = salt + key
-
-    person = db.get_person_by_un_passw(username = data["name"], password = password)
-    print(person)
-    if not person:
+    if not person or person.password[32:] != key:
         return redirect(url_for("login_page"))
+
     session["logged_in"] = 1
     session["name"] = person.name
     return redirect(url_for("home_page"))
