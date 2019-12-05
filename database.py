@@ -324,7 +324,7 @@ class Database:
                     cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:
-            print("Error: ", err)
+            print("Add faculty Error: ", err)
 
     # Read
     def get_faculty(self, fac_id):
@@ -339,7 +339,7 @@ class Database:
                 cursor.close()
                 return datas
         except Exception as err:
-            print("DB Error: ", err)
+            print("Get Faculty DB Error: ", err)
 
         return None
 
@@ -353,7 +353,7 @@ class Database:
                 cursor.execute(statement, values)
                 cursor.close()
         except Exception as err:
-            print("Error: ", err)
+            print("Delete Faculty Error: ", err)
 
     # Update
     def update_faculty(self, fac_id, attrs, values):
@@ -377,7 +377,7 @@ class Database:
                 cursor.close()
 
         except Exception as err:
-            print("Error: ", err)
+            print("Update Faculty Error: ", err)
 
     ############# ASSISTANTS ###############
 
@@ -393,7 +393,7 @@ class Database:
                 cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:
-            print("Error: ", err)
+            print("Add lab Error: ", err)
 
     # Read
     def get_lab(self, lab_id):
@@ -408,7 +408,7 @@ class Database:
                 cursor.close()
                 return datas
         except Exception as err:
-            print("DB Error: ", err)
+            print("Get Lab DB Error: ", err)
 
         return None
 
@@ -422,10 +422,10 @@ class Database:
                 cursor.execute(statement, values)
                 cursor.close()
         except Exception as err:
-            print("Error: ", err)
+            print("Delete lab Error: ", err)
 
     # Update
-    def update_faculty(self, lab_id, attrs, values):
+    def update_lab(self, lab_id, attrs, values):
         attrs_lookup_table = {
             "name": "LAB_NAME",
             "department": "DEPARTMENT",
@@ -447,7 +447,7 @@ class Database:
                 cursor.close()
 
         except Exception as err:
-            print("Error: ", err)
+            print("Update lab Error: ", err)
 
     ############# DEPARTMENTS ###############
 
@@ -461,7 +461,7 @@ class Database:
                 cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:
-            print("Error: ", err)
+            print(" Add department Error: ", err)
 
     # Read
     def get_department(self, dep_id):
@@ -476,7 +476,7 @@ class Database:
                 cursor.close()
                 return datas
         except Exception as err:
-            print("DB Error: ", err)
+            print("Get department DB Error: ", err)
 
         return None
 
@@ -490,7 +490,7 @@ class Database:
                 cursor.execute(statement, values)
                 cursor.close()
         except Exception as err:
-            print("Error: ", err)
+            print("Delete Department Error: ", err)
 
     # Update
     def update_department(self, dep_id, attrs, values):
@@ -513,10 +513,79 @@ class Database:
                 cursor.close()
 
         except Exception as err:
-            print("Error: ", err)
+            print("Update Department Error: ", err)
 
     ############# PAPERS ###############
 
     ############# BUILDINGS ###############
+
+    def add_building(self, building):
+        """
+
+        :param building: A building object
+        :return:
+        """
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                data = [building.name, building.code, building.campus]
+                statement = "INSERT INTO BUILDINGS (BU_NAME, BU_CODE, CAMPUS) VALUES (%s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Add Building Error: ", err)
+
+    def get_building(self, bu_id):
+        """
+
+        :param bu_id: ID of the building in the database
+        :return:
+        """
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM BUILDINGS WHERE BU_ID = %s"
+                data = [bu_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("Get building DB Error: ", err)
+
+        return None
+
+    def delete_building(self, bu_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM BUILDINGS WHERE bu_id = %s"
+                values = [bu_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Delete building error: ", err)
+
+    def update_building(self, bu_id, attrs, values):
+        attrs_lookup_table = {
+            "name": "BU_NAME",
+            "code": "BU_CODE",
+            "campus": "CAMPUS"
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE BUILDINGS SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE BU_ID = %s"
+                values.append(bu_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Update Department Error: ", err)
 
     ############# CLUBS ###############
