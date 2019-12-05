@@ -365,7 +365,7 @@ class Database:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
                 data = [lab.name, lab.department, lab.faculty, lab.building, lab.room, lab.investigator]
-                statement = "INSERT INTO LABS (LAB_NAME, DEPARTMENT, FACULTY, BUILDING, ROOM, INVESTIGATOR) VALUES (%s, %s, %s, %s, %s)"
+                statement = "INSERT INTO LABS (LAB_NAME, DEPARTMENT, FACULTY, BUILDING, ROOM, INVESTIGATOR) VALUES (%s, %s, %s, %s, %s, %s)"
                 cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:
@@ -426,6 +426,70 @@ class Database:
             print("Error: ", err)
 
     ############# DEPARTMENTS ###############
+
+    # Create
+    def add_department(self, department):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                data = [department.name, department.faculty, department.building, department.dean]
+                statement = "INSERT INTO DEPARTMENTS (DEP_NAME, FACULTY, BUILDING, DEAN) VALUES (%s, %s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+    # Read
+    def get_department(self, dep_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM DEPARTMENTS WHERE DEP_ID = %s"
+                data = [dep_id]
+                print(data)
+                cursor.execute(statement, data)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error: ", err)
+
+        return None
+
+    # Delete
+    def delete_department(self, dep_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM DEPARTMENTS WHERE dep_id = %s"
+                values = [dep_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Error: ", err)
+
+    # Update
+    def update_department(self, dep_id, attrs, values):
+        attrs_lookup_table = {
+            "name": "LAB_NAME",
+            "faculty": "DEPARTMENT",
+            "building": "FACULTY",
+            "dean": "BUILDING"
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE DEPARTMENTS SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE DEP_ID = %s"
+                values.append(dep_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Error: ", err)
 
     ############# PAPERS ###############
 
