@@ -30,9 +30,16 @@ class Database:
     ############# ROOMS ###############
 
     def add_room(self, room):
-        self._last_room_key += 1
-        self.rooms[self._last_room_key] = room
-        return self._last_room_key
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "INSERT INTO ROOMS (BUILDING, ROOM_NAME, CAP, CLASS, LAB) VALUES (%s, %s, %s, %s, %s)"
+                data = [room.building, room.name, room.cap, room.cap, room.classroom, room.lab]
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Error while adding room: ", err)
+        return room
 
     def delete_room(self, room_key):
         if room_key in self.rooms:
@@ -46,11 +53,18 @@ class Database:
         return room_
         
     def get_rooms(self):
-        rooms = []
-        for room_key, room in self.rooms.items():
-            room_ = Room(room.building, room.name, room.cap, room.classroom, room.room, room.lab)
-            rooms.append((room_key, room_))
-        return rooms
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM ROOMS"
+                cursor.execute(statement)
+                datas = cursor.fetchall()
+                cursor.close()
+                return datas
+        except Exception as err:
+            print("DB Error while getting rooms: ", err)
+
+        return None
 
    ############# CLASSROOMS ###############
 
@@ -116,7 +130,7 @@ class Database:
                 cursor.close()
                 return datas
         except Exception as err:
-            print("DB Error: ", err)
+            print("DB Error while getting instructors: ", err)
 
         return None
 

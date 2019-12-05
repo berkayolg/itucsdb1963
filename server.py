@@ -145,14 +145,17 @@ def rooms_page():
     In this page we will show the rooms
     :return:
     '''
-    db = current_app.config["db"]
-    if request.method == "GET":
-        return render_template("rooms_list.html", rooms = db.get_rooms())
-    else:
-        form_room_keys = request.form.getlist("room_keys")
-        for form_room_key in form_room_keys:
-            db.delete_room(int(form_room_key))
-        return redirect(url_for("rooms_page"))
+    db = Database()
+    rooms = db.get_rooms()
+    return render_template("rooms_list.html", rooms = rooms)
+
+@app.route("/room_create", methods= ["POST", "GET"])
+def room_create():
+    db = Database()
+    data = request.form
+    room = Room(data["building"], data["name"], data["capacity"], data["type"] == "class", data["type"] == "room", data["type"] == "lab")
+    key = db.add_room(room)
+    return redirect(url_for("admin_page"))
 
 @app.route("/classrooms_list", methods = ["GET", "POST"])
 def classrooms_page():
