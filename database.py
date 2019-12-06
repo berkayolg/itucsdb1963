@@ -188,10 +188,11 @@ class Database:
                 data = [mail]
                 cursor.execute(statement, data)
                 value = cursor.fetchone()
+                print(value)
                 cursor.close()
                 if not value:
                     return None
-                person = People(value[1], value[0], value[2], value[3], value[4])
+                person = People(value[1], value[0], value[2], value[3], value[4], value[5])
                 return person
         except Exception as err:
             print("Error while getting person: ", err)
