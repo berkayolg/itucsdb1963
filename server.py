@@ -11,7 +11,7 @@ import hashlib
 import os
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = 'betterthanoriginalsis'
 
 @app.route("/")
 def home_page():
@@ -279,5 +279,4 @@ def logout():
     return redirect(url_for("home_page"))
 
 if __name__ == "__main__":
-    app.config['SECRET_KEY'] = 'betterthanoriginalsis'
     app.run(debug=True)
