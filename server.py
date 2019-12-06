@@ -20,10 +20,11 @@ def home_page():
 
     :return:
     """
-
+    print(session.get("person"))
     return render_template("home.html", 
         authenticated = session.get("logged_in"),
-        username = "anon" if not session.get("logged_in") else session["user_name"]
+        username = "anon" if not session.get("logged_in") else session["user_name"],
+        person = session.get("person")
         )
 
 
@@ -244,7 +245,7 @@ def login_action():
         return redirect(url_for("login_page"))
 
     session["logged_in"] = 1
-    session["user_name"] = person.name
+    session["person"] = vars(person)
     return redirect(url_for("home_page"))
 
 @app.route("/signup", methods = ["GET", ])
@@ -262,10 +263,7 @@ def signup_action():
     db.add_person(person)
 
     session["logged_in"] = 1
-    session["user_name"]= data["name"]
-    session["user_mail"] = data["mail"]
-
-    print("user_name")
+    session["person"] = vars(person)
 
     return redirect(url_for("home_page"))
 
@@ -274,7 +272,7 @@ def signup_action():
 def logout():
     if session["logged_in"]:
         session["logged_in"] = 0
-        session["user_name"] = None
+        session["person"] = None
 
     return redirect(url_for("home_page"))
 
