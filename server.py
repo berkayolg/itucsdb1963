@@ -20,10 +20,9 @@ def home_page():
 
     :return:
     """
-    print(session.get("person"))
     return render_template("home.html", 
         authenticated = session.get("logged_in"),
-        username = "anon" if not session.get("logged_in") else session["user_name"],
+        username = "anon" if not session.get("logged_in") else session["person"]["name"],
         person = session.get("person")
         )
 
