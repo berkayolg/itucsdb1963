@@ -172,7 +172,10 @@ def instructors_page():
 def instructor_create():
     db = Database()
     data = request.form
-    instructor = Instructor(data["instructor_id"], data["name"], data["bachelors"], data["masters"], data["doctorates"], data["department"], data["room"], data["lab"])
+    password = hashlib.md5(data["password"].encode())
+    person = People(name=data["name"], password=password.hexdigest(), mail=data["mail"])
+    db.add_person(person) 
+    instructor = Instructor(person.id, data["name"], data["bachelors"], data["masters"], data["doctorates"], data["department"], data["room"], data["lab"])
     key = db.add_instructor(instructor)
     return redirect(url_for("admin_page"))
 

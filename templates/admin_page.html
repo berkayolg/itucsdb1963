@@ -40,11 +40,15 @@
 		<div class="col-sm">
 		    <button id="instructor_create_dd" class="btn btn-primary" onclick="dropdown($('#instructor_create'))">Instructor Creation Form</button>
 		    <form method="post" action="/instructor_create" id="instructor_create" style="visibility: hidden"> <!-- INSTRUCTOR CREATION FORM -->
-		    	<div class="form-group">
-		    		<a>Instructor ID: </a><input class="form-control" name="instructor_id" type="text"> <br/>
-				</div>
 				<div class="form-group">
 		    		<a>Name: </a><input class="form-control" name="name" type="text"> <br/>
+				</div>
+				<div class="form-group">
+					<a>Mail : </a><input class="form-control" name="mail" type="text"> <br/>
+				</div>
+				<div class="form-group">
+					<label for="number">Password</label>
+					<input class="form-control" name="password" type="password">
 				</div>
 				<div class="form-group">
 		    		<a>Bachelor: </a><input class="form-control" name="bachelors" type="text"> <br/>

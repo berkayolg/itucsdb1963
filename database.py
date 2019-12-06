@@ -99,9 +99,6 @@ class Database:
     ############# INSTRUCTORS ###############
 
     def add_instructor(self, instructor):
-        person_obj = People(instructor.name)
-        person = self.add_person(person_obj)
-
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
