@@ -105,41 +105,96 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-
                 statement = "INSERT INTO INSTRUCTORS (INS_ID, BACHELORS, MASTERS, DOCTORATES, DEPARTMENT, ROOM, LAB) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                data = [person.id, instructor.bachelors, instructor.masters, instructor.doctorates,
+                data = [instructor.instructor_id, instructor.bachelors, instructor.masters, instructor.doctorates,
                         instructor.department, instructor.room, instructor.lab]
                 cursor.execute(statement, data)
                 cursor.close()
         except Exception as err:
-            print("Error while adding instructor: ", err)
+            print("Add Instructor Error: ", err)
         return instructor
 
-    def delete_instructor(self, instructor_key):
-        if instructor_key in self.instructors:
-            del self.instructors[instructor_key]
+    def get_instructor(self, ins_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM INSTRUCTORS WHERE ins_id = %s"
+                data = [ins_id]
+                cursor.execute(statement, data)
+                value = cursor.fetchone()
+                statement = "SELECT NAME FROM PEOPLE WHERE P_ID = %s"
+                data = [ins_id]
+                cursor.execute(statement, data)
+                name = cursor.fetchone()
+                cursor.close()
+                if not value:
+                    return None
+                instructor = Instructor(value[0], name, value[4], value[5], value[6], value[1], value[2], value[3])
+                return instructor
+        except Exception as err:
+            print("Get Instructor Error: ", err)
 
-    def get_instructor(self, instructor_key):
-        instructor = self.instructors.get(instructor_key)
-        if instructor is None:
-            return None
-        instructor_ = Instructor(instructor.name, instructor.department, instructor.lecture_id, instructor.room,
-                                 instructor.lab)
-        return instructor_
+        return None
 
     def get_instructors(self):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM INSTRUCTORS"
+                statement = "SELECT NAME, ROOM, LAB, BACHELORS, MASTERS, DOCTORATES FROM INSTRUCTORS JOIN PEOPLE ON (INSTRUCTORS.INS_ID = PEOPLE.P_ID)"
                 cursor.execute(statement)
                 datas = cursor.fetchall()
                 cursor.close()
-                return datas
+                retval = []
+                for data in datas:
+                    val = {
+                        "Name": data[0],
+                        "Room": data[1],
+                        "Lab": data[2],
+                        "Bachelors": data[3],
+                        "Masters": data[4],
+                        "Doctorates": data[5]
+                    }
+                    retval.append(val)
+                return retval
         except Exception as err:
-            print("DB Error while getting instructors: ", err)
+            print("Get Instructors Error: ", err)
 
         return None
+
+    def delete_instructor(self, ins_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM INSTRUCTORS WHERE INS_ID = %s"
+                values = [ins_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Delete Instructor Error: ", err)
+
+    def update_instructors(self, ins_id, attrs, values):
+        attrs_lookup_table = {
+            "department": "DEPARTMENT",
+            "room": "ROOM",
+            "lab": "LAB",
+            "bachelors": "BACHELORS",
+            "masters": "MASTERS",
+            "doctorates": "DOCTORATES"
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE INSTRUCTORS SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE INS_ID = %s"
+                values.append(ins_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Update Instructors Error: ", err)
 
     ############# PEOPLE   ###############
 
@@ -158,7 +213,7 @@ class Database:
                 person.id = value[0]
                 cursor.close()
         except Exception as err:
-            print("Error while adding person: ", err)
+            print("Add Person Error : ", err)
 
         return person
 

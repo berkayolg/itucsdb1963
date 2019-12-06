@@ -113,43 +113,6 @@ def admin_page():
             return render_template("admin_page.html", faculty_list=faculty_list, prof_list=prof_list, student_list=db.get_students())
         else:
             return redirect(url_for("home_page"))
-    '''
-    else:
-        if "instructor" in request.form:
-            form_name = request.form["name"]
-            form_department = request.form["department"]
-            form_lecture_id = request.form["lecture_id"]
-            form_room = request.form["room"]
-            form_lab = request.form["lab"]
-            instructor = Instructor(form_name, form_department, form_lecture_id, form_room, form_lab)
-            db = current_app.config["db"]
-            instructor_key = db.add_instructor(instructor)
-            return redirect(url_for("instructors_page"))
-        elif "room" in request.form:
-            form_name = request.form["name"]
-            form_building = request.form["building"]
-            form_capacity = request.form["capacity"]
-            form_is_class = request.form["type"] == "class"
-            form_is_lab = request.form["type"] == "lab"
-            form_is_room = request.form["type"] == "room"
-            room = Room(form_building, form_name, form_capacity, form_is_class, form_is_room, form_is_lab)
-            db = current_app.config["db"]
-            room_key = db.add_room(room)
-            return redirect(url_for("rooms_page"))
-        elif "classroom" in request.form:
-            form_type = request.form["type"]
-            form_board_type = request.form["board_type"]
-            form_building = request.form["building"]
-            form_restoration_date = request.form["restoration_date"]
-            form_board_type = request.form["board_type"]
-            form_availability = request.form["availability"] == "available"
-            form_conditioner = request.form["conditioner"] == "yes"
-
-            classroom = Classroom(form_building, form_type, form_restoration_date, form_availability, form_conditioner, form_board_type)
-            db = current_app.config["db"]
-            classroom_key = db.add_classroom(classroom)
-            return redirect(url_for("classrooms_page"))
-        '''
     return render_template("admin_page.html")
 
 @app.route("/rooms_list", methods = ["GET", "POST"])
@@ -209,7 +172,7 @@ def instructors_page():
 def instructor_create():
     db = Database()
     data = request.form
-    instructor = Instructor(data["instructor_id"], data["name"], data["bachelors"], data["masters"], data["doctorates"], data["department"], data["lecture_id"], data["room"], data["lab"])
+    instructor = Instructor(data["instructor_id"], data["name"], data["bachelors"], data["masters"], data["doctorates"], data["department"], data["room"], data["lab"])
     key = db.add_instructor(instructor)
     return redirect(url_for("admin_page"))
 
