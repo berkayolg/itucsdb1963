@@ -22,8 +22,8 @@ def home_page():
     """
 
     return render_template("home.html", 
-        authenticated = session["logged_in"],
-        username = "anon" if not session["logged_in"] else session["user_name"]
+        authenticated = session.get("logged_in"),
+        username = "anon" if not session.get("logged_in") else session["user_name"]
         )
 
 
@@ -238,18 +238,13 @@ def login_action():
     db = Database()
     person = db.get_person_by_mail(data["mail"])
 
-    key = hashlib.pbkdf2_hmac(
-        'sha256', # The hash digest algorithm for HMAC
-        data["password"].encode('utf-8'), # Convert the password to bytes
-        person.password[:32], # Provide the salt
-        100000 # It is recommended to use at least 100,000 iterations of SHA-256 
-    )
+    attempted_hashed_passw = hashlib.md5(data["password"].encode()).hexdigest()
 
-    if not person or person.password[32:] != key:
+    if not person or person.password != attempted_hashed_passw:
         return redirect(url_for("login_page"))
 
     session["logged_in"] = 1
-    session["name"] = person.name
+    session["user_name"] = person.name
     return redirect(url_for("home_page"))
 
 @app.route("/signup", methods = ["GET", ])
@@ -260,15 +255,9 @@ def signup_page():
 def signup_action():
     data = request.form 
     
-    salt = os.urandom(32)
-    key = hashlib.pbkdf2_hmac(
-        'sha256', # The hash digest algorithm for HMAC
-        data["password"].encode('utf-8'), # Convert the password to bytes
-        salt, # Provide the salt
-        100000 # It is recommended to use at least 100,000 iterations of SHA-256 
-    )
+    password = hashlib.md5(data["password"].encode())
     
-    person = People(name=data["name"], password=salt+key, mail=data["mail"])
+    person = People(name=data["name"], password=password.hexdigest(), mail=data["mail"])
     db = Database()
     db.add_person(person)
 
