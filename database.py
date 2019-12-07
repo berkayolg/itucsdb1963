@@ -39,35 +39,89 @@ class Database:
                 statement = "INSERT INTO ROOMS (BUILDING, ROOM_NAME, CAP, CLASS, LAB, ROOM) VALUES (%s, %s, %s, %s, %s, %s)"
                 data = [room.building, room.name, room.cap, room.classroom, room.lab, room.room]
                 cursor.execute(statement, data)
+                statement = "SELECT ROOM_ID FROM ROOMS WHERE ROOM_NAME = %s"
+                data = [room.name]
+                cursor.execute(statement, data)
+                value = cursor.fetchall()
+                room.id = value[0]
                 cursor.close()
         except Exception as err:
-            print("Error while adding room: ", err)
+            print("Add Room Error: ", err)
         return room
 
-    def delete_room(self, room_key):
-        if room_key in self.rooms:
-            del self.rooms[room_key]
+    def get_room(self, room_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM ROOMS WHERE room_id = %s"
+                data = [room_id]
+                cursor.execute(statement, data)
+                value = cursor.fetchone()
+                cursor.close()
+                if not value:
+                    return None
+                room = Room(value[1], value[2], value[3], value[4], value[5], value[6])
+                return room
+        except Exception as err:
+            print("Get Room Error: ", err)
 
-    def get_room(self, room_key):
-        room = self.rooms.get(room_key)
-        if room is None:
-            return None
-        room_ = Room(room.building, room.name, room.cap, room.classroom, room.room, room.lab)
-        return room_
+        return None
 
     def get_rooms(self):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM ROOMS"
+                statement = "SELECT BU_NAME, ROOM_NAME FROM ROOMS JOIN BUILDINGS ON(ROOMS.BUILDING = BUILDINGS.BU_ID)"
                 cursor.execute(statement)
                 datas = cursor.fetchall()
                 cursor.close()
-                return datas
+                retval = []
+                for data in datas:
+                    val = {
+                        "Name": data[1],
+                        "Building": data[0]  
+                    }
+                    retval.append(val)
+                return retval
         except Exception as err:
-            print("DB Error while getting rooms: ", err)
+            print("Get Rooms Error: ", err)
 
         return None
+
+    def delete_rooms(self, room_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM ROOMS WHERE room_id = %s"
+                values = [room_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Delete Room Error: ", err)
+
+    def update_rooms(self, room_id, attrs, values):
+        attrs_lookup_table = {
+            "building": "BUILDING",
+            "room_name": "ROOM_NAME",
+            "cap": "CAP",
+            "class": "CLASS",
+            "lab": "LAB",
+            "room": "ROOM"
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE ROOMS SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE ROOM_ID = %s"
+                values.append(room_id)
+                cursor.execute(statement, values)
+                cursor.close()
+
+        except Exception as err:
+            print("Update Rooms Error: ", err)
 
     ############# CLASSROOMS ###############
 

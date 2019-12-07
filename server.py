@@ -139,7 +139,7 @@ def room_create():
     elif data["type"] == "lab":
         is_lab = 'TRUE'
     room = Room(data["building"], data["name"], data["capacity"], is_class, is_room, is_lab)
-    key = db.add_room(room)
+    db.add_room(room)
     return redirect(url_for("admin_page"))
 
 @app.route("/classrooms_list", methods = ["GET", "POST"])
@@ -148,14 +148,19 @@ def classrooms_page():
     In this page we will show the classrooms
     :return:
     '''
-    db = current_app.config["db"]
-    if request.method == "GET":
-        return render_template("classrooms_list.html", classrooms = db.get_classrooms())
-    else:
-        form_classroom_keys = request.form.getlist("classroom_keys")
-        for form_classroom_key in form_classroom_keys:
-            db.delete_classroom(int(form_classroom_key))
-        return redirect(url_for("classrooms_page"))
+    db = Database()
+    classrooms = db.get_classrooms()
+    return render_template("classrooms_list", classrooms = classrooms)
+
+@app.route("/classroom_create", methods= ["POST", "GET"])
+def classroom_create():
+    db = Database()
+    data = request.form
+    room = Room(data["building"], data["name"], data["cap"], classroom = True, lab=False, room=False)
+    room = db.add_room(room)
+    classroom = Classroom(room.id, room.building, room.name, data["restoration_date"], data["availability"], data["conditioner"], data["board_type"])
+    db.add_classroom(classroom)
+    return redirect(url_for("admin_page"))
 
 @app.route("/instructors", methods = ["GET", "POST"])
 def instructors_page():
@@ -176,7 +181,7 @@ def instructor_create():
     person = People(name=data["name"], password=password.hexdigest(), mail=data["mail"])
     db.add_person(person) 
     instructor = Instructor(person.id, data["name"], data["bachelors"], data["masters"], data["doctorates"], data["department"], data["room"], data["lab"])
-    key = db.add_instructor(instructor)
+    db.add_instructor(instructor)
     return redirect(url_for("admin_page"))
 
 @app.route("/student_create", methods= ["POST", "GET"])
@@ -184,7 +189,7 @@ def student_create():
     db = Database()
     data = request.form
     student = Student(data["name"], data["number"], data["cred"], data["depart"], data["facu"])
-    key = db.add_student(student)
+    db.add_student(student)
     return redirect(url_for("admin_page"))
 
 @app.route("/student_list", methods = ["GET", ])

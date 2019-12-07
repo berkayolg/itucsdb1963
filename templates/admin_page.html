@@ -98,42 +98,45 @@
 		<div class="col-sm">
 		    <button id="classroom_create_dd" class="btn btn-primary" onclick="dropdown($('#classroom_create'))">Classroom Creation Form</button>
 			<form method="post" action="/classroom_create" id="classroom_create" style="visibility: hidden"> <!-- CLASSROOM CREATION FORM -->
-				<div class="form-group">
-					<a>ID: </a><input class="form-control" name="id" type="text"> <br/>
-				</div>
 		    	<div class="form-group">
+				<div class="form-group">
+					<a>Name: </a><input class="form-control" name="name" type="text">
+				</div>
 		    		<a>Building: </a><input class="form-control" name="building" type="text"> <br/>
+				</div>
+				<div class="form-group">
+					<a>Capacity: </a><input class="form-control" name="capacity" type="text">
 				</div>
 				<div class="form-group">
 					<a>Last Restoration Date: </a><input class="form-control" name="restoration_date" type="text"> <br/>
 				</div>
 				<div class="form-group">	
-					<a>Available: </a><input class="form-control" name="availability" value = "available" type="checkbox" checked> <br/>
-									  <input class="form-control" name="availability" value = "no" type="hidden">	
+					<a>Available: </a><input class="form-control" name="availability" value = "TRUE" type="checkbox" checked> <br/>
+									  <input class="form-control" name="availability" value = "FALSE" type="hidden">	
 				</div>
 				<div class="form-group">	
-					<a>Air Conditioner: </a><input class="form-control" name="conditioner" value = "yes" type="checkbox"> <br/>
-											<input class="form-control" name="conditioner" value = "no" type="hidden" checked>		
+					<a>Air Conditioner: </a><input class="form-control" name="conditioner" value = "TRUE" type="checkbox"> <br/>
+											<input class="form-control" name="conditioner" value = "FALSE" type="hidden" checked>		
 				</div>
 				<div class="form-group">
 					<a>Classroom Type:</a><br/>
 					<a>Lecture:</a>
-					<input type="radio" class="form-control" name="type" value="lecture" checked>
+					<input type="radio" class="form-control" name="type" value="Lecture" checked>
 					<a>Auditoria:</a>
-					<input type="radio" class="form-control" name="type" value="auditoria">
+					<input type="radio" class="form-control" name="type" value="Auditoria">
 					<a>Seminar:</a> 
-					<input type="radio" class="form-control" name="type" value="seminar">
+					<input type="radio" class="form-control" name="type" value="Seminar">
 					<a>Interactive:</a>
-					<input type="radio" class="form-control" name="type" value="interactive">
+					<input type="radio" class="form-control" name="type" value="Interactive">
 				</div>
 				<div class="form-group">
 					<a>Board Type:</a><br/>
 					<a>Mixed:</a>
-					<input type="radio" class="form-control" name="board_type" value="MIXED" checked>
+					<input type="radio" class="form-control" name="board_type" value="Mixed" checked>
 					<a>Black:</a>
-					<input type="radio" class="form-control" name="board_type" value="BLACK">
+					<input type="radio" class="form-control" name="board_type" value="Black">
 					<a>White:</a>
-					<input type="radio" class="form-control" name="board_type" value="WHITE">
+					<input type="radio" class="form-control" name="board_type" value="White">
 				</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary" name="classroom">Submit</button>

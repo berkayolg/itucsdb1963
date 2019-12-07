@@ -5,36 +5,21 @@
 
     {% if rooms %}
     <form action="" method="post" name="rooms_list">
-      <table>
+      <table class="table">
         <tr>
             <th>Name</th>
             <th>Building</th>
-            <th>Capacity</th>
-            <th>Type</th>
         </tr>
         {% for room in rooms %}
         <tr>
-          <td>
-            <label class="checkbox">
-              <input type="checkbox" name="room_keys" value="{{ room_key }}"/>
-            </label>
-              <td>{{ room.name }}</td>
-              <td>{{ room.building }}</td>
-              <td>{{ room.cap }}</td>
-              {% if room.lab %}
-              <td>Laboratory</td>
-              {% endif %}
-              {% if room.room %}
-              <td>Instructor Room</td>
-              {% endif %}
-              {% if room.classroom %}
-              <td>Classroom</td>
-              {% endif %}
-          </td>
+          {% for key, value in room.items() %}
+
+            <td>{{ value }} <br/></td>
+
+          {% endfor %}
         </tr>
         {% endfor %}
       </table>
-    <button>Delete</button>
     </form>
     {% endif %}
 {% endblock %}
