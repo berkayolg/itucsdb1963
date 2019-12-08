@@ -188,7 +188,7 @@ def instructor_create():
 def student_create():
     db = Database()
     data = request.form
-    student = Student(data["name"], data["number"], data["cred"], data["depart"], data["facu"])
+    student = Student(data["name"], data["number"], data["mail"], data["cred"], data["depart"], data["facu"])
     db.add_student(student)
     return redirect(url_for("admin_page"))
 

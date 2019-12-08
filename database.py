@@ -260,7 +260,7 @@ class Database:
                 statement = "SELECT P_ID FROM PEOPLE WHERE EMAIL = %s"
                 data = [person.mail]
                 cursor.execute(statement, data)
-                value = cursor.fetchall()
+                value = cursor.fetchone()
                 person.id = value[0]
                 cursor.close()
         except Exception as err:
@@ -323,8 +323,9 @@ class Database:
     ############# STUDENTS ###############
 
     def add_student(self, student):
-        person_obj = People(student.name)
-        person = self.add_person(person_obj)
+        person = self.add_person(student.get_person_obj())
+
+        print(person.id, " PERSON.ID ")
 
         try:
             with dbapi2.connect(self.url) as connection:

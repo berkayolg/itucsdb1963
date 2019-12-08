@@ -2,11 +2,15 @@ from .people import People
 
 
 class Student(People):
-    def __init__(self, name, number, cred, depart, facu, club=None, lab=None):
+    def __init__(self, name, number, mail, cred, depart, facu, club=None, lab=None):
         self.name = name
         self.number = number
+        self.mail = mail
         self.cred = cred
         self.depart = depart
         self.facu = facu
         self.club = club
         self.lab = lab
+
+    def get_person_obj(self):
+    	return People(name = self.name, mail = self.mail)
