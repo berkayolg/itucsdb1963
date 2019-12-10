@@ -18,7 +18,7 @@ ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__, static_url_path='/static')
 app.config['SECRET_KEY'] = 'betterthanoriginalsis'
-app.config['BASE_DIR'] = os.path.abspath(os.path.dirname(__file__))
+app.config['BASE_DIR'] = os.path.dirname(__file__)
 app.config['UPLOAD_FOLDER'] = app.config['BASE_DIR'] + UPLOAD_FOLDER
 
 

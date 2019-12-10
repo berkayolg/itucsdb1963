@@ -10,4 +10,4 @@ __pycache__
 venv/
 docs/build/
 
-static/img
+static/img/*
