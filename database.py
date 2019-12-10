@@ -253,8 +253,8 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO, PASSWORD, TYPE, PHOTO) VALUES (%s, %s, %s, %s, %s, %s)"
-                data = [person.name, person.mail, person.photo, person.password, person.type, person.pic]
+                statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO, PASSWORD, TYPE) VALUES (%s, %s, %s, %s, %s)"
+                data = [person.name, person.mail, person.photo, person.password, person.type]
                 cursor.execute(statement, data)
                 statement = "SELECT P_ID FROM PEOPLE WHERE EMAIL = %s"
                 data = [person.mail]
@@ -293,7 +293,6 @@ class Database:
                 data = [mail]
                 cursor.execute(statement, data)
                 value = cursor.fetchone()
-                print(value)
                 cursor.close()
                 if not value:
                     return None

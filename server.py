@@ -261,7 +261,7 @@ def signup_action():
         filename = secure_filename(file.filename[:-4] + data["mail"][:-4] + file.filename[-4:])
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     
-    person = People(name=data["name"], password=password.hexdigest(), mail=data["mail"], type=data["type"], pic=filename)
+    person = People(name=data["name"], password=password.hexdigest(), mail=data["mail"], type=data["type"], photo=filename)
     db = Database()
     db.add_person(person)
 

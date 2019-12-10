@@ -8,8 +8,9 @@
 	{% if authenticated %}
 	Hello, {{ person.name }} <br/>
 	You are a {{ person.type }}
-	{% if person.pic %}
-		<img src="{{url_for('static', filename='img/' + person.pic)}}" align="middle" />
+
+	{% if person.photo %}
+		<img src="{{url_for('static', filename='img/' + person.photo)}}" align="middle" />
 	{% endif %}
 	{% else %}
 	Hello, guest.
