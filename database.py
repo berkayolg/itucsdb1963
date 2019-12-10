@@ -253,10 +253,9 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO, PASSWORD) VALUES (%s, %s, %s, %s)"
-                data = [person.name, person.mail, person.photo, person.password]
+                statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO, PASSWORD, TYPE, PHOTO) VALUES (%s, %s, %s, %s, %s, %s)"
+                data = [person.name, person.mail, person.photo, person.password, person.type, person.pic]
                 cursor.execute(statement, data)
-                print(data)
                 statement = "SELECT P_ID FROM PEOPLE WHERE EMAIL = %s"
                 data = [person.mail]
                 cursor.execute(statement, data)
