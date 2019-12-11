@@ -1,9 +1,22 @@
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-	
-	Hello, {{ person.name }}
 
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+</head>
+	{% if authenticated %}
+	Hello, {{ person.name }} <br/>
+	You are a {{ person.type }}
+
+	{% if person.photo %}
+		<img src="{{url_for('static', filename='img/' + person.photo)}}" align="middle" />
+	{% endif %}
+	{% else %}
+	Hello, guest.
+	{% endif %}
+
+	
 
     <p>Welcome to the jungle</p>
 {% endblock %}

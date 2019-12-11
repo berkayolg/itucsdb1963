@@ -294,20 +294,22 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO, PASSWORD) VALUES (%s, %s, %s, %s)"
-                data = [person.name, person.mail, person.photo, person.password]
+                statement = "INSERT INTO PEOPLE (NAME, EMAIL, PHOTO, PASSWORD, TYPE) VALUES (%s, %s, %s, %s, %s)"
+                data = [person.name, person.mail, person.photo, person.password, person.type]
                 cursor.execute(statement, data)
-                print(data)
                 statement = "SELECT P_ID FROM PEOPLE WHERE EMAIL = %s"
                 data = [person.mail]
                 cursor.execute(statement, data)
-                value = cursor.fetchall()
+                value = cursor.fetchone()
                 person.id = value[0]
                 cursor.close()
         except Exception as err:
             print("Add Person Error : ", err)
 
         return person
+
+    def person_exists(self, person):
+        return self.get_person_by_mail(person.mail)
 
     def get_person(self, p_id):
         try:
@@ -335,7 +337,6 @@ class Database:
                 data = [mail]
                 cursor.execute(statement, data)
                 value = cursor.fetchone()
-                print(value)
                 cursor.close()
                 if not value:
                     return None
@@ -364,8 +365,9 @@ class Database:
     ############# STUDENTS ###############
 
     def add_student(self, student):
-        person_obj = People(student.name)
-        person = self.add_person(person_obj)
+        person = self.add_person(student.get_person_obj())
+
+        print(person.id, " PERSON.ID ")
 
         try:
             with dbapi2.connect(self.url) as connection:

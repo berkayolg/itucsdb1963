@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, current_app, session
 from datetime import datetime
+from werkzeug.utils import secure_filename
+
 
 from database import Database, Instructor
 from models.student import Student
@@ -7,11 +9,18 @@ from models.room import Room
 from models.classroom import Classroom
 from models.people import People
 
+
 import hashlib
 import os
 
-app = Flask(__name__)
+UPLOAD_FOLDER = '/static/img'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+
+app = Flask(__name__, static_url_path='/static')
 app.config['SECRET_KEY'] = 'betterthanoriginalsis'
+app.config['BASE_DIR'] = os.path.dirname(__file__)
+app.config['UPLOAD_FOLDER'] = app.config['BASE_DIR'] + UPLOAD_FOLDER
+
 
 @app.route("/")
 def home_page():
@@ -205,7 +214,7 @@ def instructor_update():
 def student_create():
     db = Database()
     data = request.form
-    student = Student(data["name"], data["number"], data["cred"], data["depart"], data["facu"])
+    student = Student(data["name"], data["number"], data["mail"], data["cred"], data["depart"], data["facu"])
     db.add_student(student)
     return redirect(url_for("admin_page"))
 
@@ -246,11 +255,35 @@ def signup_page():
 @app.route("/signup_action", methods = ["POST", ])
 def signup_action():
     data = request.form 
+    print(data)
+
+    if not data.get("type"):
+        return redirect(url_for("home_page"))
     
     password = hashlib.md5(data["password"].encode())
+
+    if "pic" not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+
+    file = request.files["pic"]
+    # if user does not select file, browser also
+    # submits an empty part without filename
+    if file.filename == '':
+        flash('No selected file')
+        return redirect(request.url)
+
+    if file and file.filename[-3:] in ALLOWED_EXTENSIONS:
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        filename = secure_filename(file.filename[:-4] + data["mail"][:-4] + file.filename[-4:])
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     
-    person = People(name=data["name"], password=password.hexdigest(), mail=data["mail"])
+    person = People(name=data["name"], password=password.hexdigest(), mail=data["mail"], type=data["type"], photo=filename)
     db = Database()
+
+    if db.person_exists(person):
+        return redirect(url_for("login_page"))
+
     db.add_person(person)
 
     session["logged_in"] = 1
