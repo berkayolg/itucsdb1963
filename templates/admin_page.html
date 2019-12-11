@@ -113,7 +113,12 @@
 					<a>Capacity: </a><input class="form-control" name="capacity" type="text">
 				</div>
 				<div class="form-group">
-					<a>Last Restoration Date: </a><input class="form-control" name="restoration_date" type="text"> <br/>
+					<a>Last Restoration Date: </a>
+						<select name="restoration_date">
+						{% for year in range (datetime.year, 1773, -1) %}
+							<option>{{ year }}</option>
+						{% endfor %}
+						</select> <br/>
 				</div>
 				<div class="form-group">	
 					<a>Available: </a><input class="form-control" name="availability" value = "TRUE" type="checkbox" checked> <br/>

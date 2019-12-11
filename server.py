@@ -118,7 +118,7 @@ def admin_page():
     if request.method == "GET":
         #print(session.get("person").get("admin"), "asdadsd")
         if session.get("person")["admin"]:
-            return render_template("admin_page.html", faculty_list=faculty_list, prof_list=prof_list, student_list=db.get_students())
+            return render_template("admin_page.html", faculty_list=faculty_list, prof_list=prof_list, student_list=db.get_students(), datetime=datetime.now())
         else:
             return redirect(url_for("home_page"))
     return render_template("admin_page.html")
@@ -178,6 +178,15 @@ def classroom_create():
     classroom = Classroom(room.id, room.name, room.building, data["type"], data["restoration_date"], data["capacity"], data["availability"], data["conditioner"], data["board_type"])
     db.add_classroom(classroom)
     return redirect(url_for("admin_page"))
+
+@app.route("/classroom_update", methods= ["POST", "GET"])
+def classroom_update():
+    db = Database()
+    data = request.form
+    classroom_keys = request.form.getlist("classroom_keys")
+    for classroom_key in classroom_keys:
+        db.delete_instructor(int(classroom_key))
+    return redirect(url_for("classrooms_page"))
 
 @app.route("/instructors", methods = ["GET", "POST"])
 def instructors_page():
@@ -289,7 +298,7 @@ def signup_action():
     session["logged_in"] = 1
     session["person"] = vars(person)
 
-    return redirect(url_for("home_page"))
+    return redirect(url_for("home_page"))   
 
 
 @app.route("/logout", methods = ["GET", ])

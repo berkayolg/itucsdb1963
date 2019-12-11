@@ -18,13 +18,16 @@
         </tr>
         {% for instructor in instructors %}
         <tr>
-            {% if session.get("person")["admin"] %}
             <td>
+            {% if session.get("person")["admin"] %}
               <label class="checkbox">
                   <input type="checkbox" name="instructor_keys" value="{{ instructor['ID'] }}"/>
               </label>
+              {% else %}
+              #
+              {% endif %}
             </td>
-            {% endif %}
+            
             {% for key, value in instructor.items() %}
 
               <td>{{ value }} <br/></td>
