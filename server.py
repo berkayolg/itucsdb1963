@@ -263,6 +263,10 @@ def signup_action():
     
     person = People(name=data["name"], password=password.hexdigest(), mail=data["mail"], type=data["type"], photo=filename)
     db = Database()
+
+    if db.person_exists(person):
+        return redirect(url_for("login_page"))
+
     db.add_person(person)
 
     session["logged_in"] = 1

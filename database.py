@@ -267,6 +267,9 @@ class Database:
 
         return person
 
+    def person_exists(self, person):
+        return self.get_person_by_mail(person.mail)
+
     def get_person(self, p_id):
         try:
             with dbapi2.connect(self.url) as connection:
