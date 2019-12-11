@@ -4,9 +4,11 @@
     <h1>Instructors</h1>
 
     {% if instructors %}
-    <form action="" method="post" name="instructor_list">
+    <form action="/instructor_update" method="post" name="instructor_list">
       <table class="table">
         <tr>
+            <th>#</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Room</th>
             <th>Lab</th>
@@ -16,6 +18,13 @@
         </tr>
         {% for instructor in instructors %}
         <tr>
+            {% if session.get("person")["admin"] %}
+            <td>
+              <label class="checkbox">
+                  <input type="checkbox" name="instructor_keys" value="{{ instructor['ID'] }}"/>
+              </label>
+            </td>
+            {% endif %}
             {% for key, value in instructor.items() %}
 
               <td>{{ value }} <br/></td>
@@ -24,6 +33,13 @@
         </tr>
         {% endfor %}
       </table>
+      {% if session.get("person")["admin"] %}
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="btn btn-outline-danger">Delete</button>
+        </div>
+      </div>
+      {% endif %}
     </form>
     {% endif %}
 {% endblock %}

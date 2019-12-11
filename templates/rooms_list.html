@@ -4,14 +4,23 @@
     <h1>Rooms</h1>
 
     {% if rooms %}
-    <form action="" method="post" name="rooms_list">
+    <form action="/room_update" method="post" name="rooms_list">
       <table class="table">
         <tr>
+            <th>#</th>
+            <th>ID</th>
             <th>Name</th>
             <th>Building</th>
         </tr>
         {% for room in rooms %}
         <tr>
+            {% if session.get("person")["admin"] %}
+            <td>
+              <label class="checkbox">
+                  <input type="checkbox" name="room_keys" value="{{ room['ID'] }}"/>
+              </label>
+            </td>
+            {% endif %}
           {% for key, value in room.items() %}
 
             <td>{{ value }} <br/></td>
@@ -20,6 +29,13 @@
         </tr>
         {% endfor %}
       </table>
+    {% if session.get("person")["admin"] %}
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="btn btn-outline-danger">Delete</button>
+        </div>
+      </div>
+      {% endif %}
     </form>
     {% endif %}
 {% endblock %}

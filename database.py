@@ -14,15 +14,9 @@ from models.people import People
 class Database:
 
     def __init__(self):
-        self.rooms = {}
-        self.classrooms = {}
-        self.instructors = {}
         self.students = {}
         self.people = {}
 
-        self._last_room_key = 0
-        self._last_classroom_key = 0
-        self._last_inst_key = 0
         self._last_stu_key = 0
         self._last_people_key = 0
 
@@ -36,8 +30,8 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "INSERT INTO ROOMS (BUILDING, ROOM_NAME, CAP, CLASS, LAB, ROOM) VALUES (%s, %s, %s, %s, %s, %s)"
-                data = [room.building, room.name, room.cap, room.classroom, room.lab, room.room]
+                statement = "INSERT INTO ROOMS (BUILDING, ROOM_NAME, AVAILABLE, CLASS, LAB, ROOM) VALUES (%s, %s, %s, %s, %s, %s)"
+                data = [room.building, room.name, room.availability, room.classroom, room.lab, room.room]
                 cursor.execute(statement, data)
                 statement = "SELECT ROOM_ID FROM ROOMS WHERE ROOM_NAME = %s"
                 data = [room.name]
@@ -53,14 +47,14 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM ROOMS WHERE room_id = %s"
+                statement = "SELECT ROOM_ID, BUILDING, ROOM_NAME, CLASS, LAB, ROOM, AVAILABLE FROM ROOMS WHERE room_id = %s"
                 data = [room_id]
                 cursor.execute(statement, data)
                 value = cursor.fetchone()
                 cursor.close()
                 if not value:
                     return None
-                room = Room(value[1], value[2], value[3], value[4], value[5], value[6])
+                room = Room(value[1], value[2], value[6], value[3], value[4], value[5], value[0])
                 return room
         except Exception as err:
             print("Get Room Error: ", err)
@@ -71,15 +65,16 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT BU_NAME, ROOM_NAME FROM ROOMS JOIN BUILDINGS ON(ROOMS.BUILDING = BUILDINGS.BU_ID)"
+                statement = "SELECT ROOM_ID, BU_NAME, ROOM_NAME FROM ROOMS JOIN BUILDINGS ON(ROOMS.BUILDING = BUILDINGS.BU_ID)"
                 cursor.execute(statement)
                 datas = cursor.fetchall()
                 cursor.close()
                 retval = []
                 for data in datas:
                     val = {
-                        "Name": data[1],
-                        "Building": data[0]  
+                        "ID": data[0],
+                        "Name": data[2],
+                        "Building": data[1]  
                     }
                     retval.append(val)
                 return retval
@@ -88,7 +83,7 @@ class Database:
 
         return None
 
-    def delete_rooms(self, room_id):
+    def delete_room(self, room_id):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
@@ -106,7 +101,8 @@ class Database:
             "cap": "CAP",
             "class": "CLASS",
             "lab": "LAB",
-            "room": "ROOM"
+            "room": "ROOM",
+            "available":"AVAILABLE"
         }
 
         try:
@@ -126,29 +122,73 @@ class Database:
     ############# CLASSROOMS ###############
 
     def add_classroom(self, classroom):
-        self._last_classroom_key += 1
-        self.classrooms[self._last_classroom_key] = classroom
-        return self._last_classroom_key
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "INSERT INTO CLASSES (CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TYPE, CAP) VALUES (%s, %s, %s, %s, %s, %s)"
+                data = [classroom.id, classroom.type, classroom.conditioner, classroom.restoration_date, classroom.board_type, classroom.cap]
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Add Classroom Error: ", err)
+        return classroom
 
-    def delete_classroom(self, classroom_key):
-        if classroom_key in self.classrooms:
-            del self.classrooms[classroom_key]
+    def delete_classroom(self, cl_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM CLASSES WHERE CL_ID = %s"
+                values = [cl_id]
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Delete Classroom Error: ", err)
 
-    def get_classroom(self, classroom_key):
-        classroom = self.classrooms.get(classroom_key)
-        if classroom is None:
-            return None
-        classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date,
-                               classroom.availability, classroom.conditioner, classroom.board_type)
-        return classroom_
+    def get_classroom(self, cl_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TPE, CAP FROM CLASSSES WHERE cl_id = %s"
+                data = [cl_id]
+                cursor.execute(statement, data)
+                value = cursor.fetchone()
+                statement = "SELECT ROOM_NAME, BUILDING, AVAILABLE FROM ROOMS WHERE ROOM_ID = %s"
+                data = [cl_id]
+                cursor.execute(statement, data)
+                room_attrs = cursor.fetchone()
+                cursor.close()
+                if not value:
+                    return None
+                classroom = Classroom(value[0], room_attrs[0], room_attrs[1], value[1], value[3], value[5], room_attrs[3], value[2], value[4])
+                return classroom
+        except Exception as err:
+            print("Get Classroom Error: ", err)
+
+        return None
 
     def get_classrooms(self):
-        classrooms = []
-        for classroom_key, classroom in self.classrooms.items():
-            classroom_ = Classroom(classroom.id, classroom.building, classroom.type, classroom.restoration_date,
-                                   classroom.availability, classroom.conditioner, classroom.board_type)
-            classrooms.append((classroom_key, classroom_))
-        return classrooms
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT CLASSES.CL_ID, ROOMS.ROOM_NAME, CLASSES.CAP, CLASSES.TYPE, BUILDINGS.BU_NAME FROM CLASSES JOIN ROOMS ON CL_ID = ROOM_ID JOIN BUILDINGS ON BUILDINGS.BU_ID = ROOMS.BUILDING"
+                cursor.execute(statement)
+                datas = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for data in datas:
+                    val = {
+                        "ID":data[0],
+                        "Name": data[1],
+                        "Capacity": data[2],
+                        "Class Type": data[3],
+                        "Building Name": data[4],
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Classrooms Error: ", err)
+
+        return None
 
     ############# INSTRUCTORS ###############
 
@@ -191,19 +231,20 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT NAME, ROOM, LAB, BACHELORS, MASTERS, DOCTORATES FROM INSTRUCTORS JOIN PEOPLE ON (INSTRUCTORS.INS_ID = PEOPLE.P_ID)"
+                statement = "SELECT P_ID, NAME, ROOM, LAB, BACHELORS, MASTERS, DOCTORATES FROM INSTRUCTORS JOIN PEOPLE ON (INSTRUCTORS.INS_ID = PEOPLE.P_ID)"
                 cursor.execute(statement)
                 datas = cursor.fetchall()
                 cursor.close()
                 retval = []
                 for data in datas:
                     val = {
-                        "Name": data[0],
-                        "Room": data[1],
-                        "Lab": data[2],
-                        "Bachelors": data[3],
-                        "Masters": data[4],
-                        "Doctorates": data[5]
+                        "ID":data[0],
+                        "Name": data[1],
+                        "Room": data[2],
+                        "Lab": data[3],
+                        "Bachelors": data[4],
+                        "Masters": data[5],
+                        "Doctorates": data[6]
                     }
                     retval.append(val)
                 return retval
