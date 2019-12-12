@@ -490,6 +490,28 @@ class Database:
 
         return None
 
+    def get_faculties(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM faculties INNER JOIN buildings ON faculties.fac_id = bu_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1],
+                        "Building Name": datum[4],
+                        "Building Code": datum[5]
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Faculties DB Error: ", err)
+
+
     # Delete
     def delete_faculty(self, fac_id):
         try:

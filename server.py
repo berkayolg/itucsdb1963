@@ -112,7 +112,7 @@ def admin_page():
     :return:
     """
     db = Database()
-    faculty_list = db.get_faculty(0)
+    faculty_list = db.get_faculties()
     prof_list = db.get_instructors()
 
     if request.method == "GET":
@@ -130,7 +130,7 @@ def admin_page():
                 )
         else:
             return redirect(url_for("home_page"))
-    return render_template("admin_page.html")
+    return render_template("admin_page.html", students_list=students_list)
 
 @app.route("/rooms_list", methods = ["GET", "POST"])
 def rooms_page():

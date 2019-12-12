@@ -189,7 +189,7 @@
 		    		<label for="faculty">Faculty</label>
                     <select name="faculty">
                     {% for faculty in faculty_list %}
-                        <option>{{ faculty[1] }}</option>
+                        <option value="{{ faculty["ID"] }}">{{ faculty["Name"] }}</option>
                     {% endfor %}
                     </select>
 		    	</div>
@@ -198,7 +198,7 @@
 		    		<label for="advisor">Advisor</label>
 		    		<select name="advisor">
                     {% for professor in prof_list %}
-                        <option>{{ professor[0] }}</option>
+                        <option value="{{ professor["ID"] }}">{{ professor["Name"] }}</option>
                     {% endfor %}
                     </select>
 		    	</div>
@@ -207,7 +207,7 @@
 		    		<label for="chair">Chair</label>
 		    		<select name="chair">
                     {% for student in student_list %}
-                        <option>{{ student[0] }}</option>
+                        <option value="{{ student["ID"] }}">{{ student["Name"] }}</option>
                     {% endfor %}
                     </select>
 		    	</div>
