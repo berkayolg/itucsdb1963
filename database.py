@@ -405,7 +405,7 @@ class Database:
                 retval = []
                 for data in datas:
                     val = {
-                        "ID": data[0];
+                        "ID": data[0],
                         "Name": data[8],
                         "Number": data[1]
                     }
