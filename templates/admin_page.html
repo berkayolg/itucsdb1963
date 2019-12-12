@@ -198,7 +198,7 @@
 		    		<label for="advisor">Advisor</label>
 		    		<select name="advisor">
                     {% for professor in prof_list %}
-                        <option>{{ professor[0] }}</option>
+                        <option>{{ professor["Name"] }}</option>
                     {% endfor %}
                     </select>
 		    	</div>

@@ -112,7 +112,7 @@ def admin_page():
     :return:
     """
     db = Database()
-    faculty_list = db.get_faculty(0)
+    faculty_list = db.get_faculties()
     prof_list = db.get_instructors()
 
     if request.method == "GET":
