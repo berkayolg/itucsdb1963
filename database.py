@@ -809,9 +809,9 @@ class Database:
                     val = {
                         "ID": datum[0],
                         "Name": datum[1],
-                        "Faculty": datum[2],
-                        "Building": datum[3],
-                        "Dean": datum[4]
+                        #"Faculty": datum[2],
+                        #"Building": datum[3],
+                        #"Dean": datum[4]
                     }
                     retval.append(val)
                 return retval
