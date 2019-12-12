@@ -25,16 +25,37 @@
 		    		<input class="form-control" name="cred" type="text">
 		    	</div>
 		    	<div class="form-group">
-		    		<a>Departmant: </a><input class="form-control" name="depart" type="text">
+		    		<a>Departmant: </a>
+		    		<a>Club (if any): </a>
+		    		<select class="form-control" name="depart">
+		    			{% for department in departments %}
+					  		<option value={{department[0]}}>{{department[1]}}</option>
+					  	{% endfor %}
+					</select>
 		    	</div>
 		    	<div class="form-group">
-		    		<a>Faculty: </a><input class="form-control" name="facu" type="text">
+		    		<a>Faculty: </a>
+		    		<select class="form-control" name="facu">
+		    			{% for facu in faculties %}
+					  		<option value={{facu[0]}}>{{facu[1]}}</option>
+					  	{% endfor %}
+					</select>
 		    	</div>
 		    	<div class="form-group">
-		    		<a>Club (if any): </a><input class="form-control" name="club" type="text">
+		    		<a>Club (if any): </a>
+		    		<select class="form-control" name="club">
+		    			{% for club in clubs %}
+					  		<option value={{club[0]}}>{{club[1]}}</option>
+					  	{% endfor %}
+					</select>
 		    	</div>
 		    	<div class="form-group">
-		    		<a>Lab (if any): </a><input class="form-control" name="lab" type="text">
+		    		<a>Lab (if any): </a>
+		    		<select class="form-control" name="lab">
+		    			{% for lab in labs %}
+					  		<option value={{lab[0]}}>{{lab[1]}}</option>
+					  	{% endfor %}
+					</select>
 		    	</div>
 		    	<div class="form-group">
 		    		<button type="submit" class="btn btn-primary">Submit</button>
@@ -202,9 +223,6 @@
         </div>
     </div>
 </div>
-
-{{ clubs }} 
-
 
 <script>
 	function dropdown($param){

@@ -123,7 +123,10 @@ def admin_page():
                 prof_list=prof_list, 
                 student_list=db.get_students(), 
                 datetime=datetime.now(),
-                clubs=db.get_all_clubs()
+                clubs=db.get_all_clubs(),
+                faculties=db.get_all_faculties(),
+                departments=db.get_all_departments(),
+                labs=db.get_all_labs()
                 )
         else:
             return redirect(url_for("home_page"))
@@ -229,7 +232,7 @@ def instructor_update():
 def student_create():
     db = Database()
     data = request.form
-    student = Student(data["name"], data["number"], data["mail"], data["cred"], data["depart"], data["facu"])
+    student = Student(data["name"], data["number"], data["mail"], data["cred"], data["depart"], data["facu"], data["club"], data["lab"])
     db.add_student(student)
     return redirect(url_for("admin_page"))
 

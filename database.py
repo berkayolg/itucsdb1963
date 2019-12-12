@@ -529,6 +529,22 @@ class Database:
         except Exception as err:
             print("Update Faculty Error: ", err)
 
+    def get_all_faculties(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM FACULTIES"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+
+        except Exception as err:
+            print("Fetch Faculties Error: ", err)
+
+        return None
+
+
     ############# ASSISTANTS ###############
 
     def add_assistant(self, assistant):
@@ -656,6 +672,20 @@ class Database:
         except Exception as err:
             print("Update lab Error: ", err)
 
+    def get_all_labs(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM LABS"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+        except Exception as err:
+            print("Delete lab Error: ", err)
+
+        return None
+
     ############# DEPARTMENTS ###############
 
     def add_department(self, department):
@@ -717,6 +747,20 @@ class Database:
 
         except Exception as err:
             print("Update Department Error: ", err)
+
+    def get_all_departments(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM DEPARTMENTS"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+        except Exception as err:
+            print("Fetching Departments Error: ", err)
+
+        return None
 
     ############# PAPERS ###############
 
