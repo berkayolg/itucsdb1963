@@ -408,6 +408,7 @@ class Database:
                 retval = []
                 for data in datas:
                     val = {
+                        "ID": data[0];
                         "Name": data[8],
                         "Number": data[1]
                     }
@@ -478,6 +479,9 @@ class Database:
 
     # Read
     def get_faculty(self, fac_id):
+        """
+        Gets faculty id as an input, returns query results.
+        By: Uğur Ali Kaplan"""
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
@@ -494,6 +498,12 @@ class Database:
         return None
 
     def get_faculties(self):
+        """
+        Joins faculty and buildings table, returns relevant columns as a dictionary.
+        :return: 
+        
+        By: Uğur Ali Kaplan
+        """
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
