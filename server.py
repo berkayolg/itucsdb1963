@@ -219,13 +219,28 @@ def instructor_create():
     db.add_instructor(instructor)
     return redirect(url_for("admin_page"))
 
+@app.route("/instructor_edit", methods= ["POST", "GET"])
+def instructor_edit():
+    db = Database()
+    data = request.form
+    if data["button"] == "delete":
+        instructor_keys = request.form.getlist("instructor_keys")
+        for ins_key in instructor_keys:
+            db.delete_instructor(int(ins_key))
+    elif data["button"] == "update":
+        instructor = db.get_instructor(request.form.getlist("instructor_keys")[0])
+        return render_template("instructor_update.html", instructor=instructor)
+    else:
+        pass
+    return redirect(url_for("instructors_page"))
+
 @app.route("/instructor_update", methods= ["POST", "GET"])
 def instructor_update():
     db = Database()
     data = request.form
-    instructor_keys = request.form.getlist("instructor_keys")
-    for ins_key in instructor_keys:
-        db.delete_instructor(int(ins_key))
+    attrs = ["department", "room", "lab", "bachelors", "masters", "doctorates"]
+    values = [data["department"], data["room"], data["lab"], data["bachelors"], data["masters"], data["doctorates"]]
+    db.update_instructor(data["id"], attrs, values)
     return redirect(url_for("instructors_page"))
 
 @app.route("/student_create", methods= ["POST", "GET"])
