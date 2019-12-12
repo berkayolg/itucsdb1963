@@ -112,25 +112,24 @@ def admin_page():
     :return:
     """
     db = Database()
-    faculty_list = db.get_faculties()
-    prof_list = db.get_instructors()
 
     if request.method == "GET":
         #print(session.get("person").get("admin"), "asdadsd")
         if session.get("person")["admin"]:
             return render_template("admin_page.html", 
-                faculty_list=faculty_list, 
-                prof_list=prof_list, 
+                faculty_list=db.get_faculties(),
+                prof_list=db.get_instructors(),
                 student_list=db.get_students(), 
                 datetime=datetime.now(),
                 clubs=db.get_all_clubs(),
                 faculties=db.get_all_faculties(),
-                departments=db.get_all_departments(),
-                labs=db.get_all_labs()
+                departments=db.get_departments_text(),
+                labs=db.get_all_labs(),
+                buildings = db.get_buildings()
                 )
         else:
             return redirect(url_for("home_page"))
-    return render_template("admin_page.html", students_list=students_list)
+    return render_template("admin_page.html")
 
 @app.route("/rooms_list", methods = ["GET", "POST"])
 def rooms_page():

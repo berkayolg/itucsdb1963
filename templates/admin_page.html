@@ -221,6 +221,67 @@
 		    	</div>
 			</form>
         </div>
+        <div class="col-sm">
+            <button id="lab_create_dd" class="btn btn-primary" onclick="dropdown($('#club_create'))">Club Creation Form</button>
+            <form method="post" action="/lab_create" id="lab_create" style="visibility: hidden">
+
+                <div class="form-group">
+		    		<label for="name">Name</label>
+		    		<input class="form-control" name="name" type="text">
+		    	</div>
+
+                <div class="form-group">
+		    		<label for="department">Department</label>
+                    <select name="department">
+                    {% for dep in departments %}
+                        <option value="{{ dep["ID"] }}">{{ dep["Name"] }}</option>
+                    {% endfor %}
+                    </select>
+		    	</div>
+
+		    	<div class="form-group">
+		    		<label for="faculty">Faculty</label>
+                    <select name="faculty">
+                    {% for faculty in faculty_list %}
+                        <option value="{{ faculty["ID"] }}">{{ faculty["Name"] }}</option>
+                    {% endfor %}
+                    </select>
+		    	</div>
+
+                <div class="form-group">
+		    		<label for="building">Building</label>
+                    <select name="building">
+                    {% for building in buildings %}
+                        <option value="{{ building["ID"] }}">{{ building["Name"] }}</option>
+                    {% endfor %}
+                    </select>
+		    	</div>
+
+                <!--TODO: Update this when Berkay implements get_rooms function -->
+                <div class="form-group">
+		    		<label for="room">Room</label>
+                    <select name="room">
+                    {% for building in buildings %}
+                        <option value="{{ building["ID"] }}">{{ building["Name"] }}</option>
+                    {% endfor %}
+                    </select>
+		    	</div>
+
+
+		    	<div class="form-group">
+		    		<label for="investigator">Investigator</label>
+		    		<select name="investigator">
+                    {% for professor in prof_list %}
+                        <option value="{{ professor["ID"] }}">{{ professor["Name"] }}</option>
+                    {% endfor %}
+                    </select>
+		    	</div>
+
+		    	<div class="form-group">
+		    		<button type="submit" class="btn btn-primary">Submit</button>
+		    	</div>
+			</form>
+        </div>
     </div>
 </div>
 

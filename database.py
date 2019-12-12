@@ -791,6 +791,32 @@ class Database:
 
         return None
 
+    def get_departments_text(self):
+        """
+
+        :return: Information as dictionary.
+        """
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (dep_id, dep_name, fac_name, bu_name, name) FROM departments INNER JOIN faculties ON departments.faculty = faculties.fac_id INNER JOIN buildings ON departments.building = buildings.bu_id INNER JOIN people ON departments.dean = people.p_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1],
+                        "Faculty": datum[2],
+                        "Building": datum[3],
+                        "Dean": datum[4]
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Departments(All Text) DB Error: ", err)
+
     ############# PAPERS ###############
 
     def add_paper(self, paper):
@@ -892,6 +918,30 @@ class Database:
             print("Get building DB Error: ", err)
 
         return None
+
+    def get_buildings(self):
+        """
+
+        :return: Information as dictionary.
+        """
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM buildings"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1],
+                        "Code": datum[2]
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Faculties DB Error: ", err)
 
     def delete_building(self, bu_id):
         try:
