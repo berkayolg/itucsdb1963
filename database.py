@@ -209,18 +209,14 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM INSTRUCTORS WHERE ins_id = %s"
+                statement = "SELECT NAME, BACHELORS,MASTERS, DOCTORATES, DEPARTMENT, ROOM, LAB FROM INSTRUCTORS JOIN PEOPLE ON INS_ID = P_ID WHERE INS_ID = %s"
                 data = [ins_id]
                 cursor.execute(statement, data)
                 value = cursor.fetchone()
-                statement = "SELECT NAME FROM PEOPLE WHERE P_ID = %s"
-                data = [ins_id]
-                cursor.execute(statement, data)
-                name = cursor.fetchone()
                 cursor.close()
                 if not value:
                     return None
-                instructor = Instructor(value[0], name, value[4], value[5], value[6], value[1], value[2], value[3])
+                instructor = Instructor(ins_id, value[0], value[1], value[2], value[3], value[4], value[5], value[6])
                 return instructor
         except Exception as err:
             print("Get Instructor Error: ", err)
@@ -264,7 +260,7 @@ class Database:
         except Exception as err:
             print("Delete Instructor Error: ", err)
 
-    def update_instructors(self, ins_id, attrs, values):
+    def update_instructor(self, ins_id, attrs, values):
         attrs_lookup_table = {
             "department": "DEPARTMENT",
             "room": "ROOM",
@@ -279,6 +275,7 @@ class Database:
                 cursor = connection.cursor()
                 statement = "UPDATE INSTRUCTORS SET "
                 for i in range(len(attrs) - 1):
+                    print(attrs_lookup_table[attrs[i]] + " = %s ,")
                     statement += attrs_lookup_table[attrs[i]] + " = %s ,"
                 statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE INS_ID = %s"
                 values.append(ins_id)

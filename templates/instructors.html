@@ -4,7 +4,7 @@
     <h1>Instructors</h1>
 
     {% if instructors %}
-    <form action="/instructor_update" method="post" name="instructor_list">
+    <form action="/instructor_edit" method="post" name="instructor_list">
       <table class="table">
         <tr>
             <th>#</th>
@@ -39,7 +39,12 @@
       {% if session.get("person")["admin"] %}
       <div class="field is-grouped">
         <div class="control">
-          <button class="btn btn-outline-danger">Delete</button>
+          <button class="btn btn-outline-warning" name="button" value="update">Update</button>
+        </div>
+      </div>
+      <div class="field is-grouped">
+        <div class="control">
+          <button class="btn btn-outline-danger" name="button" value="delete">Delete</button>
         </div>
       </div>
       {% endif %}
