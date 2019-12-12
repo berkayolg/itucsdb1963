@@ -796,6 +796,7 @@ class Database:
 
         :return: Information as dictionary.
         """
+        data = []
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
@@ -815,6 +816,7 @@ class Database:
                     retval.append(val)
                 return retval
         except Exception as err:
+            print(data)
             print("Get Departments(All Text) DB Error: ", err)
 
     ############# PAPERS ###############
