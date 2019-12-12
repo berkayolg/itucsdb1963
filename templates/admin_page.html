@@ -179,7 +179,7 @@
     <div class="row">
         <div class="col-sm">
             <button id="club_create_dd" class="btn btn-primary" onclick="dropdown($('#club_create'))">Club Creation Form</button>
-            <form method="post" action="/club_create" id="club_create" style="visibility: hidden">
+            <form method="post" action="/club_create" id="club_create" style="visibility: collapse">
 		    	<div class="form-group">
 		    		<label for="name">Name</label>
 		    		<input class="form-control" name="name" type="text">
@@ -222,8 +222,8 @@
 			</form>
         </div>
         <div class="col-sm">
-            <button id="lab_create_dd" class="btn btn-primary" onclick="dropdown($('#club_create'))">Club Creation Form</button>
-            <form method="post" action="/lab_create" id="lab_create" style="visibility: hidden">
+            <button id="lab_create_dd" class="btn btn-primary" onclick="dropdown($('#lab_create'))">Lab Creation Form</button>
+            <form method="post" action="/lab_create" id="lab_create" style="visibility: collapse">
 
                 <div class="form-group">
 		    		<label for="name">Name</label>
