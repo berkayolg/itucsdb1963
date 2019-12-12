@@ -118,7 +118,13 @@ def admin_page():
     if request.method == "GET":
         #print(session.get("person").get("admin"), "asdadsd")
         if session.get("person")["admin"]:
-            return render_template("admin_page.html", faculty_list=faculty_list, prof_list=prof_list, student_list=db.get_students(), datetime=datetime.now())
+            return render_template("admin_page.html", 
+                faculty_list=faculty_list, 
+                prof_list=prof_list, 
+                student_list=db.get_students(), 
+                datetime=datetime.now(),
+                clubs=db.get_all_clubs()
+                )
         else:
             return redirect(url_for("home_page"))
     return render_template("admin_page.html")

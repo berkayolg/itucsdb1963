@@ -915,3 +915,18 @@ class Database:
 
         except Exception as err:
             print("Update Club Error: ", err)
+
+    def get_all_clubs(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM CLUBS"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+
+        except Exception as err:
+            print("Update Club Error: ", err)        
+
+        return None
