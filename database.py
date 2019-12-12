@@ -796,16 +796,15 @@ class Database:
 
         :return: Information as dictionary.
         """
-        data = []
+        #data = []
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
                 statement = "SELECT (dep_id, dep_name, fac_name, bu_name, name) FROM departments INNER JOIN faculties ON departments.faculty = faculties.fac_id INNER JOIN buildings ON departments.building = buildings.bu_id INNER JOIN people ON departments.dean = people.p_id"
                 cursor.execute(statement)
-                data = cursor.fetchall()
-                cursor.close()
+                #data = cursor.fetchall()
                 retval = []
-                for datum in data:
+                for datum in cursor.fetchmany(1):
                     val = {
                         "ID": datum[0],
                         "Name": datum[1],
@@ -814,9 +813,9 @@ class Database:
                         #"Dean": datum[4]
                     }
                     retval.append(val)
+                cursor.close()
                 return retval
         except Exception as err:
-            print(data)
             print("Get Departments(All Text) DB Error: ", err)
 
     ############# PAPERS ###############
