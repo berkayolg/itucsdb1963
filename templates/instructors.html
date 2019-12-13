@@ -29,22 +29,26 @@
             </td>
             
             {% for key, value in instructor.items() %}
-
-              <td>{{ value }} <br/></td>
-
+              {% if value == None %}
+                <td> - <br/></td>
+              {% else %}
+                <td> {{ value }} <br/></td>
+              {% endif %}
             {% endfor %}
         </tr>
         {% endfor %}
       </table>
       {% if session.get("person")["admin"] %}
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="btn btn-outline-warning" name="button" value="update">Update</button>
+      <div class="row">
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="btn btn-outline-warning" name="button" value="update">Update</button>
+          </div>
         </div>
-      </div>
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="btn btn-outline-danger" name="button" value="delete">Delete</button>
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="btn btn-outline-danger" name="button" value="delete">Delete</button>
+          </div>
         </div>
       </div>
       {% endif %}

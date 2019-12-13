@@ -85,14 +85,30 @@
 		    		<a>Doctorate: </a><input class="form-control" name="doctorates" type="text"> <br/>
 				</div>
 				<div class="form-group">
-					<a>Department: </a><input class="form-control" name="department" type="text"> <br/>
+		    		<label for="department">Department</label>
+                    <select class="form-control" name="department">
+                    {% for dep in departments %}
+                        <option value="{{ dep["ID"] }}">{{ dep["Name"] }}</option>
+                    {% endfor %}
+                    </select>
+		    	</div>
+				<div class="form-group">
+		    		<label for="room">Room</label>
+                    <select class="form-control" name="room">
+                    {% for room in rooms %}
+                        <option value="{{ room["ID"] }}">{{ room["Name"] }}</option>
+                    {% endfor %}
+                    </select>
 				</div>
 				<div class="form-group">
-					<a>Room : </a><input class="form-control" name="room" type="text"> <br/>
-				</div>
-				<div class="form-group">
-					<a>Lab (if any): </a><input class="form-control" name="lab" type="text"> <br/>
-				</div>
+		    		<a>Lab (if any): </a>
+		    		<select class="form-control" name="lab">
+						<option value="NULL">-</option>
+		    			{% for lab in labs %}
+							<option value={{ lab[0] }}>{{lab[1]}}</option>
+					  	{% endfor %}
+					</select>
+		    	</div>
 				<div class="form-group">
 					<button type="submit" class="btn btn-primary" name="instructor">Submit</button>
 				</div>
