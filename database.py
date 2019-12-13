@@ -11,6 +11,8 @@ from models.student import Student
 from models.people import People
 from models.lesson import Lesson
 
+import secrets
+
 
 class Database:
 
@@ -23,7 +25,7 @@ class Database:
 
         self.url = os.getenv("DATABASE_URL")
         if not self.url:
-            self.url = "postgres://iaksomyxyzootw:d9a1a786933ba99327d701e93ac741a5242fa801abf686cfce029df4fa887f68@ec2-54-225-115-177.compute-1.amazonaws.com:5432/daq4rhn32jb4v7"
+            self.url = DB_URL
 
     ############# ROOMS ###############
 
