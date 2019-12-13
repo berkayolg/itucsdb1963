@@ -303,6 +303,56 @@
 		    	</div>
 			</form>
         </div>
+         <div class="col-sm">
+            <button id="lab_create_dd" class="btn btn-primary" onclick="dropdown($('#lesson_create'))">Lesson Creation Form</button>
+            <form method="post" action="/lesson_create" id="lesson_create" style="visibility: collapse">
+            	<div id="lesson_create">
+                	<div class="form-group">
+                		<label for="crn" > CRN </label>
+                		<input class="form-control" type="text" name="crn">
+                	</div>
+                	<div class="form-group">
+                		<label for="date">Date </label>
+                		<input class="form-control" type="text" name="date">
+                	</div>
+                	<div class="form-group">
+                		<label for="code">Code </label>
+                		<input class="form-control" type="text" name="code">
+                	</div>
+                	<div class="form-group">
+                		<label for="code">Instructor </label>
+                		<select name="instructor" class="form-control">
+                			{% for inst in instructors %}
+                				<option value={{inst.ID}} > {{inst.Name}} </option>
+                			{% endfor %}
+                		</select>
+                	</div>
+                	<div class="form-group">
+                		<label for="location">Location </label>
+                		<select name="location" class="form-control">
+                			{% for cla in classrooms %}
+                				<option value={{cla.ID}} > {{cla.Name}} {{cla["Building Name"]}} </option>
+                			{% endfor %}
+                		</select>
+                	</div>
+                	<div class="form-group">
+                		<label for="assistant">Assistant </label>
+                		<select name="assistant" class="form-control">
+                			{% for assi in assistants %}
+                				<option value={{assi[0]}} > {{assi[5]}} </option>
+                			{% endfor %}
+                		</select>
+                	</div>
+                	<div class="form-group">
+                		<label for="credit">Credit </label>
+                		<input class="form-control" type="text" name="credit">
+                	</div>
+		    		<div class="form-group">
+		    			<button type="submit" class="btn btn-primary">Submit</button>
+		    		</div>
+		    	</div>
+			</form>
+        </div>
     </div>
 </div>
 

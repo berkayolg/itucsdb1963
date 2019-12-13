@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, current_app, session
+from flask import Flask, render_template, request, redirect, url_for, current_app, session, jsonify
 from datetime import datetime
 from werkzeug.utils import secure_filename
 
@@ -8,6 +8,7 @@ from models.student import Student
 from models.room import Room
 from models.classroom import Classroom
 from models.people import People
+from models.lesson import Lesson
 
 
 import hashlib
@@ -126,7 +127,10 @@ def admin_page():
                 departments=db.get_departments_text(),
                 labs=db.get_all_labs(),
                 buildings = db.get_buildings(),
-                rooms=db.get_rooms()
+                rooms=db.get_rooms(),
+                instructors=db.get_instructors(),
+                classrooms=db.get_classrooms(),
+                assistants=db.get_assistants()
                 )
         else:
             return redirect(url_for("home_page"))
@@ -349,8 +353,23 @@ def logout():
 
     return redirect(url_for("home_page"))
 
+@app.route("/lesson_create", methods = ["POST", ])
+def lesson_create():
+    data = request.form
+    print(data)
+    lesson = Lesson(data["crn"], data["date"], data["code"], data["instructor"], data["location"], data["assistant"], data["credit"])
+    db = Database()
+    db.create_lesson(lesson)
+
+    return redirect(url_for("admin_page"))
+
 @app.route("/enroll", methods = ["GET", "POST"])
 def enroll_page():
+    db = Database()
+    enrolled_list = db.get_enrolled(session.get("person")["id"])
+    enrolled = []
+    for enr in enrolled_list:
+        enrolled.append(enr[2])
 
     if request.method == "GET":
         if not session["logged_in"]:
@@ -359,18 +378,54 @@ def enroll_page():
         return render_template("enroll_page.html",
             authenticated = session.get("logged_in"),
             username = "anon" if not session.get("logged_in") else session["person"]["name"],
-            person = session.get("person")
+            person = session.get("person"),
+            enrolled = enrolled
             )
 
     else:
-        db = Database()
         data = request.form
         if data["type"] == "1": # searched by CRN
-            db.search_lessons(["CRN",], [data["value"],])
+            result = db.search_lesson_by_crn(data["value"])
         else:
-            db.search_lessons(["INSTRUCTOR",], [data["value"],])
+            result = db.search_lesson_by_instructor(data["value"])
 
-        return redirect(url_for("enroll_page"))
+        return render_template("enroll_page.html",
+            authenticated = session.get("logged_in"),
+            username = "anon" if not session.get("logged_in") else session["person"]["name"],
+            person = session.get("person"),
+            result = result,
+            enrolled = enrolled
+            )
+
+
+@app.route("/enroll_action", methods = ["GET", ])
+def enroll_action():
+    lesson_id = request.args.get("lesson_id")
+    if not lesson_id or not session["logged_in"]:
+        return redirect(url_for("home_page"))
+
+    db = Database()
+    enrollments = db.get_enrolled(session["person"]["id"])
+    for enr in enrollments:
+        if enr[2] == lesson_id:
+            return redirect(url_for("enroll_page"))
+
+    if db.enroll_for_student(student_id = session["person"]["id"], lesson_id = lesson_id):
+        return jsonify({"Success": True})
+
+    return jsonify({"Success": False})
+
+@app.route("/leave_action", methods = ["GET", ])
+def leave_action():
+    lesson_id = request.args.get("lesson_id")
+    if not lesson_id or not session["logged_in"]:
+        return redirect(url_for("home_page"))
+
+    db = Database()
+    if db.leave_for_student(student_id = session["person"]["id"], lesson_id = lesson_id):
+        return jsonify({"Success": True})
+
+    return jsonify({"Success": False})
 
 
 if __name__ == "__main__":

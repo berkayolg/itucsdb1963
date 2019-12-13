@@ -9,6 +9,7 @@ from models.classroom import Classroom
 from models.instructor import Instructor
 from models.student import Student
 from models.people import People
+from models.lesson import Lesson
 
 
 class Database:
@@ -638,6 +639,21 @@ class Database:
         except Exception as err:
             print("Delete assistant Error: ", err)
 
+    def get_assistants(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM ASSISTANTS JOIN PEOPLE ON (ASSISTANTS.as_person = PEOPLE.p_id)"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                print(data)
+                cursor.close()
+                return data
+        except Exception as err:
+            print("Delete assistant Error: ", err)
+
+        return None
+
     def update_lab(self, lab_id, attrs, values):
         attrs_lookup_table = {
             "person": "AS_PERSON",
@@ -1078,3 +1094,134 @@ class Database:
             print("Update Club Error: ", err)        
 
         return None
+
+#################### LESSONS ######################
+
+    def create_lesson(self, lesson):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = """INSERT INTO LESSONS (CRN, DATE, CODE, INSTRUCTOR, LOCATION, ASSISTANT, CREDIT, CAP, ENROLLED) 
+                                VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+                values = [lesson.crn, lesson.date, lesson.code, lesson.instructor, lesson.location, lesson.assistant, lesson.credit, lesson.cap, lesson.enrolled]
+                cursor.execute(statement, values)
+                cursor.close()
+                return True
+
+        except Exception as err:
+            print("Create Lesson Error: ", err) 
+
+        return False
+
+    def search_lesson_by_crn(self, crn):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = """SELECT * FROM 
+                LESSONS 
+                JOIN INSTRUCTORS ON (LESSONS.instructor = INSTRUCTORS.ins_id) 
+                JOIN PEOPLE ON (INSTRUCTORS.ins_id = PEOPLE.p_id)
+                JOIN CLASSES ON (LESSONS.location = CLASSES.cl_id)
+                WHERE LESSONS.crn = %s
+                """
+                values = [crn]
+                cursor.execute(statement, values)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+
+        except Exception as err:
+            print("Search Lesson Error: ", err) 
+
+        return False
+
+    def search_lesson_by_instructor(self, instructor):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = """SELECT * FROM 
+                LESSONS 
+                JOIN INSTRUCTORS ON (LESSONS.instructor = INSTRUCTORS.ins_id) 
+                JOIN PEOPLE ON (INSTRUCTORS.ins_id = PEOPLE.p_id)
+                JOIN CLASSES ON (LESSONS.location = CLASSES.cl_id)
+                WHERE PEOPLE.name = %s
+                """
+                values = [instructor]
+                cursor.execute(statement, values)
+                data = cursor.fetchall()
+                print(data, " instructor")
+                cursor.close()
+                return data
+
+        except Exception as err:
+            print("Search Lesson Error: ", err) 
+
+
+    def enroll_for_student(self, student_id, lesson_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+
+                statement = "SELECT ENROLLED, CAP FROM LESSONS WHERE lesson_id = %s"
+                values = [lesson_id]
+                cursor.execute(statement, values)
+                data = cursor.fetchone()
+                enr = data[0], cap = data[1]
+
+                if(enr == cap):
+                    return False
+
+                statement = "INSERT INTO ENROLLMENT (student_id, lesson_id) VALUES (%s, %s)"
+                values = [student_id, lesson_id]
+                cursor.execute(statement, values)
+
+                # update the lesson object
+
+                statement = "UPDATE LESSONS SET ENROLLED = ENROLLED + 1 WHERE LESSON_ID = %s"
+                values = [lesson_id]
+                cursor.execute(statement,values)
+
+                cursor.close()
+                return True
+
+        except Exception as err:
+            print("Insert Enrollment Error: ", err) 
+
+        return False
+
+    def get_enrolled(self, student_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM ENROLLMENT WHERE student_id = %s"
+                values = [student_id]
+                cursor.execute(statement, values)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+
+        except Exception as err:
+            print("Insert Enrollment Error: ", err) 
+
+        return False
+
+    def leave_for_student(self, student_id, lesson_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "DELETE FROM ENROLLMENT WHERE student_id = %s AND lesson_id = %s"
+                values = [student_id, lesson_id]
+                cursor.execute(statement, values)
+
+                # update lessons object
+                statement = "UPDATE LESSONS SET ENROLLED = ENROLLED - 1 WHERE LESSON_ID = %s"
+                values = [lesson_id]
+                cursor.execute(statement,values)
+
+                cursor.close()
+                return True
+
+        except Exception as err:
+            print("Insert Enrollment Error: ", err) 
+
+        return False

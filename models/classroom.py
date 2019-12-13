@@ -8,3 +8,6 @@ class Classroom:
         self.cap = cap
         self.conditioner = conditioner
         self.board_type = board_type
+
+    def __str__(self):
+    	return self.name + " - " + self.building + " " + self.type
