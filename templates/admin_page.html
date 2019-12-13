@@ -187,7 +187,7 @@
 
 		    	<div class="form-group">
 		    		<label for="faculty">Faculty</label>
-                    <select name="faculty">
+                    <select class="form-control" name="faculty">
                     {% for faculty in faculty_list %}
                         <option value="{{ faculty["ID"] }}">{{ faculty["Name"] }}</option>
                     {% endfor %}
@@ -196,7 +196,7 @@
 
 		    	<div class="form-group">
 		    		<label for="advisor">Advisor</label>
-		    		<select name="advisor">
+		    		<select class="form-control" name="advisor">
                     {% for professor in prof_list %}
                         <option value="{{ professor["ID"] }}">{{ professor["Name"] }}</option>
                     {% endfor %}
@@ -205,7 +205,7 @@
 
                 <div class="form-group">
 		    		<label for="chair">Chair</label>
-		    		<select name="chair">
+		    		<select class="form-control" name="chair">
                     {% for student in student_list %}
                         <option value="{{ student["ID"] }}">{{ student["Name"] }}</option>
                     {% endfor %}
@@ -232,7 +232,7 @@
 
                 <div class="form-group">
 		    		<label for="department">Department</label>
-                    <select name="department">
+                    <select class="form-control" name="department">
                     {% for dep in departments %}
                         <option value="{{ dep["ID"] }}">{{ dep["Name"] }}</option>
                     {% endfor %}
@@ -241,7 +241,7 @@
 
 		    	<div class="form-group">
 		    		<label for="faculty">Faculty</label>
-                    <select name="faculty">
+                    <select class="form-control" name="faculty">
                     {% for faculty in faculty_list %}
                         <option value="{{ faculty["ID"] }}">{{ faculty["Name"] }}</option>
                     {% endfor %}
@@ -250,7 +250,7 @@
 
                 <div class="form-group">
 		    		<label for="building">Building</label>
-                    <select name="building">
+                    <select class="form-control" name="building">
                     {% for building in buildings %}
                         <option value="{{ building["ID"] }}">{{ building["Name"] }}</option>
                     {% endfor %}
@@ -260,7 +260,7 @@
 
                 <div class="form-group">
 		    		<label for="room">Room</label>
-                    <select name="room">
+                    <select class="form-control" name="room">
                     {% for room in rooms %}
                         <option value="{{ room["ID"] }}">{{ room["Name"] }}</option>
                     {% endfor %}
@@ -270,7 +270,7 @@
 
 		    	<div class="form-group">
 		    		<label for="investigator">Investigator</label>
-		    		<select name="investigator">
+		    		<select class="form-control" name="investigator">
                     {% for professor in prof_list %}
                         <option value="{{ professor["ID"] }}">{{ professor["Name"] }}</option>
                     {% endfor %}
