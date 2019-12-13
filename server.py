@@ -349,5 +349,29 @@ def logout():
 
     return redirect(url_for("home_page"))
 
+@app.route("/enroll", methods = ["GET", "POST"])
+def enroll_page():
+
+    if request.method == "GET":
+        if not session["logged_in"]:
+            return redirect(url_for("login_page"))
+
+        return render_template("enroll_page.html",
+            authenticated = session.get("logged_in"),
+            username = "anon" if not session.get("logged_in") else session["person"]["name"],
+            person = session.get("person")
+            )
+
+    else:
+        db = Database()
+        data = request.form
+        if data["type"] == "1": # searched by CRN
+            db.search_lessons(["CRN",], [data["value"],])
+        else:
+            db.search_lessons(["INSTRUCTOR",], [data["value"],])
+
+        return redirect(url_for("enroll_page"))
+
+
 if __name__ == "__main__":
     app.run(debug=True)

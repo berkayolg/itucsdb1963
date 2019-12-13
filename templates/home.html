@@ -5,18 +5,24 @@
 <head>
   <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
 </head>
-	{% if authenticated %}
-	Hello, {{ person.name }} <br/>
-	You are a {{ person.type }}
-
-	{% if person.photo %}
-		<img src="{{url_for('static', filename='img/' + person.photo)}}" align="middle" />
-	{% endif %}
-	{% else %}
-	Hello, guest.
-	{% endif %}
-
-	
-
-    <p>Welcome to the jungle</p>
+	<div class="container">
+	  <div class="row">
+	    <div class="col-sm">
+	    	{% if person.photo %}
+	    		<img class="img-fluid" src="{{url_for('static', filename='img/' + person.photo)}}" align="middle" />  
+	    	{% else %}
+	    		<img class="img-thumbnail" src="{{url_for('static', filename='img/anan.png')}}" align="middle" />  
+	    	{% endif %}
+	    	<a>Hello, {{ person.name }} | {{ person.type }}</a>
+	    </div>
+	    <div class="col-sm">
+	    	<br/>
+	      <button type="button" class="btn btn-primary">Your schedule</button> <br/><br/>
+	      <a type="button" href="/enroll" class="btn btn-primary">Enroll to a class </a>
+	    </div>
+	    <div class="col-sm">
+	      One of three columns
+	    </div>
+	  </div>
+	</div>
 {% endblock %}
