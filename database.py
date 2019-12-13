@@ -148,18 +148,19 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TPE, CAP FROM CLASSSES WHERE cl_id = %s"
+                statement = "SELECT CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TYPE, CAP FROM CLASSES WHERE CL_ID = %s"
                 data = [cl_id]
                 cursor.execute(statement, data)
                 value = cursor.fetchone()
-                statement = "SELECT ROOM_NAME, BUILDING, AVAILABLE FROM ROOMS WHERE ROOM_ID = %s"
+                statement = "SELECT ROOM_NAME, BUILDING FROM ROOMS WHERE ROOM_ID = %s"
                 data = [cl_id]
                 cursor.execute(statement, data)
                 room_attrs = cursor.fetchone()
                 cursor.close()
                 if not value:
                     return None
-                classroom = Classroom(value[0], room_attrs[0], room_attrs[1], value[1], value[3], value[5], room_attrs[3], value[2], value[4])
+                classroom = Classroom(value[0], room_attrs[0], room_attrs[1], value[1], value[3], value[5], value[2], value[4])
+                print(classroom.conditioner, classroom.type, classroom.board_type)
                 return classroom
         except Exception as err:
             print("Get Classroom Error: ", err)
@@ -189,6 +190,29 @@ class Database:
             print("Get Classrooms Error: ", err)
 
         return None
+
+    def update_classroom(self, class_id, attrs, values):
+        attrs_lookup_table = {
+            "type": "TYPE",
+            "air_conditioner": "AIR_CONDITIONER",
+            "last_restoration": "LAST_RESTORATION",
+            "board_type": "BOARD_TYPE",
+            "cap": "CAP"
+        }
+
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "UPDATE CLASSES SET "
+                for i in range(len(attrs) - 1):
+                    statement += attrs_lookup_table[attrs[i]] + " = %s ,"
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE CL_ID = %s"
+                print(statement, values)
+                values.append(class_id)
+                cursor.execute(statement, values)
+                cursor.close()
+        except Exception as err:
+            print("Update Classroom Error: ", err)
 
     ############# INSTRUCTORS ###############
 

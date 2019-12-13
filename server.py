@@ -181,20 +181,36 @@ def classrooms_page():
 def classroom_create():
     db = Database()
     data = request.form
-    newroom = Room(data["building"], data["name"], data["availability"], classroom=True,lab=False,room=False)
+    newroom = Room(data["building"], data["name"], data["availability"], classroom="TRUE",lab="FALSE",room="FALSE")
     room = db.add_room(newroom)
 
-    classroom = Classroom(room.id, room.name, room.building, data["type"], data["restoration_date"], data["capacity"], data["availability"], data["conditioner"], data["board_type"])
+    classroom = Classroom(room.id, room.name, room.building, data["type"], data["restoration_date"], data["capacity"], data["conditioner"], data["board_type"])
     db.add_classroom(classroom)
     return redirect(url_for("admin_page"))
+
+@app.route("/classroom_edit", methods= ["POST", "GET"])
+def classroom_edit():
+    db = Database()
+    data = request.form
+    if data["button"] == "delete":
+        classroom_keys = request.form.getlist("classroom_keys")
+        for ins_key in classroom_keys:
+            db.delete_classroom(int(ins_key))
+    elif data["button"] == "update":
+        classroom = db.get_classroom(request.form.getlist("classroom_keys")[0])
+        print(classroom.conditioner)
+        return render_template("classroom_update.html", classroom=classroom, datetime=datetime.now())
+    else:
+        pass
+    return redirect(url_for("classrooms_page"))
 
 @app.route("/classroom_update", methods= ["POST", "GET"])
 def classroom_update():
     db = Database()
     data = request.form
-    classroom_keys = request.form.getlist("classroom_keys")
-    for classroom_key in classroom_keys:
-        db.delete_instructor(int(classroom_key))
+    attrs = ["type","air_conditioner","last_restoration" ,"board_type" ,"cap"]
+    values = [data["type"], data["conditioner"], data["restoration_date"], data["board_type"], data["capacity"]]
+    db.update_classroom(data["id"], attrs, values)
     return redirect(url_for("classrooms_page"))
 
 @app.route("/instructors", methods = ["GET", "POST"])

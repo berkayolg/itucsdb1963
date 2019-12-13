@@ -4,7 +4,7 @@
     <h1>Classrooms</h1>
 
     {% if classrooms %}
-    <form action="/classroom_update" method="post" name="classrooms_list">
+    <form action="/classroom_edit" method="post" name="classrooms_list">
       <table class="table">
         <tr>
             <th>#</th>
@@ -36,9 +36,16 @@
         {% endfor %}
       </table>
       {% if session.get("person")["admin"] %}
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="btn btn-outline-danger">Delete</button>
+      <div class="row">
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="btn btn-outline-warning" name="button" value="update">Update</button>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="btn btn-outline-danger" name="button" value="delete">Delete</button>
+          </div>
         </div>
       </div>
       {% endif %}
