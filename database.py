@@ -25,7 +25,7 @@ class Database:
 
         self.url = os.getenv("DATABASE_URL")
         if not self.url:
-            self.url = DB_URL
+            self.url = secrets.DB_URL
 
     ############# ROOMS ###############
 
