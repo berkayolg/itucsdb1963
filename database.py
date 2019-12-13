@@ -97,11 +97,10 @@ class Database:
         except Exception as err:
             print("Delete Room Error: ", err)
 
-    def update_rooms(self, room_id, attrs, values):
+    def update_room(self, room_id, attrs, values):
         attrs_lookup_table = {
             "building": "BUILDING",
             "room_name": "ROOM_NAME",
-            "cap": "CAP",
             "class": "CLASS",
             "lab": "LAB",
             "room": "ROOM",
