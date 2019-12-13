@@ -1171,6 +1171,7 @@ class Database:
                 enr = data[0], cap = data[1]
 
                 if(enr == cap):
+                    cursor.close()
                     return False
 
                 statement = "INSERT INTO ENROLLMENT (student_id, lesson_id) VALUES (%s, %s)"
@@ -1211,6 +1212,14 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
+
+                enrolled = self.get_enrolled(student_id)
+                lesson_ids = [enr[2] for enr in enrolled]
+
+                if lesson_id not in lesson_ids:
+                    cursor.close()
+                    return False
+
                 statement = "DELETE FROM ENROLLMENT WHERE student_id = %s AND lesson_id = %s"
                 values = [student_id, lesson_id]
                 cursor.execute(statement, values)
