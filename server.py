@@ -125,7 +125,8 @@ def admin_page():
                 faculties=db.get_all_faculties(),
                 departments=db.get_departments_text(),
                 labs=db.get_all_labs(),
-                buildings = db.get_buildings()
+                buildings = db.get_buildings(),
+                rooms=db.get_rooms()
                 )
         else:
             return redirect(url_for("home_page"))

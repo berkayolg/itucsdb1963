@@ -257,12 +257,12 @@
                     </select>
 		    	</div>
 
-                <!--TODO: Update this when Berkay implements get_rooms function -->
+
                 <div class="form-group">
 		    		<label for="room">Room</label>
                     <select name="room">
-                    {% for building in buildings %}
-                        <option value="{{ building["ID"] }}">{{ building["Name"] }}</option>
+                    {% for room in rooms %}
+                        <option value="{{ room["ID"] }}">{{ room["Name"] }}</option>
                     {% endfor %}
                     </select>
 		    	</div>
