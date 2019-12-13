@@ -25,7 +25,6 @@
 			</div>
 			<div class="col-sm-9">
 				{% if result %}
-					<!--{{result[0]}}-->
 					<table class="table">
 						<thead>
 							<tr>
@@ -74,7 +73,6 @@
     				url: "/enroll_action?lesson_id=" + lesson_id,
     				success: function(result){
 						$("#enrollment-" + lesson_id).html('<a class="btn btn-danger" href="#" onclick=leave('+ lesson_id +') role="button" id="leave" value="' + lesson_id + '">Leave</a> ');
-    					//$("#leave-1").css("visibility", "visible");
     					console.log(result);
     					var enrolled = $("#numbers-" + lesson_id).attr("enrolled");
     					var cap = $("#numbers-" + lesson_id).attr("cap");
@@ -95,7 +93,6 @@
     				url: "/leave_action?lesson_id=" + lesson_id,
     				success: function(result){
 						$("#enrollment-" + lesson_id).html('<a class="btn btn-primary" href="#" onclick=enroll('+ lesson_id +') role="button" id="enroll" value="' + lesson_id + '">Enroll</a> ');
-    					//$("#leave-1").css("visibility", "visible");
     					console.log(result);
     					var enrolled = $("#numbers-" + lesson_id).attr("enrolled");
     					var cap = $("#numbers-" + lesson_id).attr("cap");
