@@ -21,17 +21,12 @@
 		    		<input class="form-control" name="mail" type="text">
 		    	</div>
 		    	<div class="form-group">
-		    		<label for="number">Earned Credits</label>
-		    		<input class="form-control" name="cred" type="text">
+		    		<label for="password">Password (given by admins)</label>
+		    		<input class="form-control" name="password" type="password">
 		    	</div>
 		    	<div class="form-group">
-		    		<a>Departmant: </a>
-		    		<a>Club (if any): </a>
-		    		<select class="form-control" name="depart">
-		    			{% for department in departments %}
-					  		<option value={{department[0]}}>{{department[1]}}</option>
-					  	{% endfor %}
-					</select>
+		    		<label for="number">Earned Credits</label>
+		    		<input class="form-control" name="cred" type="text">
 		    	</div>
 		    	<div class="form-group">
 		    		<a>Faculty: </a>
@@ -42,8 +37,17 @@
 					</select>
 		    	</div>
 		    	<div class="form-group">
+		    		<a>Departmant: </a>
+		    		<select class="form-control" name="depart">
+		    			{% for department in departments %}
+					  		<option value={{department.ID}}>{{department.Name}}</option>
+					  	{% endfor %}
+					</select>
+		    	</div>
+		    	<div class="form-group">
 		    		<a>Club (if any): </a>
 		    		<select class="form-control" name="club">
+		    			<option value="">None </option>
 		    			{% for club in clubs %}
 					  		<option value={{club[0]}}>{{club[1]}}</option>
 					  	{% endfor %}
@@ -52,6 +56,7 @@
 		    	<div class="form-group">
 		    		<a>Lab (if any): </a>
 		    		<select class="form-control" name="lab">
+		    			<option value="">None </option>
 		    			{% for lab in labs %}
 					  		<option value={{lab["ID"]}}>{{lab["Name"]}}</option>
 					  	{% endfor %}
@@ -95,9 +100,11 @@
 				<div class="form-group">
 		    		<label for="room">Room</label>
                     <select class="form-control" name="room">
-                    {% for room in rooms %}
-                        <option value="{{ room["ID"] }}">{{ room["Name"] }}</option>
-                    {% endfor %}
+                    {% if rooms %}
+	                    {% for room in rooms %}
+	                        <option value="{{ room["ID"] }}">{{ room["Name"] }}</option>
+	                    {% endfor %}
+                    {% endif %}
                     </select>
 				</div>
 				<div class="form-group">
@@ -218,9 +225,11 @@
 		    	<div class="form-group">
 		    		<label for="advisor">Advisor</label>
 		    		<select class="form-control" name="advisor">
-                    {% for professor in prof_list %}
-                        <option value="{{ professor["ID"] }}">{{ professor["Name"] }}</option>
-                    {% endfor %}
+		    		{% if prof_list %}
+	                    {% for professor in prof_list %}
+	                        <option value="{{ professor["ID"] }}">{{ professor["Name"] }}</option>
+	                    {% endfor %}
+	                   {% endif %}
                     </select>
 		    	</div>
 
