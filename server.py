@@ -122,7 +122,7 @@ def admin_page():
                 prof_list=db.get_instructors(),
                 student_list=db.get_students(), 
                 datetime=datetime.now(),
-                clubs=db.get_all_clubs(),
+                clubs=db.get_clubs_info_astext(),
                 faculties=db.get_all_faculties(),
                 departments=db.get_departments_text(),
                 buildings = db.get_buildings(),

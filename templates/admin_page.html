@@ -49,7 +49,7 @@
 		    		<select class="form-control" name="club">
 		    			<option value="">None </option>
 		    			{% for club in clubs %}
-					  		<option value={{club[0]}}>{{club[1]}}</option>
+					  		<option value={{club["ID"]}}>{{club["Name"]}}</option>
 					  	{% endfor %}
 					</select>
 		    	</div>
