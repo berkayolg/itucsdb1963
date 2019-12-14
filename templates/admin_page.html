@@ -313,7 +313,7 @@
 			</form>
 
             {% for paper in papers %}
-                    <p>{{ paper["Title"] }}</p>
+                    <p>{{ paper["Title"] }} written by {% for author in paper["Authors"] %} {{ paper["Authors"] }} {% endfor %}</p>
             {% endfor %}
         </div>
          <div class="col-sm">

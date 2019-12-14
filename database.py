@@ -993,8 +993,7 @@ class Database:
                     cursor.execute(statement, data)
                     data = cursor.fetchall()
                     for datum in data:
-                        datum = datum[0]
-                        val["Authors"].append(datum)
+                        val["Authors"].append(datum[0])
                     cursor.close()
 
                 return retval
