@@ -993,7 +993,7 @@ class Database:
                     cursor.execute(statement, data)
                     data = cursor.fetchall()
                     for datum in data:
-                        datum = datum[0].lstrip("(").rstrip(")").split(",").strip('"')
+                        datum = datum[0]
                         val["Authors"].append(datum)
                     cursor.close()
 
