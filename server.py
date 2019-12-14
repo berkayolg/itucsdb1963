@@ -130,7 +130,8 @@ def admin_page():
                 instructors=db.get_instructors(),
                 classrooms=db.get_classrooms(),
                 assistants=db.get_assistant_info(),
-                labs = db.get_lab_info()
+                labs = db.get_lab_info(),
+                papers = db.get_paper_by_author(57)
                 )
         else:
             return redirect(url_for("home_page"))
