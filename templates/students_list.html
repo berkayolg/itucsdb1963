@@ -2,17 +2,32 @@
 
 {% block content %}
 
-	{{ name }} <br/>
-
-	{% for student in students %}
-
-		{% for key, value in student.items() %}
-
-			{{ key }} : {{ value }} <br/>
-
-		{% endfor %}
-
-	{% endfor %}
-	
+	<br/>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">ID</th>
+						    <th scope="col">Name</th>
+						    <th scope="col">Number</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% if students %}
+							{% for stu in students %}
+								<tr>
+					  				<th scope="row">{{stu.ID}}</th>
+					  				<th scope="row">{{stu.Name}}</th>
+					  				<th scope="row">{{stu.Number}}</th>
+					  			</tr>
+					  		{% endfor %}
+					  	{% endif %}
+				  	</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 
 {% endblock %}

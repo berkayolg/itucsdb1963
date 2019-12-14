@@ -267,7 +267,10 @@ def instructor_update():
 def student_create():
     db = Database()
     data = request.form
-    student = Student(data["name"], data["number"], data["mail"], data["cred"], data["depart"], data["facu"], data["club"], data["lab"])
+
+    password = hashlib.md5(data["password"].encode())
+
+    student = Student(data["name"], data["number"], data["mail"], data["cred"], data["depart"], data["facu"], data["club"], data["lab"], password)
     db.add_student(student)
     return redirect(url_for("admin_page"))
 
@@ -278,7 +281,7 @@ def students_list():
     db = Database()
     students = db.get_students()
 
-    return render_template("students_list.html", name = students[0]["Name"], students = students)
+    return render_template("students_list.html", students = students)
 
 
 @app.route("/login", methods = ["GET", ])
