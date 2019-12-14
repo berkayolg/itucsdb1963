@@ -8,3 +8,6 @@ class Instructor:
         self.department = department
         self.room = room
         self.lab = lab
+
+        if not self.lab:
+            self.lab = None

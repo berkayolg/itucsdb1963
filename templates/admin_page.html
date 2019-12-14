@@ -110,9 +110,9 @@
 				<div class="form-group">
 		    		<a>Lab (if any): </a>
 		    		<select class="form-control" name="lab">
-						<option value="NULL">-</option>
+						<option value="">-</option>
 		    			{% for lab in labs %}
-							<option value={{ lab[0] }}>{{lab[1]}}</option>
+					  		<option value={{lab["ID"]}}>{{lab["Name"]}}</option>
 					  	{% endfor %}
 					</select>
 		    	</div>
