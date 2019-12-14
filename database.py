@@ -984,7 +984,7 @@ class Database:
                         "Authors": []
                     }
                     retval.append(val)
-                    
+
                 for val in retval:
                     cursor = connection.cursor()
                     statement = "SELECT (name) FROM papers p1 JOIN papers p2 ON p1.title = p2.title JOIN people p3 ON p3.p_id = p1.author WHERE p1.author <> p2.author AND p1.title = %s"
@@ -993,6 +993,7 @@ class Database:
                     data = cursor.fetchall()
                     for datum in data:
                         val["Authors"].append(datum[0])
+                    val["Authors"] = list(set(val["Authors"]))
                     cursor.close()
 
                 return retval
