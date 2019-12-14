@@ -10,9 +10,6 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary" id="navbarColor02">
         <a class="navbar-brand" href="">SIS++</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -21,6 +18,7 @@
             <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('instructors_page') }}">Instructors</a>
             </li>
+            {% if session.get("person")["admin"] %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('students_list') }}">Students</a>
             </li>
@@ -31,10 +29,12 @@
                     <a class="nav-link" href="{{ url_for('classrooms_page') }}">Classrooms</a>
                 </li>
             <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('admin_page') }}">Top Secret Admin Page</a>
-                </li>
+                    <a class="nav-link" href="{{ url_for('admin_page') }}">Super User Page</a>
+            </li>
+            {% else %}
+            {% endif %}
             </ul>
-            {% if authenticated %}
+            {% if session.get("logged_in") %}
             <span class="navbar-text">
                 <a class="nav-link" href="/logout"> Logout </a>
             </span>

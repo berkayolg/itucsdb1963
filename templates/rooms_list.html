@@ -4,7 +4,7 @@
     <h1>Rooms</h1>
 
     {% if rooms %}
-    <form action="/room_update" method="post" name="rooms_list">
+    <form action="/room_edit" method="post" name="rooms_list">
       <table class="table">
         <tr>
             <th>#</th>
@@ -32,10 +32,17 @@
         </tr>
         {% endfor %}
       </table>
-    {% if session.get("person")["admin"] %}
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="btn btn-outline-danger">Delete</button>
+      {% if session.get("person")["admin"] %}
+      <div class="row">
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="btn btn-outline-warning" name="button" value="update">Update</button>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="btn btn-outline-danger" name="button" value="delete">Delete</button>
+          </div>
         </div>
       </div>
       {% endif %}

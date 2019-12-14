@@ -97,11 +97,10 @@ class Database:
         except Exception as err:
             print("Delete Room Error: ", err)
 
-    def update_rooms(self, room_id, attrs, values):
+    def update_room(self, room_id, attrs, values):
         attrs_lookup_table = {
             "building": "BUILDING",
             "room_name": "ROOM_NAME",
-            "cap": "CAP",
             "class": "CLASS",
             "lab": "LAB",
             "room": "ROOM",
@@ -548,7 +547,6 @@ class Database:
         except Exception as err:
             print("Get Faculties DB Error: ", err)
 
-
     # Delete
     def delete_faculty(self, fac_id):
         try:
@@ -656,7 +654,7 @@ class Database:
 
         return None
 
-    def update_lab(self, lab_id, attrs, values):
+    def update_assistant(self, as_id, attrs, values):
         attrs_lookup_table = {
             "person": "AS_PERSON",
             "lab": "LAB",
@@ -672,12 +670,35 @@ class Database:
                 for i in range(len(attrs) - 1):
                     statement += attrs_lookup_table[attrs[i]] + " = %s ,"
                 statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE AS_ID = %s"
-                values.append(lab_id)
+                values.append(as_id)
                 cursor.execute(statement, values)
                 cursor.close()
 
         except Exception as err:
             print("Update assistant Error: ", err)
+
+    def get_assistant_info(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (a.as_id, p.name, p.email, p.photo, a.degree) FROM assistants a JOIN people p ON a.as_person = p.p_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Email": datum[2],
+                        "Photo": datum[3],
+                        "Degree": datum[4]
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Assistant Info(The one with the string parsing) DB Error: ", err)
 
     ############# LABS ###############
 
@@ -756,6 +777,28 @@ class Database:
             print("Delete lab Error: ", err)
 
         return None
+
+    def get_lab_info(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (l.lab_id, l.lab_name, r.room_name, p.name) FROM labs l JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator = p.p_id;"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Room": datum[2],
+                        "Investigator": datum[3]
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Lab Info(The one with the string parsing) DB Error: ", err)
 
     ############# DEPARTMENTS ###############
 
@@ -838,7 +881,6 @@ class Database:
 
         :return: Information as dictionary.
         """
-        data = []
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
@@ -922,6 +964,42 @@ class Database:
 
         except Exception as err:
             print("Update Paper Error: ", err)
+
+    def get_paper_by_author(self, person):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (paper_id, title, plat) FROM papers WHERE papers.author = %s"
+                data = [person]
+                cursor.execute(statement, data)
+                data = cursor.fetchall()
+                print(data)
+                cursor.close()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Title": datum[1].strip('"'),
+                        "Platform": datum[2],
+                        "Authors": []
+                    }
+                    retval.append(val)
+                print(retval)
+                for val in retval:
+                    cursor = connection.cursor()
+                    statement = "SELECT (name) FROM papers p1 JOIN papers p2 ON p1.title = p2.title JOIN people p3 ON p3.p_id = p1.author WHERE p1.author <> p2.author AND p1.title = %s"
+                    data = [val["Title"]]
+                    cursor.execute(statement, data)
+                    data = cursor.fetchall()
+                    for datum in data:
+                        datum = datum[0].lstrip("(").rstrip(")").split(",").strip('"')
+                        val["Authors"].append(datum)
+                    cursor.close()
+
+                return retval
+        except Exception as err:
+            print("Get Paper by Author DB Error: ", err)
 
     ############# BUILDINGS ###############
 

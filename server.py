@@ -125,12 +125,13 @@ def admin_page():
                 clubs=db.get_all_clubs(),
                 faculties=db.get_all_faculties(),
                 departments=db.get_departments_text(),
-                labs=db.get_all_labs(),
                 buildings = db.get_buildings(),
                 rooms=db.get_rooms(),
                 instructors=db.get_instructors(),
                 classrooms=db.get_classrooms(),
-                assistants=db.get_assistants()
+                assistants=db.get_assistant_info(),
+                labs = db.get_lab_info(),
+                papers = db.get_paper_by_author(57)
                 )
         else:
             return redirect(url_for("home_page"))
@@ -163,12 +164,35 @@ def room_create():
     db.add_room(room)
     return redirect(url_for("admin_page"))
 
+@app.route("/room_edit", methods= ["POST", "GET"])
+def room_edit():
+    db = Database()
+    data = request.form
+    if data["button"] == "delete":
+        room_keys = request.form.getlist("room_keys")
+        for room_key in room_keys:
+            db.delete_classroom(int(room_key))
+    elif data["button"] == "update":
+        room = db.get_room(request.form.getlist("room_keys")[0])
+        return render_template("room_update.html", room=room)
+    else:
+        pass
+    return redirect(url_for("rooms_page"))
+
 @app.route("/room_update", methods= ["POST", "GET"])
 def room_update():
     db = Database()
-    room_keys = request.form.getlist("room_keys")
-    for room_key in room_keys:
-        db.delete_room(int(room_key))
+    data = request.form
+    attrs = ["room_name","building","class", "lab" ,"room" ,"available"]
+    classFlag = labFlag = roomFlag = "FALSE"
+    if data["type"] == "class":
+        classFlag = "TRUE" 
+    elif data["type"] == "lab":
+        labFlag = "TRUE" 
+    elif data["type"] == "room":
+        roomFlag = "TRUE" 
+    values = [data["name"], data["building"], classFlag, labFlag, roomFlag, data["availability"]]
+    db.update_room(data["id"], attrs, values)
     return redirect(url_for("rooms_page"))
 
 @app.route("/classrooms_list", methods = ["GET", "POST"])
@@ -198,11 +222,10 @@ def classroom_edit():
     data = request.form
     if data["button"] == "delete":
         classroom_keys = request.form.getlist("classroom_keys")
-        for ins_key in classroom_keys:
-            db.delete_classroom(int(ins_key))
+        for classroom_key in classroom_keys:
+            db.delete_classroom(int(classroom_key))
     elif data["button"] == "update":
         classroom = db.get_classroom(request.form.getlist("classroom_keys")[0])
-        print(classroom.conditioner)
         return render_template("classroom_update.html", classroom=classroom, datetime=datetime.now())
     else:
         pass
