@@ -778,6 +778,28 @@ class Database:
 
         return None
 
+    def get_lab_info(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (l.lab_id, l.lab_name, r.room_name, p.name) FROM labs l JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator = p.p_id;"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Room": datum[2],
+                        "Investigator": datum[3]
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Lab Info(The one with the string parsing) DB Error: ", err)
+
     ############# DEPARTMENTS ###############
 
     def add_department(self, department):

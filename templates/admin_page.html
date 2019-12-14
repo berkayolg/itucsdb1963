@@ -53,7 +53,7 @@
 		    		<a>Lab (if any): </a>
 		    		<select class="form-control" name="lab">
 		    			{% for lab in labs %}
-					  		<option value={{lab[0]}}>{{lab[1]}}</option>
+					  		<option value={{lab["ID"]}}>{{lab["Name"]}}</option>
 					  	{% endfor %}
 					</select>
 		    	</div>

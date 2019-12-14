@@ -125,12 +125,12 @@ def admin_page():
                 clubs=db.get_all_clubs(),
                 faculties=db.get_all_faculties(),
                 departments=db.get_departments_text(),
-                labs=db.get_all_labs(),
                 buildings = db.get_buildings(),
                 rooms=db.get_rooms(),
                 instructors=db.get_instructors(),
                 classrooms=db.get_classrooms(),
-                assistants=db.get_assistant_info()
+                assistants=db.get_assistant_info(),
+                labs = db.get_lab_info()
                 )
         else:
             return redirect(url_for("home_page"))
