@@ -973,6 +973,8 @@ class Database:
                 data = [person]
                 cursor.execute(statement, data)
                 data = cursor.fetchall()
+                print(data)
+                cursor.close()
                 retval = []
                 for datum in data:
                     datum = datum[0].lstrip("(").rstrip(")").split(",")
@@ -983,8 +985,9 @@ class Database:
                         "Authors": []
                     }
                     retval.append(val)
-
+                print(retval)
                 for val in retval:
+                    cursor = connection.cursor()
                     statement = "SELECT (name) FROM papers p1 JOIN papers p2 ON p1.title = p2.title JOIN people p3 ON p3.p_id = p1.author WHERE p1.author <> p2.author AND p1.title = %s"
                     data = [val["Title"]]
                     cursor.execute(statement, data)
@@ -992,8 +995,8 @@ class Database:
                     for datum in data:
                         datum = datum[0].lstrip("(").rstrip(")").split(",").strip('"')
                         val["Authors"].append(datum)
+                    cursor.close()
 
-                cursor.close()
                 return retval
         except Exception as err:
             print("Get Paper by Author DB Error: ", err)
