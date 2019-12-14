@@ -339,7 +339,7 @@
                 		<label for="assistant">Assistant </label>
                 		<select name="assistant" class="form-control">
                 			{% for assi in assistants %}
-                				<option value={{assi[0]}} > {{assi[5]}} </option>
+                				<option value={{assi["ID"]}} > {{assi["Name"]}} </option>
                 			{% endfor %}
                 		</select>
                 	</div>

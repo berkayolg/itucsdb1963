@@ -130,7 +130,7 @@ def admin_page():
                 rooms=db.get_rooms(),
                 instructors=db.get_instructors(),
                 classrooms=db.get_classrooms(),
-                assistants=db.get_assistants()
+                assistants=db.get_assistant_info()
                 )
         else:
             return redirect(url_for("home_page"))

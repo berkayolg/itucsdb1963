@@ -547,7 +547,6 @@ class Database:
         except Exception as err:
             print("Get Faculties DB Error: ", err)
 
-
     # Delete
     def delete_faculty(self, fac_id):
         try:
@@ -655,7 +654,7 @@ class Database:
 
         return None
 
-    def update_lab(self, lab_id, attrs, values):
+    def update_assistant(self, as_id, attrs, values):
         attrs_lookup_table = {
             "person": "AS_PERSON",
             "lab": "LAB",
@@ -671,12 +670,35 @@ class Database:
                 for i in range(len(attrs) - 1):
                     statement += attrs_lookup_table[attrs[i]] + " = %s ,"
                 statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE AS_ID = %s"
-                values.append(lab_id)
+                values.append(as_id)
                 cursor.execute(statement, values)
                 cursor.close()
 
         except Exception as err:
             print("Update assistant Error: ", err)
+
+    def get_assistant_info(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (a.as_id, p.name, p.email, p.photo, a.degree) FROM assistants a JOIN people p ON a.as_person = p.p_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Email": datum[2],
+                        "Photo": datum[3],
+                        "Degree": datum[4]
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Assistant Info(The one with the string parsing) DB Error: ", err)
 
     ############# LABS ###############
 
@@ -837,7 +859,6 @@ class Database:
 
         :return: Information as dictionary.
         """
-        data = []
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
