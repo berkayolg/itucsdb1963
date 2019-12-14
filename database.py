@@ -782,7 +782,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT (l.lab_id, l.lab_name, r.room_name, p.name) FROM labs l JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator = p.p_id;"
+                statement = "SELECT (l.lab_id, l.lab_name, r.room_name, p.name) FROM labs l JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator = p.p_id"
                 cursor.execute(statement)
                 data = cursor.fetchall()
                 cursor.close()
