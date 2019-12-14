@@ -965,6 +965,39 @@ class Database:
         except Exception as err:
             print("Update Paper Error: ", err)
 
+    def get_paper_by_author(self, person):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (paper_id, title, plat) FROM papers WHERE papers.author = %s"
+                data = [person]
+                cursor.execute(statement, data)
+                data = cursor.fetchall()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Title": datum[1].strip('"'),
+                        "Platform": datum[2],
+                        "Authors": []
+                    }
+                    retval.append(val)
+
+                for val in retval:
+                    statement = "SELECT (name) FROM papers p1 JOIN papers p2 ON p1.title = p2.title JOIN people p3 ON p3.p_id = p1.author WHERE p1.author <> p2.author AND p1.title = %s"
+                    data = [val["Title"]]
+                    cursor.execute(statement, data)
+                    data = cursor.fetchall()
+                    for datum in data:
+                        datum = datum[0].lstrip("(").rstrip(")").split(",").strip('"')
+                        val["Authors"].append(datum)
+
+                cursor.close()
+                return retval
+        except Exception as err:
+            print("Get Paper by Author DB Error: ", err)
+
     ############# BUILDINGS ###############
 
     def add_building(self, building):
