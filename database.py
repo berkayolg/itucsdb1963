@@ -1190,9 +1190,10 @@ class Database:
                         "ID": datum[0],
                         "Name": datum[1].strip('"'),
                         "Faculty": datum[2].strip('"'),
-                        "Chair": datum[3].strip('"'),
-                        "VChair1": datum[4].strip('"'),
-                        "VChair2": datum[5].strip('"')
+                        "Advisor": datum[3].strip('"'),
+                        "Chair": datum[4].strip('"'),
+                        "VChair1": datum[5].strip('"'),
+                        "VChair2": datum[6].strip('"')
                     }
                     retval.append(val)
                 return retval
