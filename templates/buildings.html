@@ -5,6 +5,37 @@
     <title>Title</title>
 </head>
 <body>
-
+    <h1 class="title">Buildings</h1>
+    <br/>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Select</th>
+						    <th scope="col">Name</th>
+						    <th scope="col">Code</th>
+                            <th scope="col">Campus</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% if buildings %}
+							{% for building in buildings %}
+								<tr>
+					  				<td scope="row"><label class="checkbox">
+                        <input type="checkbox" name="bu_id" value="{{ building["ID"] }}"/>
+                    </label></td>
+					  				<td scope="row">{{ building["Name"] }}</td>
+					  				<td scope="row">{{ building["Code"] }}</td>
+                                    <td scope="row">{{ building["Campus"] }}</td>
+					  			</tr>
+					  		{% endfor %}
+					  	{% endif %}
+				  	</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

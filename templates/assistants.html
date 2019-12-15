@@ -18,11 +18,11 @@
 						{% if assistants %}
 							{% for assistant in assistants %}
 								<tr>
-					  				<th scope="row"><label class="checkbox">
+					  				<td scope="row"><label class="checkbox">
                         <input type="checkbox" name="as_id" value="{{ assistant["ID"] }}"/>
-                    </label></th>
-					  				<th scope="row">{{ assistant["Name"] }}</th>
-					  				<th scope="row">{{ assistant["Degree"] }}</th>
+                    </label></td>
+					  				<td scope="row">{{ assistant["Name"] }}</td>
+					  				<td scope="row">{{ assistant["Degree"] }}</td>
 					  			</tr>
 					  		{% endfor %}
 					  	{% endif %}
