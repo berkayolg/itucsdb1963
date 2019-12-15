@@ -465,7 +465,7 @@ def paper_page():
     else:
         data = request.form
         papers = None
-        if data["a_id"] is not None:
+        if data["a_id"] is not 'Pick an author':
             papers = db.get_paper_by_author(int(data["a_id"]))
         return render_template("papers.html", authors=authors, papers=papers)
 

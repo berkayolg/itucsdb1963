@@ -37,7 +37,7 @@
                     {{ paper["Title"] }}
                     </td>
                     <td> {{ paper["Platform"] }}</td>
-                    <td>{% for a in paper["Authors"] %} {{ a }} " " {% endfor %}</td>
+                    <td>{% for a in paper["Authors"] %} {{ a }} <br/> {% endfor %}</td>
                 </tr>
             {% endfor %}
            </tbody>
