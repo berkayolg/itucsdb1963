@@ -177,6 +177,12 @@ def fac_page():
     faculties = db.get_faculty_as_text()
     return render_template("faculties.html", faculties=faculties)
 
+@app.route("/labs", methods=["POST", "GET"])
+def lab_page():
+    db = Database()
+    labs = db.get_lab_info()
+    return render_template("labs.html", labs=labs)
+
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():
     db = Database()

@@ -807,7 +807,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT (l.lab_id, l.lab_name, r.room_name, p.name) FROM labs l JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator = p.p_id"
+                statement = "SELECT (l.lab_id, l.lab_name, d.dep_name, f.fac_name, b.bu_name, r.room_name, p.name) FROM labs l JOIN departments d ON l.department=d.dep_id JOIN faculties f ON l.faculty = f.fac_id JOIN buildings b ON l.building=b.bu_id JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator=p.p_id"
                 cursor.execute(statement)
                 data = cursor.fetchall()
                 cursor.close()
@@ -817,8 +817,11 @@ class Database:
                     val = {
                         "ID": datum[0],
                         "Name": datum[1].strip('"'),
-                        "Room": datum[2],
-                        "Investigator": datum[3]
+                        "Department": datum[2].strip('"'),
+                        "Faculty": datum[3].strip('"'),
+                        "Building": datum[4].strip('"'),
+                        "Room": datum[5].strip('"'),
+                        "Investigator": datum[6].strip('"')
                     }
                     retval.append(val)
                 return retval
