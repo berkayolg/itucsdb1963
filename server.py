@@ -349,11 +349,25 @@ def student_delete_update():
             db.delete_student(int(stu))
     elif data["button"] == "update":
         return render_template("student_update.html",
-            student = db.get_student(int(data.getlist("selected")[0]))
+            student = db.get_student_w_join(int(data.getlist("selected")[0]))
             )
 
     return redirect(url_for("students_list"))
 
+@app.route("/student_update", methods = ["POST", ])
+def student_update():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("home_page"))
+
+    data = request.form
+    db = Database()
+
+    attrs = ["NUMBER", "EARNED_CREDITS"]
+    values = [int(data["number"]), data["credit"]]
+
+    db.update_student(data["id"], attrs, values)
+
+    return redirect(url_for("students_list"))
 
 @app.route("/login", methods = ["GET", ])
 def login_page():

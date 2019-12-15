@@ -416,7 +416,31 @@ class Database:
                 cursor.close()
                 return data
         except Exception as err:
-            print("DB Error: ", err)
+            print("Get Student Error: ", err)
+
+        return None
+
+    def get_student_w_join(self, stu_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = """
+                    SELECT 
+                    STUDENTS.number, STUDENTS.earned_credits, 
+                    PEOPLE.name, PEOPLE.email,
+                    STUDENTS.stu_id
+                    FROM STUDENTS 
+                    JOIN PEOPLE ON (STUDENTS.stu_id = PEOPLE.p_id)
+                    WHERE STU_ID = %s
+
+                """
+                values = [stu_id]
+                cursor.execute(statement, values)
+                data = cursor.fetchone()
+                cursor.close()
+                return data
+        except Exception as err:
+            print("Get Student W Join Error: ", err)
 
         return None
 
@@ -457,30 +481,24 @@ class Database:
                 print("Delete Student Error: ", err)
 
     def update_student(self, student_key, attrs, values):
-        student = self.students.get(student_key)
-        attrs_lookup_table = {
-            "id": "STU_ID",
-            "number": "NUMBER",
-            "cred": "EARNED_CREDITS",
-            "depart": "DEPARTMENT",
-            "facu": "FACULTY",
-            "club": "CLUB",
-            "lab": "LAB"
-        }
+        student = self.get_student(student_key)
+        if not student:
+            return False
+
         if student:
             try:
                 with dbapi2.connect(self.url) as connection:
                     cursor = connection.cursor()
                     statement = "UPDATE STUDENTS SET "
-                    for attr in attrs:
-                        statement += attrs_lookup_table[attr] + " = %s "
-                    statement += " WHERE number = %s"
-                    values.append(student.number)
+                    for attr in attrs[:-1]:
+                        statement += attr + " = %s , "
+                    statement += attrs[-1] + " = %s "
+                    statement += " WHERE stu_id = %s"
+                    values.append(student_key)
                     cursor.execute(statement, values)
                     cursor.close()
-                    del self.students[student_key]
             except Exception as err:
-                print("Error: ", err)
+                print("Update Student Error: ", err)
 
     ############# FACULTIES ###############
 
