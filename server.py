@@ -262,7 +262,7 @@ def assistant_edit():
     return redirect(url_for("as_page"))
 
 @app.route("/as_edit", methods=["POST", "GET"])
-def assistant_edit():
+def as_edit():
     if not session["logged_in"] or not session.get("person")["admin"]:
         return redirect(url_for("as_page"))
     db = Database()
