@@ -153,6 +153,12 @@ def as_page():
     assistants = db.get_assistant_info()
     return render_template("assistants.html", assistants=assistants)
 
+@app.route("/buildings", methods=["POST", "GET"])
+def as_page():
+    db = Database()
+    buildings = db.get_buildings()
+    return render_template("buildings.html", buildings=buildings)
+
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():
     db = Database()
