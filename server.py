@@ -165,6 +165,12 @@ def cl_page():
     clubs = db.get_clubs_info_astext()
     return render_template("clubs.html", clubs=clubs)
 
+@app.route("/clubs", methods=["POST", "GET"])
+def dep_page():
+    db = Database()
+    departments = db.get_departments_text()
+    return render_template("clubs.html", departments=departments)
+
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():
     db = Database()

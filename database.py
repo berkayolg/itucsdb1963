@@ -896,7 +896,7 @@ class Database:
                         "Name": datum[1],
                         "Faculty": datum[6],
                         "Building": datum[9],
-                        "Dean": datum[12]
+                        "Chair": datum[12]
                     }
                     retval.append(val)
                 return retval
