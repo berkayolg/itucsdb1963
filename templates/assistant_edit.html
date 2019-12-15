@@ -1,29 +1,44 @@
 {% extends "layout.html" %}
-{% block title %}Edit Assistant - {{ as_name }}{% endblock %}
+{% block title %}Edit Assistant - {{ assistant["Name"] }}{% endblock %}
 {% block content %}
     <div class="col-sm">
-    <form method="post" action="/room_edit" id="room_update">
+    <form method="post" action="/assistant_edit" id="assistant_update">
         <div class="form-group">
-            <input type="hidden" class="form-control" name="id" type="text" value="{{room.id}}">
+            <input type="hidden" class="form-control" name="id" type="text" value="{{ assistant["ID"] }}">
         </div>
         <div class="form-group">
-            <a>Name: </a><input class="form-control" name="name" type="text" value={{room.name}}>
+            <label for="p_id">Name</label>
+            <select class="custom-select" name="p_id">
+                {% for person in people %}
+                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-            <a>Building: </a><input class="form-control" name="building" type="text" value={{room.building}}>
+            <label for="lab_id">Lab</label>
+            <select class="custom-select" name="lab_id">
+                {% for lab in labs %}
+                    <option value="{{ lab[0] }}">{{ lab[1] }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-            <input type="radio" class="form-control" name="type" value="class" {% if room.class %}checked{% else %}{% endif %}> Classroom <br/>
-            <input type="radio" class="form-control" name="type" value="lab" {% if room.lab %}checked{% else %}{% endif %}> Laboratory <br/>
-            <input type="radio" class="form-control" name="type" value="room" {% if room.room %}checked{% else %}{% endif %}> Room <br/>
+            <label for="dep_id">Department</label>
+            <select class="custom-select" name="dep_id">
+                {% for dep in deps %}
+                    <option value="{{ dep[0] }}">{{ dep[1] }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-                <input type="radio" class="form-control" name="availability" value="TRUE" {% if room.availability %}checked{% else %}{% endif %}> Available <br/>
-                <input type="radio" class="form-control" name="availability" value="FALSE" {% if not room.availability %}checked{% else %}{% endif %}> Not Available <br/>
+            <label for="fac_id">Department</label>
+            <select class="custom-select" name="fac_id">
+                {% for fac in facs %}
+                    <option value="{{ fac[0] }}">{{ fac[1] }}</option>
+                {% endfor %}
+            </select>
         </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary" name="room">Update</button>
-        </div>
-    </form>
+    <button type="submit" class="btn btn-primary">Update</button>
+    </form><br/>
 </div>
 {% endblock %}

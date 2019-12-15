@@ -678,12 +678,23 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM ASSISTANTS WHERE AS_ID = %s"
+                statement = "SELECT (a.as_id, p.name, p.email, p.photo, a.degree) FROM assistants a JOIN people p ON a.as_person = p.p_id WHERE a.as_id = %s"
                 data = [as_id]
                 cursor.execute(statement, data)
-                datas = cursor.fetchall()
+                data = cursor.fetchall()
                 cursor.close()
-                return datas
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Email": datum[2],
+                        "Photo": datum[3],
+                        "Degree": datum[4]
+                    }
+                    retval.append(val)
+                return retval[0]
         except Exception as err:
             print("Get assistant DB Error: ", err)
 
