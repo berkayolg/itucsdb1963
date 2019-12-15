@@ -255,7 +255,8 @@ def assistant_edit():
                                assistant=assistant,
                                labs=labs,
                                deps=deps,
-                               facs=facs)
+                               facs=facs,
+                               people=people)
     else:
         pass
 
