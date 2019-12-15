@@ -932,6 +932,22 @@ class Database:
 
     ############# PAPERS ###############
 
+    def get_authors(self):
+        with dbapi2.connect(self.url) as connection:
+            cursor = connection.cursor()
+            statement = "SELECT DISTINCT author, name from papers join people on author=p_id;"
+            cursor.execute(statement)
+            data = cursor.fetchall()
+            cursor.close()
+            retval = []
+            for datum in data:
+                val = {
+                    "ID": datum[0],
+                    "Name": datum[1]
+                }
+                retval.append(val)
+            return retval
+
     def add_paper(self, paper):
         try:
             with dbapi2.connect(self.url) as connection:

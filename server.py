@@ -183,6 +183,12 @@ def lab_page():
     labs = db.get_lab_info()
     return render_template("labs.html", labs=labs)
 
+@app.route("/papers", methods=["POST", "GET"])
+def paper_page():
+    db = Database()
+    authors = db.get_authors()
+    return render_template("papers.html", authors=authors)
+
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():
     db = Database()

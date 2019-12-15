@@ -1,4 +1,18 @@
 {% extends "layout.html" %}
 {% block title %}Papers{% endblock %}
 {% block content %}
+    <form>
+        <div class="form-group">
+            <label for="Author">Author:</label>
+            <select class="custom-select">
+                <option selected>Pick an author</option>
+                {% if authors %}
+                    {% for author in authors %}
+                    <option value={{ author["ID"] }}>{{ author["Name"] }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Find Papers by Author</button>
+    </form>
 {% endblock %}
