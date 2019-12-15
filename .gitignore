@@ -10,6 +10,7 @@ __pycache__
 venv/
 docs/build/
 
+static/img/*
 secrets.py
 #!static/img/defaultpfp.jpeg
 
