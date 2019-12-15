@@ -1051,7 +1051,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT (paper_id, title, plat) FROM papers WHERE papers.author = %s"
+                statement = "SELECT (paper_id, title, plat, citation_count, conference) FROM papers WHERE papers.author = %s"
                 data = [person]
                 cursor.execute(statement, data)
                 data = cursor.fetchall()
@@ -1063,6 +1063,8 @@ class Database:
                         "ID": datum[0],
                         "Title": datum[1].strip('"'),
                         "Platform": datum[2].strip('"'),
+                        "Citation": datum[3],
+                        "Conference": datum[4],
                         "Authors": []
                     }
                     retval.append(val)
