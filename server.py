@@ -344,11 +344,13 @@ def student_delete_update():
     db = Database()
     
     if data["button"] == "delete":
-        students = request.form.getlist("selected")
+        students = data.getlist("selected")
         for stu in students:
             db.delete_student(int(stu))
     elif data["button"] == "update":
-        print("naber yarrak")
+        return render_template("student_update.html",
+            student = db.get_student(int(data.getlist("selected")[0]))
+            )
 
     return redirect(url_for("students_list"))
 
