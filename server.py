@@ -193,7 +193,7 @@ def room_create():
 def room_edit():
     if not session["logged_in"] or not session.get("person")["admin"]:
         return redirect(url_for("home_page"))
-        
+
     db = Database()
     data = request.form
     if data["button"] == "delete":
@@ -417,7 +417,6 @@ def signup_page():
 @app.route("/signup_action", methods = ["POST", ])
 def signup_action():
     data = request.form 
-    print(data)
 
     if not data.get("type"):
         return redirect(url_for("home_page"))
@@ -465,7 +464,6 @@ def logout():
 @app.route("/lesson_create", methods = ["POST", ])
 def lesson_create():
     data = request.form
-    print(data)
     lesson = Lesson(data["crn"], data["date"], data["code"], data["instructor"], data["location"], data["assistant"], data["credit"])
     db = Database()
     db.create_lesson(lesson)
@@ -510,7 +508,6 @@ def enroll_page():
         data = request.form
         if data["type"] == "1": # searched by CRN
             result = db.search_lesson_by_crn(data["value"])
-            print(result, data["value"])
         else:
             result = db.search_lesson_by_instructor(data["value"])
 
@@ -560,7 +557,6 @@ def schedule():
 
     db = Database()
     enrollments = db.get_enrolled_w_join(session["person"]["id"])
-    print(enrollments, "NABER")
 
     return render_template("schedule.html",
             authenticated = session.get("logged_in"),
