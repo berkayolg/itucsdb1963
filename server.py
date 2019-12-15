@@ -172,12 +172,6 @@ def lab_page():
     labs = db.get_lab_info()
     return render_template("labs.html", labs=labs)
 
-@app.route("/papers", methods=["POST", "GET"])
-def paper_page():
-    db = Database()
-    authors = db.get_authors()
-    return render_template("papers.html", authors=authors)
-
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():
     db = Database()
@@ -442,6 +436,20 @@ def lesson_create():
     db.create_lesson(lesson)
 
     return redirect(url_for("admin_page"))
+
+@app.route("/papers", methods=["POST", "GET"])
+def paper_page():
+    db = Database()
+    authors = db.get_authors()
+    if request.method == "GET":
+        return render_template("papers.html", authors=authors)
+    else:
+        data = request.form
+        papers = None
+        if data["a_id"] is not None:
+            papers = db.get_paper_by_author(int(data["a_id"]))
+        return render_template("papers.html", authors=authors, papers=papers)
+
 
 @app.route("/enroll", methods = ["GET", "POST"])
 def enroll_page():

@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
 {% block title %}Papers{% endblock %}
 {% block content %}
-    <form>
+    <form action="papers.html" method="post">
         <div class="form-group">
-            <label for="Author">Author:</label>
-            <select class="custom-select">
+            <select class="custom-select" name="a_id">
                 <option selected>Pick an author</option>
                 {% if authors %}
                     {% for author in authors %}
@@ -15,4 +14,32 @@
         </div>
         <button type="submit" class="btn btn-primary">Find Papers by Author</button>
     </form>
+    {% if papers %}
+        <table class="table">
+            <thead>
+               <tr>
+                   <th>Select</th>
+                   <th>Title</th>
+                   <th>Platform</th>
+                   <th>Authors</th>
+               </tr>
+            </thead>
+            <tbody>
+            {% for paper in papers %}
+                <tr>
+                    <td>
+                        <label class="checkbox">
+                            <input type="checkbox" name="paper_id" value="{{ paper["ID"] }}"/>
+                        </label>
+                    </td>
+                    <td>
+                    {{ paper["Title"] }}
+                    </td>
+                    <td> {{ paper["Platform"] }}</td>
+                    <td>{% for a in paper["Authors"] %} {{ a }} " " {% endfor %}</td>
+                </tr>
+            {% endfor %}
+           </tbody>
+        </table>
+    {%  endif %}
 {% endblock %}
