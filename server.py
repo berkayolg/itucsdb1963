@@ -82,17 +82,6 @@ def user_settings():
     return render_template("settings.html")
 
 
-@app.route("/schedule")
-def schedule():
-    """
-    This is a common page. Users will be able to see their schedules according to courses
-    they are registered to/they are giving.
-
-    :return:
-    """
-    return render_template("schedule.html")
-
-
 @app.route("/exams")
 def exams():
     """
@@ -317,12 +306,33 @@ def student_create():
 
 @app.route("/student_list", methods = ["GET", ])
 def students_list():
-    #db = current_app.config["db"]
-    #students = db.get_students().values()
+    if not session["logged_in"]:
+        return redirect(url_for("home_page"))
+
     db = Database()
     students = db.get_students()
 
-    return render_template("students_list.html", students = students)
+    return render_template("students_list.html", 
+        students = students,
+        person = session.get("person")
+        )
+
+@app.route("/student_delete_update", methods = ["POST", ])
+def student_delete_update():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("home_page"))
+
+    data = request.form
+    db = Database()
+    
+    if data["button"] == "delete":
+        students = request.form.getlist("selected")
+        for stu in students:
+            db.delete_student(int(stu))
+    elif data["button"] == "update":
+        print("naber yarrak")
+
+    return redirect(url_for("students_list"))
 
 
 @app.route("/login", methods = ["GET", ])
@@ -430,6 +440,7 @@ def enroll_page():
         data = request.form
         if data["type"] == "1": # searched by CRN
             result = db.search_lesson_by_crn(data["value"])
+            print(result, data["value"])
         else:
             result = db.search_lesson_by_instructor(data["value"])
 
@@ -471,6 +482,22 @@ def leave_action():
 
     return jsonify({"Success": False})
 
+@app.route("/schedule", methods = ["GET", ])
+def schedule():
+    if not session["logged_in"] or session.get("person")["type"] != "student":
+        return redirect(url_for("home_page"))
+
+
+    db = Database()
+    enrollments = db.get_enrolled_w_join(session["person"]["id"])
+    print(enrollments, "NABER")
+
+    return render_template("schedule.html",
+            authenticated = session.get("logged_in"),
+            username = "anon" if not session.get("logged_in") else session["person"]["name"],
+            person = session.get("person"),
+            enrollments = enrollments
+            )
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -363,7 +363,7 @@ class Database:
                 cursor.close()
                 if not value:
                     return None
-                person = People(value[1], value[0], value[2], value[3], value[4], value[5])
+                person = People(value[1], value[0], value[2], value[3], value[4], value[5] ,value[6])
                 return person
         except Exception as err:
             print("Error while getting person: ", err)
@@ -410,12 +410,11 @@ class Database:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
                 statement = "SELECT * FROM STUDENTS WHERE STU_ID = %s"
-                data = [stu_id]
-                print(data)
-                cursor.execute(statement, data)
-                datas = cursor.fetchall()
+                values = [stu_id]
+                cursor.execute(statement, values)
+                data = cursor.fetchone()
                 cursor.close()
-                return datas
+                return data
         except Exception as err:
             print("DB Error: ", err)
 
@@ -444,17 +443,18 @@ class Database:
         return None
 
     def delete_student(self, student_key):
-        student = self.students.get(student_key)
+        student = self.get_student(student_key)
+
         if student:
             try:
                 with dbapi2.connect(self.url) as connection:
                     cursor = connection.cursor()
-                    statement = "DELETE FROM STUDENTS WHERE number = %s"
-                    values = [student.number]
+                    statement = "DELETE FROM STUDENTS WHERE stu_id = %s"
+                    values = [student_key]
                     cursor.execute(statement, values)
                     cursor.close()
             except Exception as err:
-                print("Error: ", err)
+                print("Delete Student Error: ", err)
 
     def update_student(self, student_key, attrs, values):
         student = self.students.get(student_key)
@@ -1223,8 +1223,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = """SELECT * FROM 
-                LESSONS 
+                statement = """SELECT * FROM LESSONS 
                 JOIN INSTRUCTORS ON (LESSONS.instructor = INSTRUCTORS.ins_id) 
                 JOIN PEOPLE ON (INSTRUCTORS.ins_id = PEOPLE.p_id)
                 JOIN CLASSES ON (LESSONS.location = CLASSES.cl_id)
@@ -1272,7 +1271,8 @@ class Database:
                 values = [lesson_id]
                 cursor.execute(statement, values)
                 data = cursor.fetchone()
-                enr = data[0], cap = data[1]
+
+                enr, cap = data
 
                 if(enr == cap):
                     cursor.close()
@@ -1285,7 +1285,7 @@ class Database:
                 # update the lesson object
 
                 statement = "UPDATE LESSONS SET ENROLLED = ENROLLED + 1 WHERE LESSON_ID = %s"
-                values = [lesson_id]
+                values = [lesson_id, ]
                 cursor.execute(statement,values)
 
                 cursor.close()
@@ -1308,7 +1308,37 @@ class Database:
                 return data
 
         except Exception as err:
-            print("Insert Enrollment Error: ", err) 
+            print("Fetch Enrollment Error: ", err) 
+
+        return False
+
+    def get_enrolled_w_join(self, student_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = """
+                SELECT 
+                LESSONS.crn,  LESSONS.credit, LESSONS.code, LESSONS.date,
+                PEOPLE.name, PEOPLE.email,
+                ROOMS.room_name,
+                BUILDINGS.bu_name
+
+                FROM ENROLLMENT 
+                JOIN LESSONS ON (ENROLLMENT.lesson_id = LESSONS.lesson_id)
+                JOIN INSTRUCTORS ON (LESSONS.instructor = INSTRUCTORS.ins_id)
+                JOIN CLASSES ON (LESSONS.location = CLASSES.cl_id)
+                JOIN PEOPLE ON (PEOPLE.p_id = INSTRUCTORS.ins_id)
+                JOIN ROOMS ON (CLASSES.cl_id = ROOMS.room_id)
+                JOIN BUILDINGS ON (ROOMS.building = BUILDINGS.bu_id)
+                WHERE ENROLLMENT.student_id = %s"""
+                values = [student_id, ]
+                cursor.execute(statement, values)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+
+        except Exception as err:
+            print("Fetch Enrollment Error: ", err) 
 
         return False
 
@@ -1319,6 +1349,7 @@ class Database:
 
                 enrolled = self.get_enrolled(student_id)
                 lesson_ids = [enr[2] for enr in enrolled]
+                lesson_id = int(lesson_id)
 
                 if lesson_id not in lesson_ids:
                     cursor.close()

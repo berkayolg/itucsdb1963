@@ -30,6 +30,7 @@
 							<tr>
 								<th scope="col">CRN</th>
 							    <th scope="col">CODE</th>
+							    <th scope="col">DATE</th>
 							    <th scope="col">LECTURER</th>
 							    <th scope="col">ENROLLED/CAPACITY</th>
 							    <th scope="col">ACTION</th>
@@ -39,6 +40,7 @@
 							{% for res in result %}
 								<tr>
 					  				<th scope="row">{{res[4]}}</th>
+					  				<th scope="row">{{res[8]}}</th>
 					  				<th scope="row">{{res[9]}}</th>
 					  				<th scope="row">{{res[18]}}</th>
 					  				<th scope="row" id="numbers-{{res[0]}}" enrolled="{{res[2]}}" cap="{{res[1]}}" >{{res[2]}} / {{res[1]}}</th>
