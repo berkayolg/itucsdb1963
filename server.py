@@ -147,6 +147,12 @@ def rooms_page():
     rooms = db.get_rooms()
     return render_template("rooms_list.html", rooms = rooms)
 
+@app.route("/assistants", methods=["POST", "GET"])
+def as_page():
+    db = Database()
+    assistants = db.get_assistant_info()
+    return render_template("assistants.html", assistants=assistants)
+
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():
     db = Database()
