@@ -212,6 +212,8 @@ def room_create():
     db.add_room(room)
     return redirect(url_for("admin_page"))
 
+
+
 @app.route("/room_edit", methods= ["POST", "GET"])
 def room_edit():
     if not session["logged_in"] or not session.get("person")["admin"]:
@@ -230,8 +232,8 @@ def room_edit():
         pass
     return redirect(url_for("rooms_page"))
 
-@app.route("/as_edit", methods=["POST", "GET"])
-def as_edit():
+@app.route("/assistant_edit", methods=["POST", "GET"])
+def assistant_edit():
     if not session["logged_in"] or not session.get("person")["admin"]:
         return redirect(url_for("as_page"))
 
@@ -242,6 +244,8 @@ def as_edit():
         for as_key in as_keys:
             db.delete_assistant(int(as_key))
     elif data["button"] == "update":
+        if(request.form.getlist("as_id") is None):
+            return redirect(url_for("as_page"))
         assistant = db.get_assistant(request.form.getlist("as_id")[0])
         people = db.get_people()
         labs = db.get_all_labs()
@@ -257,13 +261,17 @@ def as_edit():
 
     return redirect(url_for("as_page"))
 
-@app.route("/assistant_edit", methods=["POST", "GET"])
+@app.route("/as_edit", methods=["POST", "GET"])
 def assistant_edit():
     if not session["logged_in"] or not session.get("person")["admin"]:
         return redirect(url_for("as_page"))
+    db = Database()
+    data = request.form
+    attrs = ["person", "lab", "degree", "department", "faculty"]
+    values = [data["p_id"], data["lab_id"], data["deg"], data["dep_id"], data["fac_id"]]
+    db.update_assistant(data["id"], attrs, values)
 
     return redirect(url_for("as_page"))
-
 
 @app.route("/room_update", methods= ["POST", "GET"])
 def room_update():
@@ -275,14 +283,15 @@ def room_update():
     attrs = ["room_name","building","class", "lab" ,"room" ,"available"]
     classFlag = labFlag = roomFlag = "FALSE"
     if data["type"] == "class":
-        classFlag = "TRUE" 
+        classFlag = "TRUE"
     elif data["type"] == "lab":
-        labFlag = "TRUE" 
+        labFlag = "TRUE"
     elif data["type"] == "room":
-        roomFlag = "TRUE" 
+        roomFlag = "TRUE"
     values = [data["name"], data["building"], classFlag, labFlag, roomFlag, data["availability"]]
     db.update_room(data["id"], attrs, values)
     return redirect(url_for("rooms_page"))
+
 
 @app.route("/classrooms_list", methods = ["GET", "POST"])
 def classrooms_page():

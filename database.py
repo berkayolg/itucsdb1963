@@ -104,7 +104,7 @@ class Database:
             "class": "CLASS",
             "lab": "LAB",
             "room": "ROOM",
-            "available":"AVAILABLE"
+            "available": "AVAILABLE"
         }
 
         try:
