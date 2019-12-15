@@ -8,7 +8,7 @@
 	<div class="container">
 	  <div class="row">
 	    <div class="col-sm">
-	    	<a>Hello, {{ person.name }} | {{ person.type }}</a> <br/>h
+	    	<a>Hello, {{ person.name }} | {{ person.type }}</a> <br/>
 	    	{% if person.photo %}
 	    		<img class="img-fluid" src="{{url_for('static', filename='img/' + person.photo)}}" align="middle" />  
 	    	{% else %}
