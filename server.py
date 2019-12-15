@@ -191,6 +191,9 @@ def room_create():
 
 @app.route("/room_edit", methods= ["POST", "GET"])
 def room_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("home_page"))
+
     db = Database()
     data = request.form
     if data["button"] == "delete":
@@ -206,6 +209,9 @@ def room_edit():
 
 @app.route("/room_update", methods= ["POST", "GET"])
 def room_update():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("home_page"))
+
     db = Database()
     data = request.form
     attrs = ["room_name","building","class", "lab" ,"room" ,"available"]
@@ -243,6 +249,9 @@ def classroom_create():
 
 @app.route("/classroom_edit", methods= ["POST", "GET"])
 def classroom_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("home_page"))
+
     db = Database()
     data = request.form
     if data["button"] == "delete":
@@ -258,6 +267,9 @@ def classroom_edit():
 
 @app.route("/classroom_update", methods= ["POST", "GET"])
 def classroom_update():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("home_page"))
+
     db = Database()
     data = request.form
     attrs = ["type","air_conditioner","last_restoration" ,"board_type" ,"cap"]
@@ -289,6 +301,8 @@ def instructor_create():
 
 @app.route("/instructor_edit", methods= ["POST", "GET"])
 def instructor_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("home_page"))
     db = Database()
     data = request.form
     if data["button"] == "delete":
@@ -304,6 +318,8 @@ def instructor_edit():
 
 @app.route("/instructor_update", methods= ["POST", "GET"])
 def instructor_update():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("home_page"))
     db = Database()
     data = request.form
     attrs = ["department", "room", "lab", "bachelors", "masters", "doctorates"]
@@ -375,7 +391,7 @@ def student_update():
     return redirect(url_for("students_list"))
 
 @app.route("/login", methods = ["GET", ])
-def loginn_page():
+def login_page():
     return render_template("login_page.html")
 
 @app.route("/login_action", methods = ["POST", ])
