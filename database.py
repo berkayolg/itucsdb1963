@@ -1067,6 +1067,12 @@ class Database:
                         "Conference": datum[4],
                         "Authors": []
                     }
+
+                    if val["Conference"] == "t":
+                        val["Conference"] = True
+                    else:
+                        val["Conference"] = False
+                        
                     retval.append(val)
 
                 for val in retval:
