@@ -291,7 +291,7 @@ def student_create():
     db = Database()
     data = request.form
 
-    password = hashlib.md5(data["password"].encode())
+    password = hashlib.md5(data["password"].encode()).hexdigest()
 
     student = Student(data["name"], data["number"], data["mail"], data["cred"], data["depart"], data["facu"], data["club"], data["lab"], password)
     db.add_student(student)

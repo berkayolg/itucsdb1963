@@ -388,6 +388,7 @@ class Database:
     ############# STUDENTS ###############
 
     def add_student(self, student):
+        print(student.password, " PWD")
         person = self.add_person(student.get_person_obj())
 
         print(person.id, " PERSON.ID ")

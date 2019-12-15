@@ -11,6 +11,7 @@ class Student(People):
         self.facu = facu
         self.club = club
         self.lab = lab
+        self.password = password
 
         if not self.club:
             self.club = None
@@ -19,4 +20,4 @@ class Student(People):
             self.lab = None
 
     def get_person_obj(self):
-    	return People(name = self.name, mail = self.mail)
+    	return People(name = self.name, mail = self.mail, password=self.password)

@@ -311,10 +311,11 @@
 		    		<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 			</form>
-
-            {% for paper in papers %}
-                    <p>{{ paper["Title"] }}</p>
-            {% endfor %}
+			{% if papers %}
+            	{% for paper in papers %}
+                	    <p>{{ paper["Title"] }}</p>
+            	{% endfor %}
+            {% endif %}
         </div>
          <div class="col-sm">
             <button id="lab_create_dd" class="btn btn-primary" onclick="dropdown($('#lesson_create'))">Lesson Creation Form</button>
