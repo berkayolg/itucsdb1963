@@ -154,6 +154,24 @@ def cl_page():
     clubs = db.get_clubs_info_astext()
     return render_template("clubs.html", clubs=clubs)
 
+@app.route("/departments", methods=["POST", "GET"])
+def dep_page():
+    db = Database()
+    departments = db.get_departments_text()
+    return render_template("departments.html", departments=departments)
+
+@app.route("/faculties", methods=["POST", "GET"])
+def fac_page():
+    db = Database()
+    faculties = db.get_faculty_as_text()
+    return render_template("faculties.html", faculties=faculties)
+
+@app.route("/labs", methods=["POST", "GET"])
+def lab_page():
+    db = Database()
+    labs = db.get_lab_info()
+    return render_template("labs.html", labs=labs)
+
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():
     db = Database()
