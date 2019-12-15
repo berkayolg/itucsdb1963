@@ -122,7 +122,7 @@ def admin_page():
                 prof_list=db.get_instructors(),
                 student_list=db.get_students(), 
                 datetime=datetime.now(),
-                clubs=db.get_all_clubs(),
+                clubs=db.get_clubs_info_astext(),
                 faculties=db.get_all_faculties(),
                 departments=db.get_departments_text(),
                 buildings = db.get_buildings(),
@@ -146,6 +146,24 @@ def rooms_page():
     db = Database()
     rooms = db.get_rooms()
     return render_template("rooms_list.html", rooms = rooms)
+
+@app.route("/assistants", methods=["POST", "GET"])
+def as_page():
+    db = Database()
+    assistants = db.get_assistant_info()
+    return render_template("assistants.html", assistants=assistants)
+
+@app.route("/buildings", methods=["POST", "GET"])
+def bu_page():
+    db = Database()
+    buildings = db.get_buildings()
+    return render_template("buildings.html", buildings=buildings)
+
+@app.route("/clubs", methods=["POST", "GET"])
+def cl_page():
+    db = Database()
+    clubs = db.get_clubs_info_astext()
+    return render_template("clubs.html", clubs=clubs)
 
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():

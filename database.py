@@ -783,7 +783,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT (l.lab_id, l.lab_name, r.room_name, p.name) FROM labs l JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator = p.p_id;"
+                statement = "SELECT (l.lab_id, l.lab_name, r.room_name, p.name) FROM labs l JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator = p.p_id"
                 cursor.execute(statement)
                 data = cursor.fetchall()
                 cursor.close()
@@ -974,7 +974,6 @@ class Database:
                 data = [person]
                 cursor.execute(statement, data)
                 data = cursor.fetchall()
-                print(data)
                 cursor.close()
                 retval = []
                 for datum in data:
@@ -986,7 +985,7 @@ class Database:
                         "Authors": []
                     }
                     retval.append(val)
-                print(retval)
+
                 for val in retval:
                     cursor = connection.cursor()
                     statement = "SELECT (name) FROM papers p1 JOIN papers p2 ON p1.title = p2.title JOIN people p3 ON p3.p_id = p1.author WHERE p1.author <> p2.author AND p1.title = %s"
@@ -994,8 +993,8 @@ class Database:
                     cursor.execute(statement, data)
                     data = cursor.fetchall()
                     for datum in data:
-                        datum = datum[0].lstrip("(").rstrip(")").split(",").strip('"')
-                        val["Authors"].append(datum)
+                        val["Authors"].append(datum[0])
+                    val["Authors"] = list(set(val["Authors"]))
                     cursor.close()
 
                 return retval
@@ -1058,7 +1057,8 @@ class Database:
                     val = {
                         "ID": datum[0],
                         "Name": datum[1],
-                        "Code": datum[2]
+                        "Code": datum[2],
+                        "Campus": datum[3]
                     }
                     retval.append(val)
                 return retval
@@ -1175,6 +1175,31 @@ class Database:
             print("Update Club Error: ", err)        
 
         return None
+
+    def get_clubs_info_astext(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (c.club_id, c.name, f.fac_name, p1.name, p2.name, p3.name, p4.name) FROM clubs c JOIN faculties f ON c.faculty=f.fac_id JOIN people p1 ON c.advisor=p1.p_id JOIN people p2 ON c.chairman=p2.p_id JOIN people p3 ON c.v_chairman_1=p3.p_id JOIN people p4 ON c.v_chairman_2=p4.p_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Faculty": datum[2].strip('"'),
+                        "Advisor": datum[3].strip('"'),
+                        "Chair": datum[4].strip('"'),
+                        "VChair1": datum[5].strip('"'),
+                        "VChair2": datum[6].strip('"')
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Clubs(All Text) DB Error: ", err)
 
 #################### LESSONS ######################
 

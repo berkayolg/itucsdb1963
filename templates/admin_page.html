@@ -49,7 +49,7 @@
 		    		<select class="form-control" name="club">
 		    			<option value="">None </option>
 		    			{% for club in clubs %}
-					  		<option value={{club[0]}}>{{club[1]}}</option>
+					  		<option value={{club["ID"]}}>{{club["Name"]}}</option>
 					  	{% endfor %}
 					</select>
 		    	</div>
@@ -110,9 +110,9 @@
 				<div class="form-group">
 		    		<a>Lab (if any): </a>
 		    		<select class="form-control" name="lab">
-						<option value="NULL">-</option>
+						<option value="">-</option>
 		    			{% for lab in labs %}
-							<option value={{ lab[0] }}>{{lab[1]}}</option>
+					  		<option value={{lab["ID"]}}>{{lab["Name"]}}</option>
 					  	{% endfor %}
 					</select>
 		    	</div>
@@ -311,11 +311,13 @@
 		    		<button type="submit" class="btn btn-primary">Submit</button>
 		    	</div>
 			</form>
-			{% if papers %}
-            	{% for paper in papers %}
-                	    <p>{{ paper["Title"] }}</p>
-            	{% endfor %}
-            {% endif %}
+
+            <!--
+            {% for paper in papers %}
+                <p>{{ paper["Title"] }} written by {% for author in paper["Authors"] %} {{ author }} <br/> {% endfor %}</p>
+            {% endfor %}
+            -->
+
         </div>
          <div class="col-sm">
             <button id="lab_create_dd" class="btn btn-primary" onclick="dropdown($('#lesson_create'))">Lesson Creation Form</button>

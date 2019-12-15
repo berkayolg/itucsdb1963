@@ -9,3 +9,11 @@ form {
 form:hover {
     height: auto;
 }
+
+body {
+    padding: 10px;
+}
+
+row {
+    padding: 10px;
+}
