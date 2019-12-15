@@ -8,7 +8,7 @@
       <table class="table">
         <tr>
             <th>#</th>
-            <th>ID</th>
+            <!--<th>ID</th>-->
             <th>Name</th>
             <th>Room</th>
             <th>Lab</th>
@@ -31,7 +31,7 @@
             {% for key, value in instructor.items() %}
               {% if value == None %}
                 <td> - <br/></td>
-              {% else %}
+              {% elif key != "ID"%}
                 <td> {{ value }} <br/></td>
               {% endif %}
             {% endfor %}
