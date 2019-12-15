@@ -1072,7 +1072,7 @@ class Database:
                         val["Conference"] = True
                     else:
                         val["Conference"] = False
-                        
+
                     retval.append(val)
 
                 for val in retval:

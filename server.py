@@ -95,6 +95,7 @@ def exams():
     """
     return render_template("exams.html")
 
+
 @app.route("/su", methods = ["GET", "POST"])
 def admin_page():
     """
@@ -126,6 +127,7 @@ def admin_page():
             return redirect(url_for("home_page"))
     return render_template("admin_page.html")
 
+
 @app.route("/rooms_list", methods = ["GET", "POST"])
 def rooms_page():
     '''
@@ -136,11 +138,13 @@ def rooms_page():
     rooms = db.get_rooms()
     return render_template("rooms_list.html", rooms = rooms)
 
+
 @app.route("/assistants", methods=["POST", "GET"])
 def as_page():
     db = Database()
     assistants = db.get_assistant_info()
     return render_template("assistants.html", assistants=assistants)
+
 
 @app.route("/buildings", methods=["POST", "GET"])
 def bu_page():
@@ -148,11 +152,13 @@ def bu_page():
     buildings = db.get_buildings()
     return render_template("buildings.html", buildings=buildings)
 
+
 @app.route("/clubs", methods=["POST", "GET"])
 def cl_page():
     db = Database()
     clubs = db.get_clubs_info_astext()
     return render_template("clubs.html", clubs=clubs)
+
 
 @app.route("/departments", methods=["POST", "GET"])
 def dep_page():
@@ -160,17 +166,36 @@ def dep_page():
     departments = db.get_departments_text()
     return render_template("departments.html", departments=departments)
 
+
 @app.route("/faculties", methods=["POST", "GET"])
 def fac_page():
     db = Database()
     faculties = db.get_faculty_as_text()
     return render_template("faculties.html", faculties=faculties)
 
+
 @app.route("/labs", methods=["POST", "GET"])
 def lab_page():
     db = Database()
     labs = db.get_lab_info()
     return render_template("labs.html", labs=labs)
+
+
+@app.route("/papers", methods=["POST", "GET"])
+def paper_page():
+    db = Database()
+    authors = db.get_authors()
+    if request.method == "GET":
+        return render_template("papers.html", authors=authors)
+    else:
+        data = request.form
+        papers = None
+        try:
+            papers = db.get_paper_by_author(int(data["a_id"]))
+            return render_template("papers.html", authors=authors, papers=papers)
+        except:
+            return render_template("papers.html", authors=authors)
+
 
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():
@@ -455,21 +480,6 @@ def lesson_create():
     db.create_lesson(lesson)
 
     return redirect(url_for("admin_page"))
-
-@app.route("/papers", methods=["POST", "GET"])
-def paper_page():
-    db = Database()
-    authors = db.get_authors()
-    if request.method == "GET":
-        return render_template("papers.html", authors=authors)
-    else:
-        data = request.form
-        papers = None
-        try:
-            papers = db.get_paper_by_author(int(data["a_id"]))
-            return render_template("papers.html", authors=authors, papers=papers)
-        except:
-            return render_template("papers.html", authors=authors)
 
 @app.route("/enroll", methods = ["GET", "POST"])
 def enroll_page():
