@@ -8,12 +8,12 @@
 	<div class="container">
 	  <div class="row">
 	    <div class="col-sm">
+	    	<a>Hello, {{ person.name }} | {{ person.type }}</a> <br/>
 	    	{% if person.photo %}
 	    		<img class="img-fluid" src="{{url_for('static', filename='img/' + person.photo)}}" align="middle" />  
 	    	{% else %}
-	    		<img class="img-thumbnail" src="{{url_for('static', filename='img/anan.png')}}" align="middle" />  
+	    		<img class="img-thumbnail" src="{{url_for('static', filename='img/defaultpfp.jpg')}}" align="middle" />
 	    	{% endif %}
-	    	<a>Hello, {{ person.name }} | {{ person.type }}</a>
 	    </div>
 	    <div class="col-sm">
 	    	<br/>

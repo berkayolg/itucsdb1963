@@ -162,7 +162,6 @@ class Database:
                 if not value:
                     return None
                 classroom = Classroom(value[0], room_attrs[0], room_attrs[1], value[1], value[3], value[5], value[2], value[4])
-                print(classroom.conditioner, classroom.type, classroom.board_type)
                 return classroom
         except Exception as err:
             print("Get Classroom Error: ", err)
@@ -332,7 +331,7 @@ class Database:
         return person
 
     def person_exists(self, person):
-        return self.get_person_by_mail(person.mail)
+        return True if self.get_person_by_mail(person.mail) else False
 
     def get_person(self, p_id):
         try:
@@ -378,8 +377,8 @@ class Database:
                     statement = "SELECT * FROM PEOPLE"
                     cursor.execute(statement)
                     datas = cursor.fetchall()
-                    return datas
                     cursor.close()
+                    return datas
             except Exception as err:
                 print("Error while getting people: ", err)
 
@@ -681,7 +680,6 @@ class Database:
                 cursor = connection.cursor()
                 statement = "SELECT * FROM ASSISTANTS WHERE AS_ID = %s"
                 data = [as_id]
-                print(data)
                 cursor.execute(statement, data)
                 datas = cursor.fetchall()
                 cursor.close()
@@ -709,7 +707,6 @@ class Database:
                 statement = "SELECT * FROM ASSISTANTS JOIN PEOPLE ON (ASSISTANTS.as_person = PEOPLE.p_id)"
                 cursor.execute(statement)
                 data = cursor.fetchall()
-                print(data)
                 cursor.close()
                 return data
         except Exception as err:
@@ -782,7 +779,6 @@ class Database:
                 cursor = connection.cursor()
                 statement = "SELECT * FROM LABS WHERE LAB_ID = %s"
                 data = [lab_id]
-                print(data)
                 cursor.execute(statement, data)
                 datas = cursor.fetchall()
                 cursor.close()
@@ -885,7 +881,6 @@ class Database:
                 cursor = connection.cursor()
                 statement = "SELECT * FROM DEPARTMENTS WHERE DEP_ID = %s"
                 data = [dep_id]
-                print(data)
                 cursor.execute(statement, data)
                 datas = cursor.fetchall()
                 cursor.close()
@@ -1003,7 +998,6 @@ class Database:
                 cursor = connection.cursor()
                 statement = "SELECT * FROM PAPERS WHERE PAPER_ID = %s"
                 data = [paper_id]
-                print(data)
                 cursor.execute(statement, data)
                 datas = cursor.fetchall()
                 cursor.close()
@@ -1119,7 +1113,6 @@ class Database:
                 cursor = connection.cursor()
                 statement = "SELECT * FROM BUILDINGS WHERE BU_ID = %s"
                 data = [bu_id]
-                print(data)
                 cursor.execute(statement, data)
                 datas = cursor.fetchall()
                 cursor.close()
@@ -1343,7 +1336,6 @@ class Database:
                 values = [instructor]
                 cursor.execute(statement, values)
                 data = cursor.fetchall()
-                print(data, " instructor")
                 cursor.close()
                 return data
 

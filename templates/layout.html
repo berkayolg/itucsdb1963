@@ -32,6 +32,9 @@
                     <a class="nav-link" href="{{ url_for('admin_page') }}">Super User Page</a>
             </li>
             {% else %}
+             <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('students_list') }}">Students</a>
+            </li>
             {% endif %}
             </ul>
             {% if session.get("logged_in") %}
@@ -45,8 +48,12 @@
             {% endif %}
         </div>
     </nav>
-{% block content %}
-{% endblock %}
+    <div class="container">
+        
+            {% block content %}
+            {% endblock %}
+        
+    </div>
 
 <footer>
     <small>&copy; 2019 - 2020 | Uğur Ali Kaplan, Berkay Olgun and Mehmet Altuner</small>
