@@ -127,9 +127,14 @@
 				<div class="form-group">
 					<a>Name: </a><input class="form-control" name="name" type="text">
 				</div>
-				<div class="form-group">	
-					<a>Building: </a><input class="form-control" name="building" type="text">
-				</div>
+				<div class="form-group">
+		    		<label for="building">Building</label>
+                    <select class="form-control" name="building">
+                    {% for building in buildings %}
+                        <option value="{{ building["ID"] }}">{{ building["Name"] }}</option>
+                    {% endfor %}
+                    </select>
+		    	</div>
 				<div class="form-group">
 					<input type="radio" class="form-control" name="type" value="class" checked> Classroom <br/>
 					<input type="radio" class="form-control" name="type" value="lab"> Laboratory <br/>
