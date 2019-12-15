@@ -154,7 +154,7 @@ def as_page():
     return render_template("assistants.html", assistants=assistants)
 
 @app.route("/buildings", methods=["POST", "GET"])
-def as_page():
+def bu_page():
     db = Database()
     buildings = db.get_buildings()
     return render_template("buildings.html", buildings=buildings)
