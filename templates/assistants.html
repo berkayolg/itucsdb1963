@@ -2,23 +2,35 @@
 {% block title %}Assistants{% endblock %}
 {% block content %}
     <h1 class="title">Assistants</h1>
-    {% if assistants %}
-    <form action="" method="post" name="assistant_list">
-        <table>
-            {% for assistant in assistants %}
-            <tr>
-                <td>
-                    <label class="checkbox">
+    <br/>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Select</th>
+						    <th scope="col">Name</th>
+						    <th scope="col">Degree</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% if assistants %}
+							{% for assistant in assistants %}
+								<tr>
+					  				<th scope="row"><label class="checkbox">
                         <input type="checkbox" name="as_id" value="{{ assistant["ID"] }}"/>
-                    </label>
-                    {{ assistant["Name"] }}
-                </td>
-                <td>
-                    {{ assistant["Degree"] }}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </form>
-    {% endif %}
+                    </label></th>
+					  				<th scope="row">{{ assistant["Name"] }}</th>
+					  				<th scope="row">{{ assistant["Degree"] }}</th>
+					  			</tr>
+					  		{% endfor %}
+					  	{% endif %}
+				  	</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
 {% endblock %}
