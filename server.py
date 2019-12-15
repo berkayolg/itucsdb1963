@@ -373,6 +373,11 @@ def student_update():
 
     db.update_student(data["id"], attrs, values)
 
+    attrs = ["NAME", "EMAIL"]
+    values = [data["name"], data["email"]]
+
+    db.update_person(data["id"], attrs, values)
+
     return redirect(url_for("students_list"))
 
 @app.route("/login", methods = ["GET", ])

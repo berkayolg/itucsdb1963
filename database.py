@@ -385,6 +385,26 @@ class Database:
 
         return None
 
+    def update_person(self, person_id, attrs, values):
+        person = self.get_person(person_id)
+        if not person:
+            return False
+
+        if person:
+            try:
+                with dbapi2.connect(self.url) as connection:
+                    cursor = connection.cursor()
+                    statement = "UPDATE PEOPLE SET "
+                    for attr in attrs[:-1]:
+                        statement += attr + " = %s , "
+                    statement += attrs[-1] + " = %s "
+                    statement += " WHERE p_id = %s"
+                    values.append(person_id)
+                    cursor.execute(statement, values)
+                    cursor.close()
+            except Exception as err:
+                print("Update Person Error: ", err)
+
     ############# STUDENTS ###############
 
     def add_student(self, student):
