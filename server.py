@@ -169,7 +169,13 @@ def cl_page():
 def dep_page():
     db = Database()
     departments = db.get_departments_text()
-    return render_template("clubs.html", departments=departments)
+    return render_template("departments.html", departments=departments)
+
+@app.route("/faculties", methods=["POST", "GET"])
+def fac_page():
+    db = Database()
+    faculties = db.get_faculty_as_text()
+    return render_template("faculties.html", faculties=faculties)
 
 @app.route("/room_create", methods= ["POST", "GET"])
 def room_create():

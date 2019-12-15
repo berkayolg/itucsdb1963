@@ -599,6 +599,30 @@ class Database:
 
         return None
 
+    def get_faculty_as_text(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (f.fac_id, f.fac_name, b.bu_name, p1.name, p2.name, p3.name) FROM faculties f JOIN buildings b ON f.fac_building = b.bu_id JOIN people p1 ON f.dean = p1.p_id JOIN people p2 ON f.dean_asst_1 = p2.p_id LEFT JOIN people p3 ON f.dean_asst_2 = p3.p_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Building": datum[2].strip('"'),
+                        "Dean": datum[3].strip('"'),
+                        "VDean1": datum[4].strip('"'),
+                        "VDean2": datum[5].strip('"')
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Faculty Info(The one with the string parsing) DB Error: ", err)
+
 
     ############# ASSISTANTS ###############
 
