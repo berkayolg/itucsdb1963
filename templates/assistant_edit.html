@@ -35,10 +35,10 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="fac_id">Department</label>
+            <label for="fac_id">Faculty</label>
             <select class="custom-select" name="fac_id">
                 {% for fac in facs %}
-                    <option value="{{ fac[0] }}">{{ fac[1] }}</option>
+                    <option value="{{ fac["ID"] }}">{{ fac["Name"] }}</option>
                 {% endfor %}
             </select>
         </div>
