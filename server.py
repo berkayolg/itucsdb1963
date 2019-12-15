@@ -464,7 +464,7 @@ def logout():
 @app.route("/lesson_create", methods = ["POST", ])
 def lesson_create():
     data = request.form
-    lesson = Lesson(data["crn"], data["date"], data["code"], data["instructor"], data["location"], data["assistant"], data["credit"])
+    lesson = Lesson(data["crn"], data["date"], data["code"], data["instructor"], data["location"], data["assistant"], data["credit"], data["cap"])
     db = Database()
     db.create_lesson(lesson)
 
