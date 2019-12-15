@@ -465,10 +465,11 @@ def paper_page():
     else:
         data = request.form
         papers = None
-        if data["a_id"] is not 'Pick an author':
+        try:
             papers = db.get_paper_by_author(int(data["a_id"]))
-        return render_template("papers.html", authors=authors, papers=papers)
-
+            return render_template("papers.html", authors=authors, papers=papers)
+        except:
+            return render_template("papers.html", authors=authors)
 
 @app.route("/enroll", methods = ["GET", "POST"])
 def enroll_page():
