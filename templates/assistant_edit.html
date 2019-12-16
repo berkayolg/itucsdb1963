@@ -2,6 +2,7 @@
 {% block title %}Edit Assistant - {{ assistant["Name"] }}{% endblock %}
 {% block content %}
     <div class="col-sm">
+    <h1>Update Assistant - {{ assistant["Name"] }}</h1>
     <form method="post" action="/as_edit" id="assistant_update">
         <div class="form-group">
             <input type="hidden" class="form-control" name="id" type="text" value="{{ assistant["ID"] }}">
