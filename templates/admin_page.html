@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-sm">
 		    <button id="student_create_dd" class="btn btn-primary" onclick="dropdown($('#student_create'))">Student Creation Form</button>
-		    <form method="post" action="/student_create" id="student_create" style="visibility: hidden"> 
+		    <form method="post" action="/student_create" id="student_create" enctype="multipart/form-data" style="visibility: hidden"> 
 		    	<!-- USER CREATION FORM -->
 		    	<div class="form-group">
 		    		<label for="name">Name</label>
@@ -21,7 +21,11 @@
 		    		<input class="form-control" name="mail" type="text">
 		    	</div>
 		    	<div class="form-group">
-		    		<label for="password">Password (given by admins)</label>
+		    		<label for="pic">Picture</label>
+		    		<input type="file" name="pic">
+		    	</div>
+		    	<div class="form-group">
+		    		<label for="password">Password</label>
 		    		<input class="form-control" name="password" type="password">
 		    	</div>
 		    	<div class="form-group">

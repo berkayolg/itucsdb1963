@@ -407,11 +407,7 @@ class Database:
     ############# STUDENTS ###############
 
     def add_student(self, student):
-        print(student.password, " PWD")
         person = self.add_person(student.get_person_obj())
-
-        print(person.id, " PERSON.ID ")
-
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
