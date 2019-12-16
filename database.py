@@ -689,13 +689,13 @@ class Database:
                     val = {
                         "ID": datum[0],
                         "Name": datum[1].strip('"'),
-                        "Email": datum[2],
-                        "Photo": datum[3],
-                        "Degree": datum[4],
-                        "Person": datum[5],
-                        "Lab": datum[6],
-                        "Dep": datum[7],
-                        "Fac": datum[8]
+                        "Email": datum[2].strip('"'),
+                        "Photo": datum[3].strip('"'),
+                        "Degree": datum[4].strip('"'),
+                        "Person": int(datum[5]),
+                        "Lab": int(datum[6]),
+                        "Dep": int(datum[7]),
+                        "Fac": int(datum[8])
                     }
                     retval.append(val)
                 return retval[0]
