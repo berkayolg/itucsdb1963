@@ -133,6 +133,7 @@ def as_page():
     assistants = db.get_assistant_info()
     return render_template("assistants.html", assistants=assistants)
 
+
 @app.route("/assistant_edit", methods=["POST", "GET"])
 def assistant_edit():
     if not session["logged_in"] or not session.get("person")["admin"]:
@@ -145,23 +146,25 @@ def assistant_edit():
         for as_key in as_keys:
             db.delete_assistant(int(as_key))
     elif data["button"] == "update":
-        if(request.form.getlist("as_id") is None):
+        try:
+            assistant = db.get_assistant(request.form.getlist("as_id")[0])
+            people = db.get_people()
+            labs = db.get_all_labs()
+            deps = db.get_all_departments()
+            facs = db.get_faculties()
+            return render_template("assistant_edit.html",
+                                   assistant=assistant,
+                                   labs=labs,
+                                   deps=deps,
+                                   facs=facs,
+                                   people=people)
+        except:
             return redirect(url_for("as_page"))
-        assistant = db.get_assistant(request.form.getlist("as_id")[0])
-        people = db.get_people()
-        labs = db.get_all_labs()
-        deps = db.get_all_departments()
-        facs = db.get_faculties()
-        return render_template("assistant_edit.html",
-                               assistant=assistant,
-                               labs=labs,
-                               deps=deps,
-                               facs=facs,
-                               people=people)
     else:
         pass
 
     return redirect(url_for("as_page"))
+
 
 @app.route("/as_edit", methods=["POST", "GET"])
 def as_edit():
@@ -175,11 +178,49 @@ def as_edit():
 
     return redirect(url_for("as_page"))
 
+
 @app.route("/buildings", methods=["POST", "GET"])
 def bu_page():
     db = Database()
     buildings = db.get_buildings()
     return render_template("buildings.html", buildings=buildings)
+
+
+@app.route("/building_edit", methods=["POST", "GET"])
+def building_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("bu_page"))
+
+    db = Database()
+    data = request.form
+    if data["button"] == "delete":
+        bu_keys = request.form.getlist("bu_id")
+        for bu_key in bu_keys:
+            db.delete_assistant(int(bu_key))
+    elif data["button"] == "update":
+        try:
+            building = db.get_assistant(request.form.getlist("bu_id")[0])
+            return render_template("building_edit.html",
+                                   building=building)
+        except:
+            return redirect(url_for("bu_page"))
+    else:
+        pass
+
+    return redirect(url_for("bu_page"))
+
+
+@app.route("/bu_edit", methods=["POST", "GET"])
+def bu_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("bu_page"))
+    db = Database()
+    data = request.form
+    attrs = ["name", "code", "campus"]
+    values = [data["name"], data["code"], data["campus"]]
+    db.update_building(data["id"], attrs, values)
+
+    return redirect(url_for("bu_page"))
 
 
 @app.route("/clubs", methods=["POST", "GET"])
