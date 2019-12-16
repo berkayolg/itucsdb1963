@@ -678,7 +678,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT (a.as_id, p.name, p.email, p.photo, a.degree) FROM assistants a JOIN people p ON a.as_person = p.p_id WHERE a.as_id = %s"
+                statement = "SELECT (a.as_id, p.name, p.email, p.photo, a.degree, p.p_id, a.lab, a.department, a.faculty) FROM assistants a JOIN people p ON a.as_person = p.p_id WHERE a.as_id = %s"
                 data = [as_id]
                 cursor.execute(statement, data)
                 data = cursor.fetchall()
@@ -691,7 +691,11 @@ class Database:
                         "Name": datum[1].strip('"'),
                         "Email": datum[2],
                         "Photo": datum[3],
-                        "Degree": datum[4]
+                        "Degree": datum[4],
+                        "Person": datum[5],
+                        "Lab": datum[6],
+                        "Dep": datum[7],
+                        "Fac": datum[8]
                     }
                     retval.append(val)
                 return retval[0]
