@@ -178,46 +178,6 @@ def as_edit():
 
     return redirect(url_for("as_page"))
 
-@app.route("/faculty_edit", methods=["POST", "GET"])
-def faculty_edit():
-    if not session["logged_in"] or not session.get("person")["admin"]:
-        return redirect(url_for("fac_page"))
-
-    db = Database()
-    data = request.form
-    if data["button"] == "delete":
-        fac_keys = request.form.getlist("fac_id")
-        for fac_key in fac_keys:
-            db.delete_faculty(int(fac_key))
-    elif data["button"] == "update":
-        try:
-            people = db.get_people()
-            buildings = db.get_buildings()
-            faculty = db.get_faculty(request.form.getlist("fac_id")[0])[0]
-            return render_template("faculty_edit.html",
-                                   faculty=faculty,
-                                   buildings=buildings,
-                                   people=people)
-        except:
-            return redirect(url_for("fac_page"))
-    else:
-        pass
-
-    return redirect(url_for("fac_page"))
-
-@app.route("/fac_edit", methods=["POST", "GET"])
-def fac_edit():
-    if not session["logged_in"] or not session.get("person")["admin"]:
-        return redirect(url_for("fac_page"))
-    db = Database()
-    data = request.form
-    attrs = ["name", "building", "dean", "vdean_1", "vdean_2"]
-    values = [data["name"], data["bu_id"], data["dean_id"], data["vdean1_id"], data["vdean2_id"]]
-    db.update_assistant(data["id"], attrs, values)
-
-
-
-    return redirect(url_for("fac_page"))
 
 @app.route("/buildings", methods=["POST", "GET"])
 def bu_page():
@@ -283,6 +243,49 @@ def fac_page():
     db = Database()
     faculties = db.get_faculty_as_text()
     return render_template("faculties.html", faculties=faculties)
+
+
+@app.route("/faculty_edit", methods=["POST", "GET"])
+def faculty_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("fac_page"))
+
+    db = Database()
+    data = request.form
+    if data["button"] == "delete":
+        fac_keys = request.form.getlist("fac_id")
+        for fac_key in fac_keys:
+            db.delete_faculty(int(fac_key))
+    elif data["button"] == "update":
+        try:
+            people = db.get_people()
+            buildings = db.get_buildings()
+            faculty = db.get_faculty(request.form.getlist("fac_id")[0])[0]
+            return render_template("faculty_edit.html",
+                                   faculty=faculty,
+                                   buildings=buildings,
+                                   people=people)
+        except:
+            return redirect(url_for("fac_page"))
+    else:
+        pass
+
+    return redirect(url_for("fac_page"))
+
+
+@app.route("/fac_edit", methods=["POST", "GET"])
+def fac_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("fac_page"))
+    db = Database()
+    data = request.form
+    attrs = ["name", "building", "dean", "vdean_1", "vdean_2"]
+    values = [data["name"], data["b_id"], data["dean_id"], data["vdean1_id"], data["vdean2_id"]]
+    db.update_assistant(data["id"], attrs, values)
+
+
+
+    return redirect(url_for("fac_page"))
 
 
 @app.route("/labs", methods=["POST", "GET"])
