@@ -128,6 +128,7 @@ def admin_page():
                                     classrooms=db.get_classrooms(),
                                     assistants=db.get_assistant_info(),
                                     labs = db.get_lab_info(),
+                                    labs2 = db.get_all_labs(),
                                     people=db.get_people()
                 )
         else:

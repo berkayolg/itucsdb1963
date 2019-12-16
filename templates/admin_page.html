@@ -514,7 +514,7 @@
         <div class="form-group">
             <label for="lab_id">Lab</label>
             <select class="custom-select" name="lab_id">
-                {% for lab in labs %}
+                {% for lab in labs2 %}
                     <option value="{{ lab[0] }}">{{ lab[1] }}</option>
                 {% endfor %}
             </select>
@@ -526,7 +526,7 @@
         <div class="form-group">
             <label for="dep_id">Department</label>
             <select class="custom-select" name="dep_id">
-                {% for dep in deps %}
+                {% for dep in departments %}
                     <option value="{{ dep[0] }}">{{ dep[1] }}</option>
                 {% endfor %}
             </select>
@@ -534,7 +534,7 @@
         <div class="form-group">
             <label for="fac_id">Faculty</label>
             <select class="custom-select" name="fac_id">
-                {% for fac in facs %}
+                {% for fac in faculties %}
                     <option value="{{ fac["ID"] }}">{{ fac["Name"] }}</option>
                 {% endfor %}
             </select>
