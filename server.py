@@ -281,7 +281,7 @@ def fac_edit():
     data = request.form
     attrs = ["name", "building", "dean", "vdean_1", "vdean_2"]
     values = [data["name"], data["b_id"], data["dean_id"], data["vdean1_id"], data["vdean2_id"]]
-    db.update_assistant(data["id"], attrs, values)
+    db.update_faculty(data["id"], attrs, values)
 
 
 
