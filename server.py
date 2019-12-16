@@ -204,7 +204,7 @@ def building_edit():
     if data["button"] == "delete":
         bu_keys = request.form.getlist("bu_id")
         for bu_key in bu_keys:
-            db.delete_assistant(int(bu_key))
+            db.delete_building(int(bu_key))
     elif data["button"] == "update":
         try:
             building = db.get_building(request.form.getlist("bu_id")[0])
