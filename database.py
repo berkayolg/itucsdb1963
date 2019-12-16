@@ -601,7 +601,7 @@ class Database:
     def update_faculty(self, fac_id, attrs, values):
         attrs_lookup_table = {
             "name": "FAC_NAME",
-            "cred": "FAC_BUILDING",
+            "building": "FAC_BUILDING",
             "dean": "DEAN",
             "vdean_1": "DEAN_ASST_1",
             "vdean_2": "DEAN_ASST_2",
