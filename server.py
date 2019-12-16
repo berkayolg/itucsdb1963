@@ -395,7 +395,7 @@ def lab_edit():
         try:
             return render_template("lab_edit.html",
                                    people = db.get_people(),
-                                   departments=db.get_all_departments(),
+                                   deps=db.get_all_departments(),
                                    faculties = db.get_all_faculties(),
                                    buildings = db.get_buildings(),
                                    rooms = db.get_rooms(),
