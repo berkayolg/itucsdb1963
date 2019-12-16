@@ -256,7 +256,7 @@ def club_edit():
     else:
         pass
 
-    return redirect(url_for("fac_page"))
+    return redirect(url_for("cl_page"))
 
 
 @app.route("/cl_edit", methods=["POST", "GET"])
