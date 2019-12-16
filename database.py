@@ -519,7 +519,9 @@ class Database:
             except Exception as err:
                 print("Update Student Error: ", err)
 
+
     ############# FACULTIES ###############
+
 
     # Create
     def add_faculty(self, faculty):
@@ -557,6 +559,7 @@ class Database:
             print("Get Faculty DB Error: ", err)
 
         return None
+
 
     def get_faculties(self):
         """
@@ -1093,6 +1096,12 @@ class Database:
                     for datum in data:
                         val["Authors"].append(datum[0])
                     val["Authors"] = list(set(val["Authors"]))
+                    if len(val["Authors"]) == 0:
+                        statement = "SELECT name FROM papers p1 JOIN people p2 ON p1.author=p2.p_id WHERE title = %s"
+                        data = [val["Title"]]
+                        cursor.execute(statement, data)
+                        data = cursor.fetchall()
+                        val["Authors"].append(data[0][0])
                     cursor.close()
 
                 return retval

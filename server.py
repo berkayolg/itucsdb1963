@@ -9,6 +9,13 @@ from models.room import Room
 from models.classroom import Classroom
 from models.people import People
 from models.lesson import Lesson
+from models.building import Building
+from models.faculty import Faculty
+from models.assistant import Assistant
+from models.club import Club
+from models.department import Department
+from models.lab import Lab
+from models.paper import Paper
 
 
 import hashlib
@@ -108,19 +115,20 @@ def admin_page():
         #print(session.get("person").get("admin"), "asdadsd")
         if session.get("person")["admin"]:
             return render_template("admin_page.html", 
-                faculty_list=db.get_faculties(),
-                prof_list=db.get_instructors(),
-                student_list=db.get_students(), 
-                datetime=datetime.now(),
-                clubs=db.get_clubs_info_astext(),
-                faculties=db.get_all_faculties(),
-                departments=db.get_departments_text(),
-                buildings = db.get_buildings(),
-                rooms=db.get_rooms(),
-                instructors=db.get_instructors(),
-                classrooms=db.get_classrooms(),
-                assistants=db.get_assistant_info(),
-                labs = db.get_lab_info()
+                                    faculty_list=db.get_faculties(),
+                                    prof_list=db.get_instructors(),
+                                    student_list=db.get_students(),
+                                    datetime=datetime.now(),
+                                    clubs=db.get_clubs_info_astext(),
+                                    faculties=db.get_all_faculties(),
+                                    departments=db.get_departments_text(),
+                                    buildings = db.get_buildings(),
+                                    rooms=db.get_rooms(),
+                                    instructors=db.get_instructors(),
+                                    classrooms=db.get_classrooms(),
+                                    assistants=db.get_assistant_info(),
+                                    labs = db.get_lab_info(),
+                                    people=db.get_people()
                 )
         else:
             return redirect(url_for("home_page"))
@@ -222,6 +230,16 @@ def bu_edit():
     db.update_building(data["id"], attrs, values)
 
     return redirect(url_for("bu_page"))
+
+@app.route("/club_create", methods=["POST", "GET"])
+def club_create():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("cl_page"))
+    db = Database()
+    data = request.form
+    club = Club(data["name"], data["fac_id"], data["adv_id"], data["ch_id"], data["v1_id"], data["v2_id"])
+    db.add_club(club)
+    return redirect(url_for("cl_page"))
 
 
 @app.route("/clubs", methods=["POST", "GET"])

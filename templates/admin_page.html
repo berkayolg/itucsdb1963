@@ -212,49 +212,53 @@
     <div class="row">
         <div class="col-sm">
             <button id="club_create_dd" class="btn btn-primary" onclick="dropdown($('#club_create'))">Club Creation Form</button>
-            <form method="post" action="/club_create" id="club_create" style="visibility: collapse">
-		    	<div class="form-group">
-		    		<label for="name">Name</label>
-		    		<input class="form-control" name="name" type="text">
-		    	</div>
-
-		    	<div class="form-group">
-		    		<label for="faculty">Faculty</label>
-                    <select class="form-control" name="faculty">
-                    {% for faculty in faculty_list %}
-                        <option value="{{ faculty["ID"] }}">{{ faculty["Name"] }}</option>
-                    {% endfor %}
-                    </select>
-		    	</div>
-
-		    	<div class="form-group">
-		    		<label for="advisor">Advisor</label>
-		    		<select class="form-control" name="advisor">
-		    		{% if prof_list %}
-	                    {% for professor in prof_list %}
-	                        <option value="{{ professor["ID"] }}">{{ professor["Name"] }}</option>
-	                    {% endfor %}
-	                   {% endif %}
-                    </select>
-		    	</div>
-
-                <div class="form-group">
-		    		<label for="chair">Chair</label>
-		    		<select class="form-control" name="chair">
-                    {% for student in student_list %}
-                        <option value="{{ student["ID"] }}">{{ student["Name"] }}</option>
-                    {% endfor %}
-                    </select>
-		    	</div>
-
-		    	<div class="form-group">
-		    		<a>Department: </a><input class="form-control" name="depart" type="text">
-		    	</div>
-
-		    	<div class="form-group">
-		    		<button type="submit" class="btn btn-primary">Submit</button>
-		    	</div>
-			</form>
+            <form method="post" action="/club_create" id="club_create">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" name="name" type="text"/>
+        </div>
+        <div class="form-group">
+            <label for="fac_id">Faculty</label>
+            <select class="custom-select" name="fac_id">
+                {% for faculty in faculties %}
+                    <option value="{{ faculty[0] }}">{{ faculty[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="adv_id">Advisor</label>
+            <select class="custom-select" name="adv_id">
+                {% for person in people %}
+                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="ch_id">Chairman</label>
+            <select class="custom-select" name="ch_id">
+                {% for person in people %}
+                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="v1_id">Vice Chairman 1</label>
+            <select class="custom-select" name="v1_id">
+                {% for person in people %}
+                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="v2_id">Vice Chairman 2</label>
+            <select class="custom-select" name="v2_id">
+                {% for person in people %}
+                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    </form><br/>
         </div>
         <div class="col-sm">
             <button id="lab_create_dd" class="btn btn-primary" onclick="dropdown($('#lab_create'))">Lab Creation Form</button>
