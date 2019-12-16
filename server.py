@@ -202,7 +202,7 @@ def building_edit():
             building = db.get_building(request.form.getlist("bu_id")[0])
             print(building)
             return render_template("building_edit.html",
-                                   building=building)
+                                   building=building[0])
         except:
             return redirect(url_for("bu_page"))
     else:
