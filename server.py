@@ -231,6 +231,17 @@ def bu_edit():
 
     return redirect(url_for("bu_page"))
 
+@app.route("/building_create", methods=["POST", "GET"])
+def bu_cr():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("bu_page"))
+    db = Database()
+    data = request.form
+    building = Building(data["name"], data["code"], data["campus"])
+    db.add_building(building)
+
+    return redirect(url_for("bu_page"))
+
 @app.route("/club_create", methods=["POST", "GET"])
 def club_create():
     if not session["logged_in"] or not session.get("person")["admin"]:
