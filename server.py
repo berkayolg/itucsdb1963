@@ -327,14 +327,24 @@ def instructor_update():
     db.update_instructor(data["id"], attrs, values)
     return redirect(url_for("instructors_page"))
 
-@app.route("/student_create", methods= ["POST", "GET"])
+@app.route("/student_create", methods= ["POST", ])
 def student_create():
     db = Database()
     data = request.form
 
     password = hashlib.md5(data["password"].encode()).hexdigest()
 
-    student = Student(data["name"], data["number"], data["mail"], data["cred"], data["depart"], data["facu"], data["club"], data["lab"], password)
+    file = request.files["pic"]
+
+    if file and file.filename[-3:] in ALLOWED_EXTENSIONS:
+        basedir = os.path.abspath(os.path.dirname(__file__))
+        filename = secure_filename(file.filename[:-4] + data["mail"][:-4] + file.filename[-4:])
+        file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+
+    if not file:
+        filename = "defaultpfp.jpg"
+
+    student = Student(data["name"], data["number"], data["mail"], data["cred"], data["depart"], data["facu"], data["club"], data["lab"], password, filename)
     db.add_student(student)
     return redirect(url_for("admin_page"))
 
@@ -408,50 +418,7 @@ def login_action():
 
     session["logged_in"] = 1
     session["person"] = vars(person)
-    return redirect(url_for("home_page"))
-
-@app.route("/signup", methods = ["GET", ])
-def signup_page():
-    return render_template("signup_page.html")
-
-@app.route("/signup_action", methods = ["POST", ])
-def signup_action():
-    data = request.form 
-
-    if not data.get("type"):
-        return redirect(url_for("home_page"))
-    
-    password = hashlib.md5(data["password"].encode())
-
-    if "pic" not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-
-    file = request.files["pic"]
-    # if user does not select file, browser also
-    # submits an empty part without filename
-    if file.filename == '':
-        flash('No selected file')
-        return redirect(request.url)
-
-    if file and file.filename[-3:] in ALLOWED_EXTENSIONS:
-        basedir = os.path.abspath(os.path.dirname(__file__))
-        filename = secure_filename(file.filename[:-4] + data["mail"][:-4] + file.filename[-4:])
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    
-    person = People(name=data["name"], password=password.hexdigest(), mail=data["mail"], type=data["type"], photo=filename)
-    db = Database()
-
-    if db.person_exists(person):
-        return redirect(url_for("login_page"))
-
-    db.add_person(person)
-
-    session["logged_in"] = 1
-    session["person"] = vars(person)
-
-    return redirect(url_for("home_page"))   
-
+    return redirect(url_for("home_page")) 
 
 @app.route("/logout", methods = ["GET", ])
 def logout():
