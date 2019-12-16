@@ -178,7 +178,7 @@ def as_edit():
 
     return redirect(url_for("as_page"))
 
-
+@app.route("/faculty_edit", methods=["POST", "GET"])
 def faculty_edit():
     if not session["logged_in"] or not session.get("person")["admin"]:
         return redirect(url_for("fac_page"))
@@ -205,7 +205,7 @@ def faculty_edit():
 
     return redirect(url_for("fac_page"))
 
-
+@app.route("/fac_edit", methods=["POST", "GET"])
 def fac_edit():
     if not session["logged_in"] or not session.get("person")["admin"]:
         return redirect(url_for("fac_page"))
