@@ -199,7 +199,7 @@ def building_edit():
             db.delete_assistant(int(bu_key))
     elif data["button"] == "update":
         try:
-            building = db.get_assistant(request.form.getlist("bu_id")[0])
+            building = db.get_building(request.form.getlist("bu_id")[0])
             return render_template("building_edit.html",
                                    building=building)
         except:
