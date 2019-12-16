@@ -20,13 +20,38 @@
             <a>Doctorate: </a><input class="form-control" name="doctorates" type="text" value="{{instructor.doctorates}}"> <br/>
         </div>
         <div class="form-group">
-            <a>Department: </a><input class="form-control" name="department" type="text" value="{{instructor.department}}"> <br/>
+            <label for="department">Department</label>
+            <select class="form-control" name="department">
+                <option value={{instructor.department}}>{{instructor.department}}</option>
+            {% for dep in departments %}
+                <option value="{{ dep[0] }}">{{ dep[1] }}</option>
+            {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-            <a>Room : </a><input class="form-control" name="room" type="text" value="{{instructor.room}}"> <br/>
+            <label for="room">Room</label>
+            <select class="form-control" name="room">
+                <option value={{instructor.room}}>{{instructor.room}}</option>
+            {% if rooms %}
+                {% for room in rooms %}
+                    <option value="{{ room["ID"] }}">{{ room["ID"], room["Name"] }}</option>
+                {% endfor %}
+            {% endif %}
+            </select>
         </div>
         <div class="form-group">
-            <a>Lab (if any): </a><input class="form-control" name="lab" type="text" value="{{instructor.lab}}"> <br/>
+            <a>Lab (if any): </a>
+            <select class="form-control" name="lab">
+                {% if instructor.lab == None %}
+                    <option value="">-</option>
+                {% else %}
+                    <option value={{instructor.lab}}>{{instructor.lab}}</option>
+                {% endif %}
+                {% for lab in labs %}
+                      <option value={{lab[0]}}>{{lab[1]}}</option>
+                {% endfor %}
+                <option value="">-</option>
+            </select>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary" name="instructor">Update</button>

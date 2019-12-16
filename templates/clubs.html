@@ -6,7 +6,8 @@
     <h1 class="title">Clubs</h1>
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table">
+                <form action="/club_edit" method="post">
+				    <table class="table">
 					<thead>
 						<tr>
 							<th scope="col">Select</th>
@@ -38,8 +39,10 @@
 					  	{% endif %}
 				  	</tbody>
 				</table>
+                    <button type="submit" class="btn btn-primary" value="update" name="button">Update</button>
+                    <button type="submit" class="btn btn-primary" value="delete" name="button">Delete</button>
+                </form>
 			</div>
 		</div>
 	</div>
-
 {% endblock %}

@@ -104,7 +104,7 @@ class Database:
             "class": "CLASS",
             "lab": "LAB",
             "room": "ROOM",
-            "available":"AVAILABLE"
+            "available": "AVAILABLE"
         }
 
         try:
@@ -252,7 +252,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = " SELECT P_ID, NAME, ROOMS.ROOM_NAME, LABS.LAB_NAME, BACHELORS, MASTERS, DOCTORATES FROM INSTRUCTORS JOIN PEOPLE ON (INSTRUCTORS.INS_ID = PEOPLE.P_ID) JOIN ROOMS ON (INSTRUCTORS.ROOM = ROOMS.ROOM_ID) LEFT JOIN LABS ON (INSTRUCTORS.INS_ID = LABS.LAB_ID)"
+                statement = "SELECT P_ID, NAME, ROOMS.ROOM_NAME, LABS.LAB_NAME, BACHELORS, MASTERS, DOCTORATES FROM INSTRUCTORS JOIN PEOPLE ON (INSTRUCTORS.INS_ID = PEOPLE.P_ID) JOIN ROOMS ON (INSTRUCTORS.ROOM = ROOMS.ROOM_ID) LEFT JOIN LABS ON (INSTRUCTORS.LAB = LABS.LAB_ID)"
                 cursor.execute(statement)
                 datas = cursor.fetchall()
                 cursor.close()
@@ -515,7 +515,9 @@ class Database:
             except Exception as err:
                 print("Update Student Error: ", err)
 
+
     ############# FACULTIES ###############
+
 
     # Create
     def add_faculty(self, faculty):
@@ -553,6 +555,7 @@ class Database:
             print("Get Faculty DB Error: ", err)
 
         return None
+
 
     def get_faculties(self):
         """
@@ -597,7 +600,7 @@ class Database:
     def update_faculty(self, fac_id, attrs, values):
         attrs_lookup_table = {
             "name": "FAC_NAME",
-            "cred": "FAC_BUILDING",
+            "building": "FAC_BUILDING",
             "dean": "DEAN",
             "vdean_1": "DEAN_ASST_1",
             "vdean_2": "DEAN_ASST_2",
@@ -674,12 +677,27 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM ASSISTANTS WHERE AS_ID = %s"
+                statement = "SELECT (a.as_id, p.name, p.email, p.photo, a.degree, a.as_person, a.lab, a.department, a.faculty) FROM assistants a JOIN people p ON a.as_person = p.p_id WHERE a.as_id = %s"
                 data = [as_id]
                 cursor.execute(statement, data)
-                datas = cursor.fetchall()
+                data = cursor.fetchall()
                 cursor.close()
-                return datas
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Email": datum[2].strip('"'),
+                        "Photo": datum[3].strip('"'),
+                        "Degree": datum[4].strip('"'),
+                        "Person": int(datum[5]),
+                        "Lab": int(datum[6]),
+                        "Dep": int(datum[7]),
+                        "Fac": int(datum[8])
+                    }
+                    retval.append(val)
+                return retval[0]
         except Exception as err:
             print("Get assistant DB Error: ", err)
 
@@ -899,10 +917,10 @@ class Database:
 
     def update_department(self, dep_id, attrs, values):
         attrs_lookup_table = {
-            "name": "LAB_NAME",
-            "faculty": "DEPARTMENT",
-            "building": "FACULTY",
-            "dean": "BUILDING"
+            "name": "dep_name",
+            "faculty": "faculty",
+            "building": "building",
+            "dean": "dean"
         }
 
         try:
@@ -995,9 +1013,9 @@ class Database:
                 statement = "SELECT * FROM PAPERS WHERE PAPER_ID = %s"
                 data = [paper_id]
                 cursor.execute(statement, data)
-                datas = cursor.fetchall()
+                data = cursor.fetchall()
                 cursor.close()
-                return datas
+                return data
         except Exception as err:
             print("Get paper DB Error: ", err)
 
@@ -1062,7 +1080,7 @@ class Database:
                         val["Conference"] = True
                     else:
                         val["Conference"] = False
-                        
+
                     retval.append(val)
 
                 for val in retval:
@@ -1074,6 +1092,12 @@ class Database:
                     for datum in data:
                         val["Authors"].append(datum[0])
                     val["Authors"] = list(set(val["Authors"]))
+                    if len(val["Authors"]) == 0:
+                        statement = "SELECT name FROM papers p1 JOIN people p2 ON p1.author=p2.p_id WHERE title = %s"
+                        data = [val["Title"]]
+                        cursor.execute(statement, data)
+                        data = cursor.fetchall()
+                        val["Authors"].append(data[0][0])
                     cursor.close()
 
                 return retval
@@ -1107,12 +1131,12 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM BUILDINGS WHERE BU_ID = %s"
+                statement = "SELECT bu_id, bu_name, bu_code, campus FROM BUILDINGS WHERE BU_ID = %s"
                 data = [bu_id]
                 cursor.execute(statement, data)
-                datas = cursor.fetchall()
+                data = cursor.fetchall()
                 cursor.close()
-                return datas
+                return data
         except Exception as err:
             print("Get building DB Error: ", err)
 

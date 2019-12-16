@@ -8,7 +8,7 @@
       <table class="table">
         <tr>
             <th>#</th>
-            <th>ID</th>
+            <!--<th>ID</th>-->
             <th>Name</th>
             <th>Building</th>
         </tr>
@@ -25,9 +25,9 @@
             {% endif %}
             </td>
           {% for key, value in room.items() %}
-
-            <td>{{ value }} <br/></td>
-
+            {% if key != "ID"%}
+              <td> {{ value }} <br/></td>
+            {% endif %}
           {% endfor %}
         </tr>
         {% endfor %}

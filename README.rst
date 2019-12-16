@@ -124,4 +124,4 @@ publish your Sphinx documentation on Github Pages:
   "Display value in build log" should be ``off``.
 
 - After pushing your changes to the ``master`` branch, your documentation
-  will become updated on ``https://itucsdb18NN.github.io/itucsdb18NN/``
+  will become updated on ``https://itucsdb1963.github.io/itucsdb1963/``
