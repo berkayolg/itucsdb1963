@@ -30,8 +30,8 @@
         <div class="form-group">
             <label for="conf">Conference</label>
             <select class="custom-select" name="conf">
-                <option value="t" {% if paper[5] == 't' %} selected {% endif %}>Yes</option>
-                <option value="f" {% if paper[5] == 'f' %} selected {% endif %}>No</option>
+                <option value="t" {% if paper[5] %} selected {% endif %}>Yes</option>
+                <option value="f" {% if not paper[5] %} selected {% endif %}>No</option>
             </select>
         </div>
     <button type="submit" class="btn btn-primary">Update</button>
