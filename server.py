@@ -268,7 +268,7 @@ def cl_edit():
     attrs = ["name", "faculty", "advisor", "chairman", "vice_1", "vice_2"]
     values = [data["name"], data["fac_id"], data["adv_id"], data["ch_id"], data["v1_id"], data["v2_id"]]
     db.update_club(data["id"], attrs, values)
-    return redirect(url_for("fac_page"))
+    return redirect(url_for("cl_page"))
 
 
 @app.route("/departments", methods=["POST", "GET"])
