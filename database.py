@@ -918,10 +918,10 @@ class Database:
 
     def update_department(self, dep_id, attrs, values):
         attrs_lookup_table = {
-            "name": "LAB_NAME",
-            "faculty": "DEPARTMENT",
-            "building": "FACULTY",
-            "dean": "BUILDING"
+            "name": "dep_name",
+            "faculty": "faculty",
+            "building": "building",
+            "dean": "dean"
         }
 
         try:

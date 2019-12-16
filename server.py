@@ -278,6 +278,47 @@ def dep_page():
     return render_template("departments.html", departments=departments)
 
 
+@app.route("/department_edit", methods=["POST", "GET"])
+def department_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("dep_page"))
+
+    db = Database()
+    data = request.form
+    if data["button"] == "delete":
+        dep_keys = request.form.getlist("dep_id")
+        for dep_key in dep_keys:
+            db.delete_department(int(dep_key))
+    elif data["button"] == "update":
+        try:
+            people = db.get_people()
+            faculties = db.get_all_faculties()
+            department = db.get_department(request.form.getlist("dep_id")[0])[0]
+            return render_template("department_edit.html",
+                                   faculties=faculties,
+                                   people=people,
+                                   buildings=db.get_buildings(),
+                                   dep=department)
+        except:
+            return redirect(url_for("dep_page"))
+    else:
+        pass
+
+    return redirect(url_for("dep_page"))
+
+
+@app.route("/dep_edit", methods=["POST", "GET"])
+def dep_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("dep_page"))
+    db = Database()
+    data = request.form
+    attrs = ["name", "faculty", "building", "dean"]
+    values = [data["name"], data["fac_id"], data["bu_id"], data["ch_id"]]
+    db.update_department(data["id"], attrs, values)
+    return redirect(url_for("dep_page"))
+
+
 @app.route("/faculties", methods=["POST", "GET"])
 def fac_page():
     db = Database()
