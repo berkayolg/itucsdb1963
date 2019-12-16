@@ -187,6 +187,17 @@ def as_edit():
     return redirect(url_for("as_page"))
 
 
+@app.route("/as_create", methods=["POST", "GET"])
+def as_cr():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("as_page"))
+    db = Database()
+    data = request.form
+    assistant = Assistant(data["p_id"], data["lab_id"], data["deg"], data["dep_id"], data["fac_id"])
+    db.add_assistant(assistant)
+    return redirect(url_for("as_page"))
+
+
 @app.route("/buildings", methods=["POST", "GET"])
 def bu_page():
     db = Database()

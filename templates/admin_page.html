@@ -3,6 +3,7 @@
 {% block content %}
 	
 <div class="container">
+    <br/>
 	<div class="row">
 		<div class="col-sm">
 		    <button id="student_create_dd" class="btn btn-primary" onclick="dropdown($('#student_create'))">Student Creation Form</button>
@@ -212,7 +213,6 @@
 			</form>
 		</div>
 	</div>
-
     <div class="row">
         <div class="col-sm">
             <button id="club_create_dd" class="btn btn-primary" onclick="dropdown($('#club_create'))">Club Creation Form</button>
@@ -369,7 +369,6 @@
 			</form>
         </div>
     </div>
-
     <div class="row">
         <div class="col-sm">
             <button id="building_create_dd" class="btn btn-primary" onclick="dropdown($('#building_create'))">Building Creation Form</button>
@@ -502,49 +501,41 @@
     </form><br/>
         </div>
         <div class="col-sm">
-            <button id="assistant_create_dd" class="btn btn-primary" onclick="dropdown($('#assistant_create'))">Department Creation Form</button>
-           <form method="post" action="/as_create" id="assistant_create">
+            <button id="assistant_create_dd" class="btn btn-primary" onclick="dropdown($('#assistant_create'))">Assistant Creation Form</button>
+            <form method="post" action="/as_create" id="assistant_create">
         <div class="form-group">
-            <label for="name">Name</label>
-            <input class="form-control" name="name" type="text"/>
+            <label for="p_id">Name</label>
+            <select class="custom-select" name="p_id">
+                {% for person in people %}
+                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% endfor %}
+            </select>
         </div>
         <div class="form-group">
-        <label for="dep_id">Department</label>
+            <label for="lab_id">Lab</label>
+            <select class="custom-select" name="lab_id">
+                {% for lab in labs %}
+                    <option value="{{ lab[0] }}">{{ lab[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="deg">Degree</label>
+            <input class="form-control" name="deg" type="text"/>
+        </div>
+        <div class="form-group">
+            <label for="dep_id">Department</label>
             <select class="custom-select" name="dep_id">
-                {% for dep in departments %}
-                    <option value="{{ dep["ID"] }}">{{ dep["Name"] }}</option>
+                {% for dep in deps %}
+                    <option value="{{ dep[0] }}">{{ dep[1] }}</option>
                 {% endfor %}
             </select>
         </div>
         <div class="form-group">
             <label for="fac_id">Faculty</label>
             <select class="custom-select" name="fac_id">
-                {% for faculty in faculties %}
-                    <option value="{{ faculty[0] }}">{{ faculty[1] }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="bu_id">Building</label>
-            <select class="custom-select" name="bu_id">
-                {% for building in buildings %}
-                    <option value="{{ building["ID"] }}">{{ building["Name"] }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="r_id">Room</label>
-            <select class="custom-select" name="r_id">
-                {% for room in rooms %}
-                    <option value="{{ room["ID"] }}">{{ room["Name"] }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="p_id">Principal Investigator</label>
-            <select class="custom-select" name="p_id">
-                {% for person in people %}
-                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% for fac in facs %}
+                    <option value="{{ fac["ID"] }}">{{ fac["Name"] }}</option>
                 {% endfor %}
             </select>
         </div>
