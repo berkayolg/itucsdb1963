@@ -248,7 +248,7 @@ def club_edit():
             faculty = db.get_all_faculties()
             club = db.get_club(request.form.getlist("cl_id")[0])[0]
             return render_template("club_edit.html",
-                                   faculty=faculty,
+                                   faculties=faculty,
                                    club=club,
                                    people=people)
         except:
