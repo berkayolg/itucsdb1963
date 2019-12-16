@@ -39,7 +39,7 @@
             <label for="fac_id">Faculty</label>
             <select class="custom-select" name="fac_id">
                 {% for fac in facs %}
-                    <option value="{{ fac["ID"] }}" {% if fac[0] == assistant["Fac"] %} selected {% endif %}>{{ fac["Name"] }}</option>
+                    <option value="{{ fac["ID"] }}" {% if fac["ID"] == assistant["Fac"] %} selected {% endif %}>{{ fac["Name"] }}</option>
                 {% endfor %}
             </select>
         </div>
