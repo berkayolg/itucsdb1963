@@ -271,7 +271,7 @@
         <label for="dep_id">Department</label>
             <select class="custom-select" name="dep_id">
                 {% for dep in departments %}
-                    <option value="{{ dep[0] }}">{{ dep[1] }}</option>
+                    <option value="{{ dep["ID"] }}">{{ dep["Name"] }}</option>
                 {% endfor %}
             </select>
         </div>
