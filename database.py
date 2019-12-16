@@ -1122,12 +1122,12 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT * FROM BUILDINGS WHERE BU_ID = %s"
+                statement = "SELECT bu_id, bu_name, bu_code, campus FROM BUILDINGS WHERE BU_ID = %s"
                 data = [bu_id]
                 cursor.execute(statement, data)
-                datas = cursor.fetchall()
+                data = cursor.fetchall()
                 cursor.close()
-                return datas
+                return data
         except Exception as err:
             print("Get building DB Error: ", err)
 

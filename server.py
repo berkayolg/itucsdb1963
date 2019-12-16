@@ -200,6 +200,7 @@ def building_edit():
     elif data["button"] == "update":
         try:
             building = db.get_building(request.form.getlist("bu_id")[0])
+            print(building)
             return render_template("building_edit.html",
                                    building=building)
         except:
