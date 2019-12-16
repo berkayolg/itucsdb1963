@@ -1095,6 +1095,10 @@ class Database:
                     val["Authors"] = list(set(val["Authors"]))
                     if len(val["Authors"]) == 0:
                         statement = "SELECT name FROM papers p1 JOIN people p2 ON p1.author=p2.p_id WHERE title = %s"
+                        data = [val["Title"]]
+                        cursor.execute(statement, data)
+                        data = cursor.fetchall()
+                        val["Authors"].append(data[0][0])
                     cursor.close()
 
                 return retval
