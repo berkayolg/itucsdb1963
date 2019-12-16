@@ -2,8 +2,8 @@
 {% block title %}Edit Lab - {{ lab[0] }}{% endblock %}
 {% block content %}
     <div class="col-sm">
-    <h1>Update Lab - {{ lab[1] }}</h1>
-    <form method="post" action="/l_edit" id="lab_update">
+        <h1>Update Lab - {{ lab[1] }}</h1>
+        <form method="post" action="/l_edit" id="lab_update">
         <div class="form-group">
             <input type="hidden" class="form-control" name="id" type="text" value="{{ lab[0] }}">
         </div>
@@ -53,5 +53,5 @@
         </div>
     <button type="submit" class="btn btn-primary">Update</button>
     </form><br/>
-</div>
+    </div>
 {% endblock %}

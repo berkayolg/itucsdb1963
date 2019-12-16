@@ -1014,9 +1014,9 @@ class Database:
                 statement = "SELECT * FROM PAPERS WHERE PAPER_ID = %s"
                 data = [paper_id]
                 cursor.execute(statement, data)
-                datas = cursor.fetchall()
+                data = cursor.fetchall()
                 cursor.close()
-                return datas
+                return data
         except Exception as err:
             print("Get paper DB Error: ", err)
 

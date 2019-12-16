@@ -435,6 +435,46 @@ def paper_page():
             return render_template("papers.html", authors=authors)
 
 
+@app.route("/paper_edit", methods=["POST", "GET"])
+def paper_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("paper_page"))
+
+    db = Database()
+    data = request.form
+    if data["button"] == "delete":
+        p_keys = request.form.getlist("paper_id")
+        for p_key in p_keys:
+            db.delete_paper(int(p_key))
+    elif data["button"] == "update":
+        try:
+            return render_template("paper_edit.html",
+                                   people = db.get_people(),
+                                   paper = db.get_paper(request.form.getlist("paper_id")[0])[0])
+        except:
+            return redirect(url_for("paper_page"))
+    else:
+        pass
+
+    return redirect(url_for("paper_page"))
+
+
+@app.route("/p_edit", methods=["POST", "GET"])
+def p_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("paper_page"))
+    db = Database()
+    data = request.form
+    attrs = ["title", "platform", "citation", "author", "isConference"]
+    values = [data["name"], data["pl"], data["cc"], data["author"]]
+    if data["conf"] == "t":
+        values.append(True)
+    else:
+        values.append(False)
+    db.update_paper(data["id"], attrs, values)
+    return redirect(url_for("paper_page"))
+
+
 @app.route("/rooms_list", methods = ["GET", "POST"])
 def rooms_page():
     '''
