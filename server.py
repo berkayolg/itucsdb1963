@@ -517,7 +517,7 @@ def room_edit():
             db.delete_classroom(int(room_key))
     elif data["button"] == "update":
         room = db.get_room(request.form.getlist("room_keys")[0])
-        return render_template("room_update.html", room=room)
+        return render_template("room_update.html", room=room, buildings=db.get_buildings())
     else:
         pass
     return redirect(url_for("rooms_page"))
@@ -628,7 +628,7 @@ def instructor_edit():
             db.delete_instructor(int(ins_key))
     elif data["button"] == "update":
         instructor = db.get_instructor(request.form.getlist("instructor_keys")[0])
-        return render_template("instructor_update.html", instructor=instructor)
+        return render_template("instructor_update.html", instructor=instructor, rooms=db.get_rooms(), departments=db.get_all_departments(), labs=db.get_all_labs())
     else:
         pass
     return redirect(url_for("instructors_page"))
@@ -640,7 +640,10 @@ def instructor_update():
     db = Database()
     data = request.form
     attrs = ["department", "room", "lab", "bachelors", "masters", "doctorates"]
-    values = [data["department"], data["room"], data["lab"], data["bachelors"], data["masters"], data["doctorates"]]
+    lab = data["lab"]
+    if data["lab"] == "":
+        lab = None
+    values = [data["department"], data["room"], lab, data["bachelors"], data["masters"], data["doctorates"]]
     db.update_instructor(data["id"], attrs, values)
     return redirect(url_for("instructors_page"))
 

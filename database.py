@@ -252,7 +252,7 @@ class Database:
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = " SELECT P_ID, NAME, ROOMS.ROOM_NAME, LABS.LAB_NAME, BACHELORS, MASTERS, DOCTORATES FROM INSTRUCTORS JOIN PEOPLE ON (INSTRUCTORS.INS_ID = PEOPLE.P_ID) JOIN ROOMS ON (INSTRUCTORS.ROOM = ROOMS.ROOM_ID) LEFT JOIN LABS ON (INSTRUCTORS.INS_ID = LABS.LAB_ID)"
+                statement = "SELECT P_ID, NAME, ROOMS.ROOM_NAME, LABS.LAB_NAME, BACHELORS, MASTERS, DOCTORATES FROM INSTRUCTORS JOIN PEOPLE ON (INSTRUCTORS.INS_ID = PEOPLE.P_ID) JOIN ROOMS ON (INSTRUCTORS.ROOM = ROOMS.ROOM_ID) LEFT JOIN LABS ON (INSTRUCTORS.LAB = LABS.LAB_ID)"
                 cursor.execute(statement)
                 datas = cursor.fetchall()
                 cursor.close()
