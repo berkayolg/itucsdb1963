@@ -289,6 +289,17 @@ def cl_edit():
     return redirect(url_for("cl_page"))
 
 
+@app.route("/dep_create", methods=["POST", "GET"])
+def dep_create():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("dep_page"))
+    db = Database()
+    data = request.form
+    dep= Department(data["name"], data["fac_id"], data["bu_id"], data["ch_id"])
+    db.add_department(dep)
+    return redirect(url_for("dep_page"))
+
+
 @app.route("/departments", methods=["POST", "GET"])
 def dep_page():
     db = Database()
