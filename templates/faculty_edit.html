@@ -38,6 +38,7 @@
         <div class="form-group">
             <label for="vdean2_id">Asst. Dean</label>
             <select class="custom-select" name="vdean2_id">
+                <option value="0">None</option>
                 {% for person in people %}
                     <option value="{{ person[0] }}" {% if person[0] == faculty[5] %} selected {% endif %}>{{ person[1] }}</option>
                 {% endfor %}

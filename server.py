@@ -279,8 +279,11 @@ def fac_edit():
         return redirect(url_for("fac_page"))
     db = Database()
     data = request.form
-    attrs = ["name", "building", "dean", "vdean_1", "vdean_2"]
-    values = [data["name"], data["b_id"], data["dean_id"], data["vdean1_id"], data["vdean2_id"]]
+    attrs = ["name", "building", "dean", "vdean_1"]
+    values = [data["name"], data["b_id"], data["dean_id"], data["vdean1_id"]]
+    if data["vdean2_id"] != "0":
+        attrs.append("vdean_2")
+        values.append(data["vdean2_id"])
     db.update_faculty(data["id"], attrs, values)
 
 
