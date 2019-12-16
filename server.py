@@ -231,6 +231,46 @@ def cl_page():
     return render_template("clubs.html", clubs=clubs)
 
 
+@app.route("/club_edit", methods=["POST", "GET"])
+def club_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("cl_page"))
+
+    db = Database()
+    data = request.form
+    if data["button"] == "delete":
+        cl_keys = request.form.getlist("cl_id")
+        for cl_key in cl_keys:
+            db.delete_club(int(cl_key))
+    elif data["button"] == "update":
+        try:
+            people = db.get_people()
+            faculty = db.get_faculties()
+            club = db.get_club(request.form.getlist("cl_id")[0])[0]
+            return render_template("faculty_edit.html",
+                                   faculty=faculty,
+                                   club=club,
+                                   people=people)
+        except:
+            return redirect(url_for("cl_page"))
+    else:
+        pass
+
+    return redirect(url_for("fac_page"))
+
+
+@app.route("/cl_edit", methods=["POST", "GET"])
+def cl_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("cl_page"))
+    db = Database()
+    data = request.form
+    attrs = ["name", "faculty", "advisor", "chairman", "vice_1", "vice_2"]
+    values = [data["name"], data["fac_id"], data["adv_id"], data["ch_id"], data["v1_id"], data["v2_id"]]
+    db.update_club(data["id"], attrs, values)
+    return redirect(url_for("fac_page"))
+
+
 @app.route("/departments", methods=["POST", "GET"])
 def dep_page():
     db = Database()
