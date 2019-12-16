@@ -115,19 +115,20 @@ def admin_page():
         #print(session.get("person").get("admin"), "asdadsd")
         if session.get("person")["admin"]:
             return render_template("admin_page.html", 
-                faculty_list=db.get_faculties(),
-                prof_list=db.get_instructors(),
-                student_list=db.get_students(), 
-                datetime=datetime.now(),
-                clubs=db.get_clubs_info_astext(),
-                faculties=db.get_all_faculties(),
-                departments=db.get_departments_text(),
-                buildings = db.get_buildings(),
-                rooms=db.get_rooms(),
-                instructors=db.get_instructors(),
-                classrooms=db.get_classrooms(),
-                assistants=db.get_assistant_info(),
-                labs = db.get_lab_info()
+                                    faculty_list=db.get_faculties(),
+                                    prof_list=db.get_instructors(),
+                                    student_list=db.get_students(),
+                                    datetime=datetime.now(),
+                                    clubs=db.get_clubs_info_astext(),
+                                    faculties=db.get_all_faculties(),
+                                    departments=db.get_departments_text(),
+                                    buildings = db.get_buildings(),
+                                    rooms=db.get_rooms(),
+                                    instructors=db.get_instructors(),
+                                    classrooms=db.get_classrooms(),
+                                    assistants=db.get_assistant_info(),
+                                    labs = db.get_lab_info(),
+                                    people=db.get_people()
                 )
         else:
             return redirect(url_for("home_page"))
