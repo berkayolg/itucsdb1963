@@ -512,6 +512,18 @@ def p_edit():
     db.update_paper(data["id"], attrs, values)
     return redirect(url_for("paper_page"))
 
+@app.route("/paper_create", methods=["POST", "GET"])
+def paper_create():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("paper_page"))
+    db = Database()
+    data = request.form
+    h = False
+    if data["conf"] == "t":
+        h = True
+    paper = Paper(data["name"], data["pl"], data["cc"], data["a_id"], h)
+    db.add_paper(paper)
+    return redirect(url_for("paper_page"))
 
 @app.route("/rooms_list", methods = ["GET", "POST"])
 def rooms_page():
