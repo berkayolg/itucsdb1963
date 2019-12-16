@@ -1074,7 +1074,7 @@ class Database:
                         "Platform": datum[2].strip('"'),
                         "Citation": datum[3],
                         "Conference": datum[4],
-                        "Authors": [ self.get_person(person).name]
+                        "Authors": []
                     }
 
                     if val["Conference"] == "t":
@@ -1093,6 +1093,8 @@ class Database:
                     for datum in data:
                         val["Authors"].append(datum[0])
                     val["Authors"] = list(set(val["Authors"]))
+                    if len(val["Authors"]) == 0:
+                        statement = "SELECT name FROM papers p1 JOIN people p2 ON p1.author=p2.p_id WHERE title = %s"
                     cursor.close()
 
                 return retval
