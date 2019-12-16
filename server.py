@@ -245,7 +245,7 @@ def club_edit():
     elif data["button"] == "update":
         try:
             people = db.get_people()
-            faculty = db.get_faculties()
+            faculty = db.get_all_faculties()
             club = db.get_club(request.form.getlist("cl_id")[0])[0]
             return render_template("club_edit.html",
                                    faculty=faculty,
