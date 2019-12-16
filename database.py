@@ -1074,7 +1074,7 @@ class Database:
                         "Platform": datum[2].strip('"'),
                         "Citation": datum[3],
                         "Conference": datum[4],
-                        "Authors": [person]
+                        "Authors": [ self.get_person(person).name]
                     }
 
                     if val["Conference"] == "t":
