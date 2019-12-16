@@ -412,6 +412,21 @@ def fac_edit():
 
     return redirect(url_for("fac_page"))
 
+
+@app.route("/fac_create", methods=["POST", "GET"])
+def fac_cr():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("fac_page"))
+    db = Database()
+    data = request.form
+    a = None
+    if data["vdean2_id"] != "0":
+        a = data["vdean2_id"]
+    fac = Faculty(data["name"], data["b_id"], data["dean_id"], data["vdean1_id"], a)
+    db.add_faculty(fac)
+    return redirect(url_for("fac_page"))
+
+
 @app.route("/lab_create", methods=["POST", "GET"])
 def lab_create():
     if not session["logged_in"] or not session.get("person")["admin"]:

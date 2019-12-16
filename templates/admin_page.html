@@ -425,57 +425,46 @@
         </div>
          <div class="col-sm">
             <button id="fac_create_dd" class="btn btn-primary" onclick="dropdown($('#fac_create'))">Faculty Creation Form</button>
-            <form method="post" action="/fac_create" id="fac_create" style="visibility: collapse">
-            	<div id="lesson_create">
-                	<div class="form-group">
-                		<label for="crn" > CRN </label>
-                		<input class="form-control" type="text" name="crn">
-                	</div>
-                	<div class="form-group">
-                		<label for="date">Date </label>
-                		<input class="form-control" type="text" name="date">
-                	</div>
-                	<div class="form-group">
-                		<label for="code">Code </label>
-                		<input class="form-control" type="text" name="code">
-                	</div>
-                	<div class="form-group">
-                		<label for="code">Capacity </label>
-                		<input class="form-control" type="text" name="cap">
-                	</div>
-                	<div class="form-group">
-                		<label for="code">Instructor </label>
-                		<select name="instructor" class="form-control">
-                			{% for inst in instructors %}
-                				<option value={{inst.ID}} > {{inst.Name}} </option>
-                			{% endfor %}
-                		</select>
-                	</div>
-                	<div class="form-group">
-                		<label for="location">Location </label>
-                		<select name="location" class="form-control">
-                			{% for cla in classrooms %}
-                				<option value={{cla.ID}} > {{cla.Name}} {{cla["Building Name"]}} </option>
-                			{% endfor %}
-                		</select>
-                	</div>
-                	<div class="form-group">
-                		<label for="assistant">Assistant </label>
-                		<select name="assistant" class="form-control">
-                			{% for assi in assistants %}
-                				<option value={{assi["ID"]}} > {{assi["Name"]}} </option>
-                			{% endfor %}
-                		</select>
-                	</div>
-                	<div class="form-group">
-                		<label for="credit">Credit </label>
-                		<input class="form-control" type="text" name="credit">
-                	</div>
-		    		<div class="form-group">
-		    			<button type="submit" class="btn btn-primary">Submit</button>
-		    		</div>
-		    	</div>
-			</form>
+            <form method="post" action="/fac_create" id="faculty_create">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" name="name" type="text"/>
+        </div>
+        <div class="form-group">
+            <label for="b_id">Building</label>
+            <select class="custom-select" name="b_id">
+                {% for building in buildings %}
+                    <option value="{{ building["ID"] }}">{{ building["Name"] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="dean_id">Dean</label>
+            <select class="custom-select" name="dean_id">
+                {% for person in people %}
+                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="vdean1_id">Asst. Dean</label>
+            <select class="custom-select" name="vdean1_id">
+                {% for person in people %}
+                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="vdean2_id">Asst. Dean</label>
+            <select class="custom-select" name="vdean2_id">
+                <option value="0">None</option>
+                {% for person in people %}
+                    <option value="{{ person[0] }}">{{ person[1] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+    </form><br/>
         </div>
     </div>
     <div class="row">
