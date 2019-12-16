@@ -9,6 +9,13 @@ from models.room import Room
 from models.classroom import Classroom
 from models.people import People
 from models.lesson import Lesson
+from models.building import Building
+from models.faculty import Faculty
+from models.assistant import Assistant
+from models.club import Club
+from models.department import Department
+from models.lab import Lab
+from models.paper import Paper
 
 
 import hashlib
@@ -222,6 +229,16 @@ def bu_edit():
     db.update_building(data["id"], attrs, values)
 
     return redirect(url_for("bu_page"))
+
+@app.route("/club_create", methods=["POST", "GET"])
+def club_create():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("cl_page"))
+    db = Database()
+    data = request.form
+    club = Club(data["name"], data["fac_id"], data["adv_id"], data["ch_id"], data["v1_id"], data["v2_id"])
+    db.add_club(club)
+    return redirect(url_for("cl_page"))
 
 
 @app.route("/clubs", methods=["POST", "GET"])

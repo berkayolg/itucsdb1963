@@ -519,7 +519,9 @@ class Database:
             except Exception as err:
                 print("Update Student Error: ", err)
 
+
     ############# FACULTIES ###############
+
 
     # Create
     def add_faculty(self, faculty):
@@ -557,6 +559,7 @@ class Database:
             print("Get Faculty DB Error: ", err)
 
         return None
+
 
     def get_faculties(self):
         """
