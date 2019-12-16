@@ -390,6 +390,15 @@ def fac_edit():
 
     return redirect(url_for("fac_page"))
 
+@app.route("/lab_create", methods=["POST", "GET"])
+def lab_create():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("lab_page"))
+    db = Database()
+    data = request.form
+    lab = Lab(data["name"], data["dep_id"], data["fac_id"], data["r_id"], data["p_id"], data["bu_id"])
+    db.add_lab(lab)
+    return redirect(url_for("lab_page"))
 
 @app.route("/labs", methods=["POST", "GET"])
 def lab_page():
