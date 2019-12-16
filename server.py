@@ -380,6 +380,46 @@ def lab_page():
     return render_template("labs.html", labs=labs)
 
 
+@app.route("/lab_edit", methods=["POST", "GET"])
+def lab_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("lab_page"))
+
+    db = Database()
+    data = request.form
+    if data["button"] == "delete":
+        lab_keys = request.form.getlist("lab_id")
+        for lab_key in lab_keys:
+            db.delete_lab(int(lab_key))
+    elif data["button"] == "update":
+        try:
+            return render_template("lab_edit.html",
+                                   people = db.get_people(),
+                                   departments=db.get_all_departments(),
+                                   faculties = db.get_all_faculties(),
+                                   buildings = db.get_buildings(),
+                                   rooms = db.get_rooms(),
+                                   lab = db.get_lab(request.form.getlist("lab_id")[0])[0])
+        except:
+            return redirect(url_for("lab_page"))
+    else:
+        pass
+
+    return redirect(url_for("lab_page"))
+
+
+@app.route("/l_edit", methods=["POST", "GET"])
+def l_edit():
+    if not session["logged_in"] or not session.get("person")["admin"]:
+        return redirect(url_for("lab_page"))
+    db = Database()
+    data = request.form
+    attrs = ["name", "department", "faculty", "building", "room", "investigator"]
+    values = [data["name"], data["dep_id"], data["fac_id"], data["bu_id"], data["r_id"], data["p_id"]]
+    db.update_lab(data["id"], attrs, values)
+    return redirect(url_for("lab_page"))
+
+
 @app.route("/papers", methods=["POST", "GET"])
 def paper_page():
     db = Database()
@@ -422,7 +462,6 @@ def room_create():
     room = Room(data["building"], data["name"], data["availability"], is_class, is_room, is_lab)
     db.add_room(room)
     return redirect(url_for("admin_page"))
-
 
 
 @app.route("/room_edit", methods= ["POST", "GET"])
