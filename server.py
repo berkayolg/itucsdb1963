@@ -466,7 +466,7 @@ def p_edit():
     db = Database()
     data = request.form
     attrs = ["title", "platform", "citation", "author", "isConference"]
-    values = [data["name"], data["pl"], data["cc"], data["author"]]
+    values = [data["name"], data["pl"], data["cc"], data["a_id"]]
     if data["conf"] == "t":
         values.append(True)
     else:
