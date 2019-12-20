@@ -1,17 +1,16 @@
-Welcome to itucsdbNN's documentation!
-=====================================
+Welcome to itucsdb1963's documentation!
+=======================================
 
-:Team: Team Name
+:Team: SIS++
 
 :Members:
 
-   * Member 1
+   * Berkay Olgun
    * Member 2
    * Member 3
-   * Member 4
-   * Member 5
 
-**project description goes here (a few paragraphs)**
+
+**A student approach to the ITU student information system, with robust and efficient code base. SIS++ is a student information system that keeps tracks the information about the school and shows them.**
 
 Contents:
 

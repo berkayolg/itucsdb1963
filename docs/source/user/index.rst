@@ -1,8 +1,7 @@
 User Guide
 ==========
 
-**explain how your application works from the user perspective, use
-screenshots whereever appropriate**
+**Users get information about the school and enroll to classes.**
 
 **to add a picture, use the following example**::
 
@@ -14,9 +13,6 @@ screenshots whereever appropriate**
 
 .. toctree::
 
-   member1
+   berkay
    member2
    member3
-   member4
-   member5
-   
