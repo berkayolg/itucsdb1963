@@ -48,8 +48,8 @@ you would like to update and then click *Update* button to end the process and u
 	:scale: 30 %
 	:alt: Instructor Update Page
 	:align: center
-
-    Instructor Update Page
+	
+	Instructor Update Page
 	
 1.3. Viewing and Deleting Existing Instructors
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,8 +62,8 @@ end the process and delete the given Instructor.
 	:scale: 30 %
 	:alt: Instructors Page
 	:align: center
-
-    Instructors Page
+	
+	Instructors Page
 
 2. Rooms
 ------------------
@@ -83,7 +83,7 @@ visible to you.
 	:alt: Rooms Page
 	:align: center
 	
-	Rooms
+	Rooms Page
 	
 2.1. Adding a New Room
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -97,7 +97,7 @@ visible to you.
 
 
 From the blue boxes, pick *Room* dropdown form will be opened, provide the necessary information
-about the instructor in relative boxes below. Once you have provided all the information, click *Submit*
+about the room in relative boxes below. Once you have provided all the information, click *Submit*
 button to finalize the process and add the room.
 
 
@@ -111,10 +111,10 @@ you would like to update and then click *Update* button to end the process and u
 
 .. figure:: berkay/rooms_update.png
 	:scale: 30 %
-	:alt: Room Update Page
+	:alt: Rooms Update Page
 	:align: center
-
-    Room Update Page
+	
+	Rooms Update
 	
 2.3. Viewing and Deleting Existing Rooms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -127,8 +127,8 @@ end the process and delete the given Room.
 	:scale: 30 %
 	:alt: Rooms Page
 	:align: center
-
-    Rooms Page
+	
+	Rooms
 
 3. Classrooms
 ------------------
@@ -154,14 +154,14 @@ visible to you.
 
 From the blue boxes, pick *Classroom* dropdown form will be opened, provide the necessary information
 about the instructor in relative boxes below. Once you have provided all the information, click *Submit*
-button to finalize the process and add the classroom.
+button to finalize the process and add the Classroom.
 
 
 3.2. Updating an Existing Classroom
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 From the checkboxes, pick one and hit the button *UPDATE*. Then, change the information that
-you would like to update and then click *Update* button to end the process and update the Room.
+you would like to update and then click *Update* button to end the process and update the Classroom.
 
 .. tip:: If you check more than one boxes you update only the first one
 
@@ -169,8 +169,8 @@ you would like to update and then click *Update* button to end the process and u
 	:scale: 30 %
 	:alt: Classroom Update Page
 	:align: center
-
-    Classroom Update Page
+	
+	Classroom Update
 	
 3.3. Viewing and Deleting Existing Classrooms
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -183,7 +183,7 @@ end the process and delete the given Classroom.
 	:scale: 30 %
 	:alt: Classrooms Page
 	:align: center
-
-    Classrooms Page
+	
+	Classrooms Page
 
 
