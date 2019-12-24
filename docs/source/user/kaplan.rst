@@ -31,7 +31,7 @@ to pick an author. Then, if a name in the database has papers, you will
 be able to see their names in this list and learn more about their papers.
 
 .. figure:: kaplan/papers.png
-	:scale: 30 %
+	:scale: 70 %
 	:alt: Picking Author
 	:align: center
 
@@ -41,7 +41,7 @@ be able to see their name in this list.
 After picking an author, you can see their papers listed as shown here:
 
 .. figure:: kaplan/papersule.png
-	:scale: 30 %
+	:scale: 70 %
 	:alt: Papers by author
 	:align: center
 
@@ -60,7 +60,7 @@ Other than that, if you choose to update the papers, you will meet with a screen
 such as the one below:
 
 .. figure:: kaplan/updatepaper.png
-	:scale: 30 %
+	:scale: 70 %
 	:alt: Paper update
 	:align: center
 
@@ -72,7 +72,7 @@ As it is the case for all the other tables, if you wish to create an entry for p
 will have to use the super user page.
 
 .. figure:: kaplan/papercreate.png
-	:scale: 30 %
+	:scale: 70 %
 	:alt: Paper create
 	:align: center
 
