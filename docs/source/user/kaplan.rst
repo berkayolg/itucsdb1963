@@ -38,8 +38,6 @@ be able to see their names in this list and learn more about their papers.
 	:scale: 70 %
 	:alt: Picking Author
 	:align: center
-    
-    Picking Author
 
 If a person does not have a paper registered in the database, you will not
 be able to see their name in this list.
@@ -50,7 +48,6 @@ After picking an author, you can see their papers listed as shown here:
 	:scale: 70 %
 	:alt: Papers by author
 	:align: center
-    Papers by author
 
 Now, you can pick an entry from this table and hit delete or update. If you
 hit delete and you have multiple authors, you will see that paper is still in
@@ -70,7 +67,6 @@ such as the one below:
 	:scale: 70 %
 	:alt: Paper update
 	:align: center
-    Paper update
 
 As in the case of deleting, changes you make in paper updates are local. So, if you change the name
 of the paper, name of the paper will only be different for this author and other entries
@@ -83,7 +79,6 @@ will have to use the super user page.
 	:scale: 70 %
 	:alt: Paper create
 	:align: center
-    Paper create
 
 If you fill the form and hit create, new entry will be created. In this case, you can choose any person
 that has an entry in the database. If your database do not have an entry for the person you want to
@@ -102,7 +97,6 @@ When you enter into labs page, you will see the following:
 	:scale: 70 %
 	:alt: Lab Listing
 	:align: center
-    Lab Listing
 
 You can pick one of the labs and hit delete or update. Delete is as straigthforward as it goes, it deletes the
 chosen entry. Be careful, because there is no "Are you sure?" popping out in our system, we trust you.
@@ -114,7 +108,6 @@ page to the image below:
 	:scale: 70 %
 	:alt: Lab Update
 	:align: center
-    Lab Update
 
 You can enter update the information and hit the update button.
 
@@ -126,7 +119,7 @@ the "Create" button after filling the necessary information.
 	:scale: 70 %
 	:alt: Lab Create
 	:align: center
-    Lab Create
+
 
 Faculties
 --------------
@@ -140,19 +133,19 @@ To create a new faculty, you have to go to the super user page.
 	:scale: 70 %
 	:alt: Faculty Create
 	:align: center
-    Faculty Create
+
 
 .. figure:: kaplan/facultiesl.png
 	:scale: 70 %
 	:alt: Faculty Listing
 	:align: center
-    Faculty Listing
+
 
 .. figure:: kaplan/facultyu.png
 	:scale: 70 %
 	:alt: Faculty Update
 	:align: center
-    Faculty Update
+
 
 Departments
 --------------
@@ -166,19 +159,18 @@ To create a new department, you have to go to the super user page.
 	:scale: 70 %
 	:alt: Department Create
 	:align: center
-    Department Create
+
 
 .. figure:: kaplan/departmentsl.png
 	:scale: 70 %
 	:alt: Department Listing
 	:align: center
-    Department Listing
 
 .. figure:: kaplan/departmentu.png
 	:scale: 70 %
 	:alt: Department Update
 	:align: center
-    Department Update
+
 
 Clubs
 --------------
@@ -192,19 +184,19 @@ To create a new club, you have to go to the super user page.
 	:scale: 70 %
 	:alt: Club Create
 	:align: center
-    Club Create
+
 
 .. figure:: kaplan/clubsu.png
 	:scale: 70 %
 	:alt: Club Listing
 	:align: center
-    Club Listing
+
 
 .. figure:: kaplan/clubsl.png
 	:scale: 70 %
 	:alt: Club Update
 	:align: center
-    Club Update
+
 
 Buildings
 --------------
@@ -218,19 +210,19 @@ To create a new building, you have to go to the super user page.
 	:scale: 70 %
 	:alt: Building Create
 	:align: center
-    Building Create
+
 
 .. figure:: kaplan/buildingslist.png
 	:scale: 70 %
 	:alt: Building Listing
 	:align: center
-    Building Listing
+
 
 .. figure:: kaplan/buildingsupdate.png
 	:scale: 70 %
 	:alt: Building Update
 	:align: center
-    Building Update
+
 
 Assistants
 --------------
@@ -244,18 +236,17 @@ To create a new assistant, you have to go to the super user page.
 	:scale: 70 %
 	:alt: Assistant Create
 	:align: center
-    Assistant Create
+
 
 .. figure:: kaplan/assistantslist.png
 	:scale: 70 %
 	:alt: Assistant Listing
 	:align: center
-    Assistant Listing
+
 
 .. figure:: kaplan/assistantupdate.png
 	:scale: 70 %
 	:alt: Assistant Update
 	:align: center
-    Assistant Update
 
 
