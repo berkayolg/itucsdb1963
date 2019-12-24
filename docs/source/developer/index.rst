@@ -25,6 +25,6 @@ Code
 .. toctree::
 
    berkay
-   member2
+   kaplan
    member3
 

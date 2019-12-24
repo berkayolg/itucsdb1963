@@ -14,5 +14,5 @@ User Guide
 .. toctree::
 
    berkay
-   member2
+   kaplan
    member3
