@@ -18,9 +18,13 @@ Actually, all of these have the same logic. So, if you understand how
 to use one, you will be able to understand how to use the others except
 for the form you have to use when dealing with papers.
 
+So, first two entries will be explained in detail and rest will be a series
+of screenshoots since there is no new information to add and it would make
+a really redundant documentation.
+
 Let's start with the complicated one, papers.
 
-1. Papers
+Papers
 --------------
 
 Papers, as you can guess from its name lets you learn about various
@@ -80,3 +84,156 @@ If you fill the form and hit create, new entry will be created. In this case, yo
 that has an entry in the database. If your database do not have an entry for the person you want to
 attribute the paper to, you have to create a person for it. Details of how to create a person can be found
 in other pages of this documentation.
+
+Labs
+--------------
+
+You can see, update and delete labs in the university from labs page. Also, if you wish to create a new lab,
+you can use the super user page.
+
+When you enter into labs page, you will see the following:
+
+.. figure:: kaplan/labsl.png
+	:scale: 70 %
+	:alt: Lab Listing
+	:align: center
+
+You can pick one of the labs and hit delete or update. Delete is as straigthforward as it goes, it deletes the
+chosen entry. Be careful, because there is no "Are you sure?" popping out in our system, we trust you.
+
+If you wish to update the entries, again you can choose the entry you want to update and you will see a similar
+page to the image below:
+
+.. figure:: kaplan/labu.png
+	:scale: 70 %
+	:alt: Lab Update
+	:align: center
+
+You can enter update the information and hit the update button.
+
+To create a new lab never seen before, as opposed to update one, you have to use the super user page.
+In the super user page, find the one that says "Lab Creation Form" and create a new lab by clicking
+the "Create" button after filling the necessary information.
+
+.. figure:: kaplan/labcreate.png
+	:scale: 70 %
+	:alt: Lab Create
+	:align: center
+
+Faculties
+--------------
+
+You can list the faculties under the faculties page. From this page, you can also delete or update
+the entries you choose.
+
+To create a new faculty, you have to go to the super user page.
+
+.. figure:: kaplan/facr.png
+	:scale: 70 %
+	:alt: Faculty Create
+	:align: center
+
+.. figure:: kaplan/facultiesl.png
+	:scale: 70 %
+	:alt: Faculty Listing
+	:align: center
+
+.. figure:: kaplan/facultyu.png
+	:scale: 70 %
+	:alt: Faculty Update
+	:align: center
+
+Departments
+--------------
+
+You can list the departments under the departments page. From this page, you can also delete or update
+the entries you choose.
+
+To create a new department, you have to go to the super user page.
+
+.. figure:: kaplan/departmentcr.png
+	:scale: 70 %
+	:alt: Department Create
+	:align: center
+
+.. figure:: kaplan/departmentsl.png
+	:scale: 70 %
+	:alt: Department Listing
+	:align: center
+
+.. figure:: kaplan/departmentu.png
+	:scale: 70 %
+	:alt: Department Update
+	:align: center
+
+Clubs
+--------------
+
+You can list the clubs under the faculties page. From this page, you can also delete or update
+the entries you choose.
+
+To create a new club, you have to go to the super user page.
+
+.. figure:: kaplan/clubcr.png
+	:scale: 70 %
+	:alt: Club Create
+	:align: center
+
+.. figure:: kaplan/clubsu.png
+	:scale: 70 %
+	:alt: Club Listing
+	:align: center
+
+.. figure:: kaplan/clubsl.png
+	:scale: 70 %
+	:alt: Club Update
+	:align: center
+
+Buildings
+--------------
+
+You can list the faculties under the buildings page. From this page, you can also delete or update
+the entries you choose.
+
+To create a new building, you have to go to the super user page.
+
+.. figure:: kaplan/buildingcr.png
+	:scale: 70 %
+	:alt: Building Create
+	:align: center
+
+.. figure:: kaplan/buildingslist.png
+	:scale: 70 %
+	:alt: Building Listing
+	:align: center
+
+.. figure:: kaplan/buildingsupdate.png
+	:scale: 70 %
+	:alt: Building Update
+	:align: center
+
+Assistants
+--------------
+
+You can list the faculties under the assistants page. From this page, you can also delete or update
+the entries you choose.
+
+To create a new assistant, you have to go to the super user page.
+
+.. figure:: kaplan/ascr.png
+	:scale: 70 %
+	:alt: Assistant Create
+	:align: center
+
+.. figure:: kaplan/assistantslist.png
+	:scale: 70 %
+	:alt: Assistant Listing
+	:align: center
+
+.. figure:: kaplan/assistantupdate.png
+	:scale: 70 %
+	:alt: Assistant Update
+	:align: center
+
+
+
