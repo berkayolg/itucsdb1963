@@ -38,6 +38,7 @@ be able to see their names in this list and learn more about their papers.
 	:scale: 70 %
 	:alt: Picking Author
 	:align: center
+    
     Picking Author
 
 If a person does not have a paper registered in the database, you will not
