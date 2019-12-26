@@ -1,4 +1,4 @@
-Parts Implemented by Mehmet
+Parts Implemented by Mehmet Altuner
 ================================
 
 This page will be providing information on
@@ -13,10 +13,10 @@ People table is the base model that students, lecturers, assistants are inherite
 
 1.1. Adding a New Instructor
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	.. figure:: mehmet/supage.png
-	:scale: 30 %
-	:alt: Super User Page
-	:align: center
+.. figure:: mehmet/supage.png
+:scale: 30 %
+:alt: Super User Page
+:align: center
 	
 	Super User Page
 
@@ -59,12 +59,12 @@ If you are logged in as a super user account, you can delete the people you have
 
 Navigate to Students page by clicking the *Student* button on the navbar.
 
-.. figure:: mehmet/studentsupdate.png
-	:scale: 30 %
-	:alt: Students Page
-	:align: center
-	
-	Students Page
+.. figure:: mehmet/studentupdate.png
+:scale: 30 %
+:alt: Students Page
+:align: center
+
+Students Page
 
 2.1. Adding a New Student
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
