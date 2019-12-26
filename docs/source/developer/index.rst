@@ -4,9 +4,11 @@ Developer Guide
 Database Design
 ---------------
 
-**explain the database design of your project**
+.. figure:: er.png
+   :scale: 50 %
+   :alt: ER diagram of the database
 
-**include the E/R diagram(s)**
+   ER diagram of the database
 
 Code
 ----
