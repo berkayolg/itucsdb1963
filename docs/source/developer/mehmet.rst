@@ -11,6 +11,7 @@ People
 1. Creation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 .. code-block:: sql
+
 	CREATE TABLE IF NOT EXISTS PEOPLE (
     P_ID SERIAL PRIMARY KEY,
     NAME VARCHAR(100),
@@ -25,6 +26,7 @@ People
 Adding new person is handled in *add_person()* method in *database.py* file
 
 .. code-block:: python
+
 	def add_person(self, person):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -54,6 +56,7 @@ After inserting the new value into the table, its auto-incremented id instance i
 Reading from person table is implemented in the method *get_person()* in *database.py* file.
 
 .. code-block:: python
+
 	def get_person(self, p_id):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -80,6 +83,7 @@ Reading from person table is implemented in the method *get_person()* in *databa
 Deleting operation is handled in the method *update_person()* in *database.py* file.
 
 .. code-block:: python
+
 	def update_person(self, person_id, attrs, values):
         person = self.get_person(person_id)
         if not person:
@@ -120,6 +124,7 @@ Students
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 ..code-block:: sql
+
 	CREATE TABLE IF NOT EXISTS STUDENTS (
     STU_ID INTEGER PRIMARY KEY ,
     NUMBER INTEGER,
@@ -143,6 +148,7 @@ Students
 Adding operation is handled in the method *add_student()* in *database.py* file.
 
 ..code-block:: python
+
 	def add_student(self, student):
         person = self.add_person(student.get_person_obj())
         try:
@@ -163,6 +169,7 @@ Adding operation is handled in the method *add_student()* in *database.py* file.
 Reading operation is handled in the method *get_student()* in *database.py* file.
 
 ..code-block:: python
+
 	def get_student(self, stu_id):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -186,6 +193,7 @@ Selects the student that has the id as same as the stu_id which are taken by a p
 Updating operation is handled in the method *update_student()* in *database.py* file.
 
 ..code-block:: python
+
 	def update_student(self, student_key, attrs, values):
         student = self.get_student(student_key)
         if not student:
@@ -215,6 +223,7 @@ The same approach is followed as the update operation of the People table.
 Updating operation is handled in the method *delete_student()* in *database.py* file.
 
 ..code-block:: python
+
 	def delete_student(self, student_key):
         student = self.get_student(student_key)
 
@@ -238,6 +247,7 @@ Lessons
 1. Creation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 ..code-block:: sql
+
 	CREATE TABLE IF NOT EXISTS LESSONS (
 	    LESSON_ID SERIAL PRIMARY KEY,
 	    CAP INTEGER,
@@ -260,6 +270,7 @@ Lessons
 Adding operation is handled in the method *create_lesson()* in *database.py* file.
 
 ..code-block:: python
+
 	def create_lesson(self, lesson):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -283,6 +294,7 @@ Reading operation is handled in the methods *search_lesson_by_crn()* and *search
 The obvious difference between the methods is that one of them selects the lessons by the given CRN while the other does the same operation with the name of its instructor.
 
 ..code-block:: python
+
 	def search_lesson_by_crn(self, crn):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -305,6 +317,7 @@ The obvious difference between the methods is that one of them selects the lesso
         return False
 
 ..code-block:: python
+
 	def search_lesson_by_instructor(self, instructor):
         try:
             with dbapi2.connect(self.url) as connection:
