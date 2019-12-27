@@ -1,9 +1,8 @@
 Parts Implemented by Uğur Ali Kaplan
-================================
+=====================================
 
-*****************
 Assistants
-*****************
+------------------------------
 
 SQL Table Creation
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -206,9 +205,8 @@ To delete an assistant, you have to supply assistant id.
             print("Delete assistant Error: ", err)
 	
 
-*****************
 Buildings
-*****************
+------------------------------
 
 SQL Table Creation
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -374,9 +372,8 @@ To delete a building, you have to supply building id.
         except Exception as err:
             print("Delete building error: ", err)
 	
-****************
 Clubs
-****************
+------------------------------
 
 SQL Table Creation
 ~~~~~~~~~~~~~~~~~~~~
@@ -566,9 +563,8 @@ To delete a club, you have to supply club id.
         except Exception as err:
             print("Delete club error: ", err)
 
-****************
 Departments
-****************
+------------------------------
 
 SQL Table Creation
 ~~~~~~~~~~~~~~~~~~~~
@@ -749,9 +745,8 @@ To delete a department, you have to supply department id.
         except Exception as err:
             print("Delete Department Error: ", err)
 
-****************
 Faculties
-****************
+------------------------------
 
 SQL Table Creation
 ~~~~~~~~~~~~~~~~~~~~
@@ -980,9 +975,8 @@ To delete a faculty, you have to supply faculty id.
         except Exception as err:
             print("Delete Faculty Error: ", err)
 
-****************
 Labs
-****************
+------------------------------
 
 SQL Table Creation
 ~~~~~~~~~~~~~~~~~~~~
