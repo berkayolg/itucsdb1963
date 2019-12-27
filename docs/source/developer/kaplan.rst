@@ -5,8 +5,6 @@ Parts Implemented by Uğur Ali Kaplan
 Assistants
 *****************
 
-.. note:: All table creations exist in db_init.py file.
-
 SQL Table Creation
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -224,99 +222,155 @@ SQL Table Creation
         CAMPUS VARCHAR(20)
     )
 
-Adding 
+Building Class
 ~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since it makes it easier to create, we have defined a building class for creating an entry into our database.
+Therefore, before adding a new building an object of class Building must be initialized. Here is the definition of
+the Building class:
 
 .. code-block:: python
 
-	def add_room(self, room):
+    class Building:
+        def __init__(self, name, code, campus):
+            self.name = name
+            self.code = code
+            self.campus = campus
+
+
+Adding 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding a building into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_building() function.
+
+.. code-block:: python
+
+   def add_building(self, building):
+        """
+
+        :param building: A building object
+        :return:
+        """
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "INSERT INTO ROOMS (BUILDING, ROOM_NAME, AVAILABLE, CLASS, LAB, ROOM) VALUES (%s, %s, %s, %s, %s, %s)"
-                data = [room.building, room.name, room.availability, room.classroom, room.lab, room.room]
+                data = [building.name, building.code, building.campus]
+                statement = "INSERT INTO BUILDINGS (BU_NAME, BU_CODE, CAMPUS) VALUES (%s, %s, %s)"
                 cursor.execute(statement, data)
-                statement = "SELECT ROOM_ID FROM ROOMS WHERE ROOM_NAME = %s"
-                data = [room.name]
-                cursor.execute(statement, data)
-                value = cursor.fetchall()
-                room.id = value[0]
                 cursor.close()
         except Exception as err:
-            print("Add Room Error: ", err)
-        return room
+            print("Add Building Error: ", err)
+
 
 Reading 
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: python
+There are two functions. One returns a specific entry for the given entry and the other one returns entries for all of the
+buildings in the database.
 
-    def get_rooms(self):
+**get_building()**
+
+This returns the corresponding query result of the given building id as a list.
+
+.. code-block:: python
+    def get_building(self, bu_id):
+        """
+
+        :param bu_id: ID of the building in the database
+        :return:
+        """
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT ROOM_ID, BU_NAME, ROOM_NAME FROM ROOMS JOIN BUILDINGS ON(ROOMS.BUILDING = BUILDINGS.BU_ID)"
+                statement = "SELECT bu_id, bu_name, bu_code, campus FROM BUILDINGS WHERE BU_ID = %s"
+                data = [bu_id]
+                cursor.execute(statement, data)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+        except Exception as err:
+            print("Get building DB Error: ", err)
+
+        return None
+
+**get_buildings**
+
+This returns multiple queries as a list of dictionaries.
+
+.. code-block:: python
+    def get_buildings(self):
+        """
+
+        :return: Information as dictionary.
+        """
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM buildings"
                 cursor.execute(statement)
-                datas = cursor.fetchall()
+                data = cursor.fetchall()
                 cursor.close()
                 retval = []
-                for data in datas:
+                for datum in data:
                     val = {
-                        "ID": data[0],
-                        "Name": data[2],
-                        "Building": data[1]  
+                        "ID": datum[0],
+                        "Name": datum[1],
+                        "Code": datum[2],
+                        "Campus": datum[3]
                     }
                     retval.append(val)
                 return retval
         except Exception as err:
-            print("Get Rooms Error: ", err)
-	
-			
+            print("Get Buildings DB Error: ", err)
+
+
 Updating 
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
+To update a building, you have to supply building id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.
+
 .. code-block:: python
 	
-	def update_room(self, room_id, attrs, values):
+    def update_building(self, bu_id, attrs, values):
         attrs_lookup_table = {
-            "building": "BUILDING",
-            "room_name": "ROOM_NAME",
-            "class": "CLASS",
-            "lab": "LAB",
-            "room": "ROOM",
-            "available": "AVAILABLE"
+            "name": "BU_NAME",
+            "code": "BU_CODE",
+            "campus": "CAMPUS"
         }
 
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "UPDATE ROOMS SET "
+                statement = "UPDATE BUILDINGS SET "
                 for i in range(len(attrs) - 1):
                     statement += attrs_lookup_table[attrs[i]] + " = %s ,"
-                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE ROOM_ID = %s"
-                values.append(room_id)
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE BU_ID = %s"
+                values.append(bu_id)
                 cursor.execute(statement, values)
                 cursor.close()
 
         except Exception as err:
-            print("Update Rooms Error: ", err)
-		
+            print("Update Building Error: ", err)
 		
 Deleting
-~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+
+To delete a building, you have to supply building id.
 
 .. code-block:: python
 
-	def delete_room(self, room_id):
+    def delete_building(self, bu_id):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM ROOMS WHERE room_id = %s"
-                values = [room_id]
+                statement = "DELETE FROM BUILDINGS WHERE BU_ID = %s"
+                values = [bu_id]
                 cursor.execute(statement, values)
                 cursor.close()
         except Exception as err:
-            print("Delete Room Error: ", err)
+            print("Delete building error: ", err)
 	
 ****************
 Clubs
@@ -342,95 +396,173 @@ SQL Table Creation
         FOREIGN KEY (V_CHAIRMAN_2) REFERENCES PEOPLE(P_ID) ON UPDATE CASCADE ON DELETE RESTRICT
     )
 
-Adding
-~~~~~~~~~~~~~~~~~~~~
+Club Class
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since it makes it easier to create, we have defined a club class for creating an entry into our database.
+Therefore, before adding a new class, an object of class Club must be initialized. Here is the definition of
+the Club class:
 
 .. code-block:: python
 
-    def add_classroom(self, classroom):
-            try:
-                with dbapi2.connect(self.url) as connection:
-                    cursor = connection.cursor()
-                    statement = "INSERT INTO CLASSES (CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TYPE, CAP) VALUES (%s, %s, %s, %s, %s, %s)"
-                    data = [classroom.id, classroom.type, classroom.conditioner, classroom.restoration_date, classroom.board_type, classroom.cap]
-                    cursor.execute(statement, data)
-                    cursor.close()
-            except Exception as err:
-                print("Add Classroom Error: ", err)
-            return classroom
+    class Club:
+        def __init__(self, name, faculty, advisor, chairman, vice_1, vice_2):
+            self.name = name
+            self.faculty = faculty
+            self.advisor = advisor
+            self.chairman = chairman
+            self.vice_1 = vice_1
+            self.vice_2 = vice_2
 
-Reading
-~~~~~~~~~~~~~~~~~~~~
+
+Adding 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding a club into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_club() function.
 
 .. code-block:: python
 
-    def get_classrooms(self):
+   def add_club(self, club):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT CLASSES.CL_ID, ROOMS.ROOM_NAME, CLASSES.CAP, CLASSES.TYPE, BUILDINGS.BU_NAME FROM CLASSES JOIN ROOMS ON CL_ID = ROOM_ID JOIN BUILDINGS ON BUILDINGS.BU_ID = ROOMS.BUILDING"
-                cursor.execute(statement)
+                data = [club.name, club.faculty, club.advisor, club.chairman, club.vice_1, club.vice_2]
+                statement = "INSERT INTO CLUBS (NAME, FACULTY, ADVISOR, CHAIRMAN, V_CHAIRMAN_1, V_CHAIRMAN_2) VALUES (%s, %s, %s, %s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Add Club Error: ", err)
+
+Reading 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are 3 options to read information from clubs page.
+
+**get_club()**
+
+This function takes club id as input and returns the corresponding entry as a list.
+
+.. code-block:: python
+
+    def get_club(self, club_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM CLUBS WHERE CLUB_ID = %s"
+                data = [club_id]
+                print(data)
+                cursor.execute(statement, data)
                 datas = cursor.fetchall()
                 cursor.close()
+                return datas
+        except Exception as err:
+            print("Get club DB Error: ", err)
+
+        return None
+
+**get_all_clubs()**
+
+This function returns all the entries as a list of lists.
+
+.. code-block:: pyton
+
+    def get_all_clubs(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM CLUBS"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+
+        except Exception as err:
+            print("Get Clubs Error: ", err)        
+
+        return None
+
+**get_clubs_info_astext()**
+
+This function returns all the clubs as a list of dictionaries. Also, since entries include different numbers that corresponds to a key
+in a different table, we are using joins in the query so we can return all the related information in a human readable format.
+
+.. code-block:: python
+
+     def get_clubs_info_astext(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (c.club_id, c.name, f.fac_name, p1.name, p2.name, p3.name, p4.name) FROM clubs c JOIN faculties f ON c.faculty=f.fac_id JOIN people p1 ON c.advisor=p1.p_id JOIN people p2 ON c.chairman=p2.p_id JOIN people p3 ON c.v_chairman_1=p3.p_id JOIN people p4 ON c.v_chairman_2=p4.p_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
                 retval = []
-                for data in datas:
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
                     val = {
-                        "ID":data[0],
-                        "Name": data[1],
-                        "Capacity": data[2],
-                        "Class Type": data[3],
-                        "Building Name": data[4],
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Faculty": datum[2].strip('"'),
+                        "Advisor": datum[3].strip('"'),
+                        "Chair": datum[4].strip('"'),
+                        "VChair1": datum[5].strip('"'),
+                        "VChair2": datum[6].strip('"')
                     }
                     retval.append(val)
                 return retval
         except Exception as err:
-            print("Get Classrooms Error: ", err)
+            print("Get Clubs(All Text) DB Error: ", err)
 
-        return None
-	
-Updating
-~~~~~~~~~~~~~~~~~~~~
+Updating 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+To update a club, you have to supply club id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.
 
 .. code-block:: python
-
-	def update_classroom(self, class_id, attrs, values):
+	
+    def update_club(self, club_id, attrs, values):
         attrs_lookup_table = {
-            "type": "TYPE",
-            "air_conditioner": "AIR_CONDITIONER",
-            "last_restoration": "LAST_RESTORATION",
-            "board_type": "BOARD_TYPE",
-            "cap": "CAP"
+            "name": "NAME",
+            "faculty": "FACULTY",
+            "advisor": "ADVISOR",
+            "chairman": "CHAIRMAN",
+            "vice_1": "V_CHAIRMAN_1",
+            "vice_2": "V_CHAIRMAN_2"
         }
 
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "UPDATE CLASSES SET "
+                statement = "UPDATE CLUBS SET "
                 for i in range(len(attrs) - 1):
                     statement += attrs_lookup_table[attrs[i]] + " = %s ,"
-                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE CL_ID = %s"
-                print(statement, values)
-                values.append(class_id)
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE CLUB_ID = %s"
+                values.append(club_id)
                 cursor.execute(statement, values)
                 cursor.close()
-        except Exception as err:
-            print("Update Classroom Error: ", err)
 
+        except Exception as err:
+            print("Update Club Error: ", err)
+		
 Deleting
 ~~~~~~~~~~~~~~~~~~~~
 
+To delete a club, you have to supply club id.
+
 .. code-block:: python
 
-	def delete_classroom(self, cl_id):
+    def delete_club(self, club_id):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM CLASSES WHERE CL_ID = %s"
-                values = [cl_id]
+                statement = "DELETE FROM CLUBS WHERE CLUB_ID = %s"
+                values = [club_id]
                 cursor.execute(statement, values)
                 cursor.close()
         except Exception as err:
-            print("Delete Classroom Error: ", err)
+            print("Delete club error: ", err)
 
 ****************
 Departments
@@ -452,95 +584,168 @@ SQL Table Creation
         FOREIGN KEY (DEAN) REFERENCES PEOPLE(P_ID) ON UPDATE CASCADE ON DELETE RESTRICT
     )
 
-Adding
-~~~~~~~~~~~~~~~~~~~~
+Department Class
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since it makes it easier to create, we have defined a department class for creating an entry into our database.
+Therefore, before adding a new department, an object of class Department must be initialized. Here is the definition of
+the Department class:
 
 .. code-block:: python
 
-    def add_classroom(self, classroom):
-            try:
-                with dbapi2.connect(self.url) as connection:
-                    cursor = connection.cursor()
-                    statement = "INSERT INTO CLASSES (CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TYPE, CAP) VALUES (%s, %s, %s, %s, %s, %s)"
-                    data = [classroom.id, classroom.type, classroom.conditioner, classroom.restoration_date, classroom.board_type, classroom.cap]
-                    cursor.execute(statement, data)
-                    cursor.close()
-            except Exception as err:
-                print("Add Classroom Error: ", err)
-            return classroom
+    class Department:
+        def __init__(self, name, faculty, building, dean):
+            self.name = name
+            self.faculty = faculty
+            self.building = building
+            self.dean = dean
 
-Reading
-~~~~~~~~~~~~~~~~~~~~
+Adding 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding a department into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_department() function.
 
 .. code-block:: python
 
-    def get_classrooms(self):
+    def add_department(self, department):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT CLASSES.CL_ID, ROOMS.ROOM_NAME, CLASSES.CAP, CLASSES.TYPE, BUILDINGS.BU_NAME FROM CLASSES JOIN ROOMS ON CL_ID = ROOM_ID JOIN BUILDINGS ON BUILDINGS.BU_ID = ROOMS.BUILDING"
-                cursor.execute(statement)
+                data = [department.name, department.faculty, department.building, department.dean]
+                statement = "INSERT INTO DEPARTMENTS (DEP_NAME, FACULTY, BUILDING, DEAN) VALUES (%s, %s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print(" Add department Error: ", err)
+
+
+Reading 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are 3 functions to read an entry or multiple entries from the database.
+
+**get_department()**
+
+This function takes department id as an argument and returns the corresponding entry as a list.
+
+.. code-block:: python
+
+    def get_department(self, dep_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM DEPARTMENTS WHERE DEP_ID = %s"
+                data = [dep_id]
+                cursor.execute(statement, data)
                 datas = cursor.fetchall()
                 cursor.close()
+                return datas
+        except Exception as err:
+            print("Get department DB Error: ", err)
+
+        return None
+
+**get_all_departments()**
+
+This function returns all the entries of departments table as a list of lists.
+
+.. code-block:: python
+
+    def get_all_departments(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM DEPARTMENTS"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+        except Exception as err:
+            print("Fetching Departments Error: ", err)
+
+        return None
+
+**get_departments_text**
+
+This function returns all the entries of departments as a list of dictionaries. To get a human readable result, multiple
+joins are used.
+
+.. code-block:: python
+
+    def get_departments_text(self):
+        """
+
+        :return: Information as dictionary.
+        """
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM departments INNER JOIN faculties ON departments.faculty = faculties.fac_id INNER JOIN buildings ON departments.building = buildings.bu_id INNER JOIN people ON departments.dean = people.p_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
                 retval = []
-                for data in datas:
+                for datum in data:
                     val = {
-                        "ID":data[0],
-                        "Name": data[1],
-                        "Capacity": data[2],
-                        "Class Type": data[3],
-                        "Building Name": data[4],
+                        "ID": datum[0],
+                        "Name": datum[1],
+                        "Faculty": datum[6],
+                        "Building": datum[12],
+                        "Chair": datum[16]
                     }
                     retval.append(val)
                 return retval
         except Exception as err:
-            print("Get Classrooms Error: ", err)
+            print("Get Departments(All Text) DB Error: ", err)
 
-        return None
-	
-Updating
-~~~~~~~~~~~~~~~~~~~~
+Updating 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+To update a deparment, you have to supply department id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.
 
 .. code-block:: python
-
-	def update_classroom(self, class_id, attrs, values):
+	
+    def update_department(self, dep_id, attrs, values):
         attrs_lookup_table = {
-            "type": "TYPE",
-            "air_conditioner": "AIR_CONDITIONER",
-            "last_restoration": "LAST_RESTORATION",
-            "board_type": "BOARD_TYPE",
-            "cap": "CAP"
+            "name": "dep_name",
+            "faculty": "faculty",
+            "building": "building",
+            "dean": "dean"
         }
 
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "UPDATE CLASSES SET "
+                statement = "UPDATE DEPARTMENTS SET "
                 for i in range(len(attrs) - 1):
                     statement += attrs_lookup_table[attrs[i]] + " = %s ,"
-                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE CL_ID = %s"
-                print(statement, values)
-                values.append(class_id)
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE DEP_ID = %s"
+                values.append(dep_id)
                 cursor.execute(statement, values)
                 cursor.close()
-        except Exception as err:
-            print("Update Classroom Error: ", err)
 
+        except Exception as err:
+            print("Update Department Error: ", err)
+		
 Deleting
 ~~~~~~~~~~~~~~~~~~~~
 
+To delete a department, you have to supply department id.
+
 .. code-block:: python
 
-	def delete_classroom(self, cl_id):
+    def delete_department(self, dep_id):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM CLASSES WHERE CL_ID = %s"
-                values = [cl_id]
+                statement = "DELETE FROM DEPARTMENTS WHERE DEP_ID = %s"
+                values = [dep_id]
                 cursor.execute(statement, values)
                 cursor.close()
         except Exception as err:
-            print("Delete Classroom Error: ", err)
+            print("Delete Department Error: ", err)
 
 ****************
 Faculties
@@ -564,102 +769,211 @@ SQL Table Creation
         FOREIGN KEY (DEAN_ASST_2) REFERENCES PEOPLE(P_ID) ON UPDATE CASCADE ON DELETE RESTRICT
     )
 
-Adding
-~~~~~~~~~~~~~~~~~~~~
-Before adding a classroom a room is added if not exists, with the proper values.
+Faculty Class
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since it makes it easier to create, we have defined a faculty class for creating an entry into our database.
+Therefore, before adding a new faculty, an object of class Faculty must be initialized. Here is the definition of
+the Faculty class:
 
 .. code-block:: python
 
-    def add_classroom(self, classroom):
-            try:
-                with dbapi2.connect(self.url) as connection:
-                    cursor = connection.cursor()
-                    statement = "INSERT INTO CLASSES (CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TYPE, CAP) VALUES (%s, %s, %s, %s, %s, %s)"
-                    data = [classroom.id, classroom.type, classroom.conditioner, classroom.restoration_date, classroom.board_type, classroom.cap]
-                    cursor.execute(statement, data)
-                    cursor.close()
-            except Exception as err:
-                print("Add Classroom Error: ", err)
-            return classroom
+    class Faculty:
 
-Reading
-~~~~~~~~~~~~~~~~~~~~
+        def __init__(self, name, building, dean, assistant_dean_1, assistant_dean_2):
+            self.name = name
+            self.building = building
+            self.dean = dean
+            self.assistant_dean_1 = assistant_dean_1
+            self.assistant_dean_2 = assistant_dean_2
 
-Selecting all the values by the name in order to avoid ordering problems when giving them to attributes dictioanary.
+
+Adding 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding a faculty into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_faculty() function.
 
 .. code-block:: python
 
-    def get_classrooms(self):
+    def add_faculty(self, faculty):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT CLASSES.CL_ID, ROOMS.ROOM_NAME, CLASSES.CAP, CLASSES.TYPE, BUILDINGS.BU_NAME FROM CLASSES JOIN ROOMS ON CL_ID = ROOM_ID JOIN BUILDINGS ON BUILDINGS.BU_ID = ROOMS.BUILDING"
-                cursor.execute(statement)
+                data = [faculty.name, faculty.building, faculty.dean, faculty.assistant_dean_1]
+                if faculty.assistant_dean_2 is not None:
+                    data.append(faculty.assistant_dean_2)
+                    statement = "INSERT INTO FACULTIES (FAC_NAME, FAC_BUILDING, DEAN, DEAN_ASST_1, DEAN_ASST_2) VALUES (%s, %s, %s, %s, %s)"
+                    cursor.execute(statement, data)
+                else:
+                    statement = "INSERT INTO FACULTIES (FAC_NAME, FAC_BUILDING, DEAN, DEAN_ASST_1) VALUES (%s, %s, %s, %s)"
+                    cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Add faculty Error: ", err)
+
+Reading 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are 4 different functions for reading an entry or multiple entries from the database.
+
+
+**get_faculty**
+
+This function takes faculty id as an argument and returns the corresponding entry as a list.
+
+.. code-block:: python
+     def get_faculty(self, fac_id):
+        """
+        Gets faculty id as an input, returns query results.
+        By: Uğur Ali Kaplan"""
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM FACULTIES WHERE FAC_ID = %s"
+                data = [fac_id]
+                print(data)
+                cursor.execute(statement, data)
                 datas = cursor.fetchall()
                 cursor.close()
+                return datas
+        except Exception as err:
+            print("Get Faculty DB Error: ", err)
+
+        return None
+
+**get_faculties**
+
+This function returns ids, names, buildings the faculties belong to and codes of those buildings
+as a list of dictionaries. Joins are used to ensure a human readable form in the return values.
+
+.. code-block:: python
+
+    def get_faculties(self):
+        """
+        Joins faculty and buildings table, returns relevant columns as a dictionary.
+        :return: 
+        
+        By: Uğur Ali Kaplan
+        """
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM faculties INNER JOIN buildings ON faculties.fac_id = bu_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
                 retval = []
-                for data in datas:
+                for datum in data:
                     val = {
-                        "ID":data[0],
-                        "Name": data[1],
-                        "Capacity": data[2],
-                        "Class Type": data[3],
-                        "Building Name": data[4],
+                        "ID": datum[0],
+                        "Name": datum[1],
+                        "Building Name": datum[4],
+                        "Building Code": datum[5]
                     }
                     retval.append(val)
                 return retval
         except Exception as err:
-            print("Get Classrooms Error: ", err)
+            print("Get Faculties DB Error: ", err)
 
-        return None
-	
-Updating
-~~~~~~~~~~~~~~~~~~~~
+**get_all_faculties**
 
-Same update process is applied to classrooms. Attribute names and their values are given parameters from the form.
+This function returns all the rows of the faculty table as a list of lists.
 
 .. code-block:: python
+        def get_all_faculties(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM FACULTIES"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
 
-	def update_classroom(self, class_id, attrs, values):
+        except Exception as err:
+            print("Fetch Faculties Error: ", err)
+
+        return None
+
+**get_faculty_as_text**
+
+This function returns the information of all the faculties in a human readable form with a list of dictionaries. Each element
+of the returned list is a dictionary corresponding to one row of the faculties table.
+
+.. code-block:: python
+        def get_faculty_as_text(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (f.fac_id, f.fac_name, b.bu_name, p1.name, p2.name, p3.name) FROM faculties f JOIN buildings b ON f.fac_building = b.bu_id JOIN people p1 ON f.dean = p1.p_id JOIN people p2 ON f.dean_asst_1 = p2.p_id LEFT JOIN people p3 ON f.dean_asst_2 = p3.p_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Building": datum[2].strip('"'),
+                        "Dean": datum[3].strip('"'),
+                        "VDean1": datum[4].strip('"'),
+                        "VDean2": datum[5].strip('"')
+                    }
+                    retval.append(val)
+                return retval
+        except Exception as err:
+            print("Get Faculty Info(The one with the string parsing) DB Error: ", err)
+
+Updating 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+To update a faculty, you have to supply faculty id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.
+
+.. code-block:: python
+	
+    def update_faculty(self, fac_id, attrs, values):
         attrs_lookup_table = {
-            "type": "TYPE",
-            "air_conditioner": "AIR_CONDITIONER",
-            "last_restoration": "LAST_RESTORATION",
-            "board_type": "BOARD_TYPE",
-            "cap": "CAP"
+            "name": "FAC_NAME",
+            "building": "FAC_BUILDING",
+            "dean": "DEAN",
+            "vdean_1": "DEAN_ASST_1",
+            "vdean_2": "DEAN_ASST_2",
         }
 
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "UPDATE CLASSES SET "
+                statement = "UPDATE FACULTIES SET "
                 for i in range(len(attrs) - 1):
                     statement += attrs_lookup_table[attrs[i]] + " = %s ,"
-                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE CL_ID = %s"
-                print(statement, values)
-                values.append(class_id)
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE FAC_ID = %s"
+                values.append(fac_id)
                 cursor.execute(statement, values)
                 cursor.close()
-        except Exception as err:
-            print("Update Classroom Error: ", err)
 
+        except Exception as err:
+            print("Update Faculty Error: ", err)
+		
 Deleting
 ~~~~~~~~~~~~~~~~~~~~
 
-.. note:: By the cascade nature if referred room is deleted the classroom is deleted. 
+To delete a faculty, you have to supply faculty id.
 
 .. code-block:: python
 
-	def delete_classroom(self, cl_id):
+    def delete_faculty(self, fac_id):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM CLASSES WHERE CL_ID = %s"
-                values = [cl_id]
+                statement = "DELETE FROM FACULTIES WHERE FAC_ID = %s"
+                values = [fac_id]
                 cursor.execute(statement, values)
                 cursor.close()
         except Exception as err:
-            print("Delete Classroom Error: ", err)
+            print("Delete Faculty Error: ", err)
 
 ****************
 Labs
@@ -685,102 +999,174 @@ SQL Table Creation
         FOREIGN KEY (INVESTIGATOR) REFERENCES PEOPLE(P_ID) ON UPDATE CASCADE ON DELETE RESTRICT
     )
 
-Adding
-~~~~~~~~~~~~~~~~~~~~
-Before adding a classroom a room is added if not exists, with the proper values.
+Lab Class
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since it makes it easier to create, we have defined a lab class for creating an entry into our database.
+Therefore, before adding a new lab, an object of class Lab must be initialized. Here is the definition of
+the Lab class:
 
 .. code-block:: python
 
-    def add_classroom(self, classroom):
-            try:
-                with dbapi2.connect(self.url) as connection:
-                    cursor = connection.cursor()
-                    statement = "INSERT INTO CLASSES (CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TYPE, CAP) VALUES (%s, %s, %s, %s, %s, %s)"
-                    data = [classroom.id, classroom.type, classroom.conditioner, classroom.restoration_date, classroom.board_type, classroom.cap]
-                    cursor.execute(statement, data)
-                    cursor.close()
-            except Exception as err:
-                print("Add Classroom Error: ", err)
-            return classroom
+    class Lab:
+        def __init__(self, name, department, faculty, room, investigator, building):
+            self.name = name
+            self.department = department
+            self.faculty = faculty
+            self.room = room
+            self.investigator = investigator
+            self.building = building
 
-Reading
-~~~~~~~~~~~~~~~~~~~~
 
-Selecting all the values by the name in order to avoid ordering problems when giving them to attributes dictioanary.
+
+Adding 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding a lab into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_lab() function.
 
 .. code-block:: python
 
-    def get_classrooms(self):
+     def add_lab(self, lab):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT CLASSES.CL_ID, ROOMS.ROOM_NAME, CLASSES.CAP, CLASSES.TYPE, BUILDINGS.BU_NAME FROM CLASSES JOIN ROOMS ON CL_ID = ROOM_ID JOIN BUILDINGS ON BUILDINGS.BU_ID = ROOMS.BUILDING"
-                cursor.execute(statement)
+                data = [lab.name, lab.department, lab.faculty, lab.building, lab.room, lab.investigator]
+                statement = "INSERT INTO LABS (LAB_NAME, DEPARTMENT, FACULTY, BUILDING, ROOM, INVESTIGATOR) VALUES (%s, %s, %s, %s, %s, %s)"
+                cursor.execute(statement, data)
+                cursor.close()
+        except Exception as err:
+            print("Add lab Error: ", err)
+
+
+Reading 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are 3 different functions that reads from the labs table.
+
+**get_lab**
+
+This function returns the row corresponding to given lab id as a list.
+
+.. code-block:: python
+    def get_lab(self, lab_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM LABS WHERE LAB_ID = %s"
+                data = [lab_id]
+                cursor.execute(statement, data)
                 datas = cursor.fetchall()
                 cursor.close()
+                return datas
+        except Exception as err:
+            print("Get Lab DB Error: ", err)
+
+        return None
+
+
+**get_all_labs**
+
+This function returns all the labs as a list of lists.
+
+.. code-block:: python
+    def get_all_labs(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM LABS"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+        except Exception as err:
+            print("Delete lab Error: ", err)
+
+        return None
+
+
+**get_lab_info**
+
+This function returns all the rows of labs table as a list of dictionaries. To achieve a human readable form in the returned dictionaries,
+multiple joins are used in the select statement.
+
+.. code-block:: python
+    def get_lab_info(self):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (l.lab_id, l.lab_name, d.dep_name, f.fac_name, b.bu_name, r.room_name, p.name) FROM labs l JOIN departments d ON l.department=d.dep_id JOIN faculties f ON l.faculty = f.fac_id JOIN buildings b ON l.building=b.bu_id JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator=p.p_id"
+                cursor.execute(statement)
+                data = cursor.fetchall()
+                cursor.close()
                 retval = []
-                for data in datas:
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
                     val = {
-                        "ID":data[0],
-                        "Name": data[1],
-                        "Capacity": data[2],
-                        "Class Type": data[3],
-                        "Building Name": data[4],
+                        "ID": datum[0],
+                        "Name": datum[1].strip('"'),
+                        "Department": datum[2].strip('"'),
+                        "Faculty": datum[3].strip('"'),
+                        "Building": datum[4].strip('"'),
+                        "Room": datum[5].strip('"'),
+                        "Investigator": datum[6].strip('"')
                     }
                     retval.append(val)
                 return retval
         except Exception as err:
-            print("Get Classrooms Error: ", err)
+            print("Get Lab Info(The one with the string parsing) DB Error: ", err)
 
-        return None
-	
-Updating
-~~~~~~~~~~~~~~~~~~~~
 
-Same update process is applied to classrooms. Attribute names and their values are given parameters from the form.
+
+Updating 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+To update a lab, you have to supply lab id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.
 
 .. code-block:: python
-
-	def update_classroom(self, class_id, attrs, values):
+	
+    def update_lab(self, lab_id, attrs, values):
         attrs_lookup_table = {
-            "type": "TYPE",
-            "air_conditioner": "AIR_CONDITIONER",
-            "last_restoration": "LAST_RESTORATION",
-            "board_type": "BOARD_TYPE",
-            "cap": "CAP"
+            "name": "LAB_NAME",
+            "department": "DEPARTMENT",
+            "faculty": "FACULTY",
+            "building": "BUILDING",
+            "room": "ROOM",
+            "investigator": "INVESTIGATOR"
         }
 
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "UPDATE CLASSES SET "
+                statement = "UPDATE LABS SET "
                 for i in range(len(attrs) - 1):
                     statement += attrs_lookup_table[attrs[i]] + " = %s ,"
-                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE CL_ID = %s"
-                print(statement, values)
-                values.append(class_id)
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE LAB_ID = %s"
+                values.append(lab_id)
                 cursor.execute(statement, values)
                 cursor.close()
-        except Exception as err:
-            print("Update Classroom Error: ", err)
 
+        except Exception as err:
+            print("Update lab Error: ", err)
+		
 Deleting
 ~~~~~~~~~~~~~~~~~~~~
 
-.. note:: By the cascade nature if referred room is deleted the classroom is deleted. 
+To delete a lab, you have to supply lab id.
 
 .. code-block:: python
 
-	def delete_classroom(self, cl_id):
+    def delete_lab(self, lab_id):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM CLASSES WHERE CL_ID = %s"
-                values = [cl_id]
+                statement = "DELETE FROM LABS WHERE LAB_ID = %s"
+                values = [lab_id]
                 cursor.execute(statement, values)
                 cursor.close()
         except Exception as err:
-            print("Delete Classroom Error: ", err)
+            print("Delete lab Error: ", err)
 
 ****************
 Papers
@@ -788,9 +1174,6 @@ Papers
 
 SQL Table Creation
 ~~~~~~~~~~~~~~~~~~~~
-
-Private and foreign key class id refers to the room id that the class in.
-.. note:: In our structure every classroom is a (inside a) room.
 
 .. code-block:: sql
 
@@ -804,99 +1187,197 @@ Private and foreign key class id refers to the room id that the class in.
         FOREIGN KEY (AUTHOR) REFERENCES PEOPLE(P_ID) ON UPDATE CASCADE ON DELETE RESTRICT
     )
 
-Adding
-~~~~~~~~~~~~~~~~~~~~
-Before adding a classroom a room is added if not exists, with the proper values.
+Paper Class
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since it makes it easier to create, we have defined a paper class for creating an entry into our database.
+Therefore, before adding a new paper an object of class Paper must be initialized. Here is the definition of
+the Paper class:
 
 .. code-block:: python
 
-    def add_classroom(self, classroom):
-            try:
-                with dbapi2.connect(self.url) as connection:
-                    cursor = connection.cursor()
-                    statement = "INSERT INTO CLASSES (CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TYPE, CAP) VALUES (%s, %s, %s, %s, %s, %s)"
-                    data = [classroom.id, classroom.type, classroom.conditioner, classroom.restoration_date, classroom.board_type, classroom.cap]
-                    cursor.execute(statement, data)
-                    cursor.close()
-            except Exception as err:
-                print("Add Classroom Error: ", err)
-            return classroom
+    class Paper:
+        def __init__(self, title, platform, citation, author, isConference):
+            self.title = title
+            self.platform = platform
+            self.citation = citation
+            self.author = author
+            self.isConference = isConference
 
-Reading
-~~~~~~~~~~~~~~~~~~~~
 
-Selecting all the values by the name in order to avoid ordering problems when giving them to attributes dictioanary.
+
+Adding 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding a paper into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_paper() function.
 
 .. code-block:: python
 
-    def get_classrooms(self):
+    def add_paper(self, paper):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "SELECT CLASSES.CL_ID, ROOMS.ROOM_NAME, CLASSES.CAP, CLASSES.TYPE, BUILDINGS.BU_NAME FROM CLASSES JOIN ROOMS ON CL_ID = ROOM_ID JOIN BUILDINGS ON BUILDINGS.BU_ID = ROOMS.BUILDING"
-                cursor.execute(statement)
-                datas = cursor.fetchall()
+                data = [paper.title, paper.platform, paper.citation, paper.author, paper.isConference]
+                statement = "INSERT INTO PAPERS (TITLE, PLAT, CITATION_COUNT, AUTHOR, CONFERENCE) VALUES (%s, %s, %s, %s, %s)"
+                cursor.execute(statement, data)
                 cursor.close()
-                retval = []
-                for data in datas:
-                    val = {
-                        "ID":data[0],
-                        "Name": data[1],
-                        "Capacity": data[2],
-                        "Class Type": data[3],
-                        "Building Name": data[4],
-                    }
-                    retval.append(val)
-                return retval
         except Exception as err:
-            print("Get Classrooms Error: ", err)
+            print("Add Paper Error: ", err)
 
-        return None
-	
-Updating
-~~~~~~~~~~~~~~~~~~~~
 
-Same update process is applied to classrooms. Attribute names and their values are given parameters from the form.
+Reading 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are different methods for reading entries from the database.
+
+**get_authors**
+
+This function returns all the people in the database that has a written paper in the database as a list
+of dictionaries.
 
 .. code-block:: python
 
-	def update_classroom(self, class_id, attrs, values):
+    def get_authors(self):
+        with dbapi2.connect(self.url) as connection:
+            cursor = connection.cursor()
+            statement = "SELECT DISTINCT author, name from papers join people on author=p_id;"
+            cursor.execute(statement)
+            data = cursor.fetchall()
+            cursor.close()
+            retval = []
+            for datum in data:
+                val = {
+                    "ID": datum[0],
+                    "Name": datum[1]
+                }
+                retval.append(val)
+            return retval
+
+**get_paper**
+
+This function returns the relevant entry from the papers table according to given paper id as a list.
+
+.. code-block:: python
+
+    def get_paper(self, paper_id):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT * FROM PAPERS WHERE PAPER_ID = %s"
+                data = [paper_id]
+                cursor.execute(statement, data)
+                data = cursor.fetchall()
+                cursor.close()
+                return data
+        except Exception as err:
+            print("Get paper DB Error: ", err)
+
+        return None
+
+**get_paper_by_author**
+
+This function returns all the papers written by a given author as a list of dictionaries. You have to supply person id
+to this function. First, it fetches all the papers written by this author. Then, it gets the papers with the same title from the
+database and determines if there are other authors and adds them to the authors list. Since we use inner join for this, if there
+is a single author, author list stays empty. Therefore, we check the length of the authors list and add the name of the given person.
+
+.. code-block:: python
+    def get_paper_by_author(self, person):
+        try:
+            with dbapi2.connect(self.url) as connection:
+                cursor = connection.cursor()
+                statement = "SELECT (paper_id, title, plat, citation_count, conference) FROM papers WHERE papers.author = %s"
+                data = [person]
+                cursor.execute(statement, data)
+                data = cursor.fetchall()
+                cursor.close()
+                retval = []
+                for datum in data:
+                    datum = datum[0].lstrip("(").rstrip(")").split(",")
+                    val = {
+                        "ID": datum[0],
+                        "Title": datum[1].strip('"'),
+                        "Platform": datum[2].strip('"'),
+                        "Citation": datum[3],
+                        "Conference": datum[4],
+                        "Authors": []
+                    }
+
+                    if val["Conference"] == "t":
+                        val["Conference"] = True
+                    else:
+                        val["Conference"] = False
+
+                    retval.append(val)
+
+                for val in retval:
+                    cursor = connection.cursor()
+                    statement = "SELECT name FROM papers p1 JOIN papers p2 ON p1.title = p2.title JOIN people p3 ON p3.p_id = p1.author WHERE p1.author <> p2.author AND p1.title = %s"
+                    data = [val["Title"]]
+                    cursor.execute(statement, data)
+                    data = cursor.fetchall()
+                    for datum in data:
+                        val["Authors"].append(datum[0])
+                    val["Authors"] = list(set(val["Authors"]))
+                    if len(val["Authors"]) == 0:
+                        statement = "SELECT name FROM papers p1 JOIN people p2 ON p1.author=p2.p_id WHERE title = %s"
+                        data = [val["Title"]]
+                        cursor.execute(statement, data)
+                        data = cursor.fetchall()
+                        val["Authors"].append(data[0][0])
+                    cursor.close()
+
+                return retval
+        except Exception as err:
+            print("Get Paper by Author DB Error: ", err)
+
+
+Updating 
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+To update a paper, you have to supply paper id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.
+
+.. code-block:: python
+	
+    def update_paper(self, paper_id, attrs, values):
         attrs_lookup_table = {
-            "type": "TYPE",
-            "air_conditioner": "AIR_CONDITIONER",
-            "last_restoration": "LAST_RESTORATION",
-            "board_type": "BOARD_TYPE",
-            "cap": "CAP"
+            "title": "TITLE",
+            "platform": "PLAT",
+            "citation": "CITATION_COUNT",
+            "author": "AUTHOR",
+            "isConference": "CONFERENCE"
         }
 
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "UPDATE CLASSES SET "
+                statement = "UPDATE PAPERS SET "
                 for i in range(len(attrs) - 1):
                     statement += attrs_lookup_table[attrs[i]] + " = %s ,"
-                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE CL_ID = %s"
-                print(statement, values)
-                values.append(class_id)
+                statement += attrs_lookup_table[attrs[-1]] + " = %s WHERE PAPER_ID = %s"
+                values.append(paper_id)
                 cursor.execute(statement, values)
                 cursor.close()
-        except Exception as err:
-            print("Update Classroom Error: ", err)
 
+        except Exception as err:
+            print("Update Paper Error: ", err)
+		
 Deleting
 ~~~~~~~~~~~~~~~~~~~~
 
-.. note:: By the cascade nature if referred room is deleted the classroom is deleted. 
+To delete a paper, you have to supply paper id.
 
 .. code-block:: python
 
-	def delete_classroom(self, cl_id):
+    def delete_paper(self, paper_id):
         try:
             with dbapi2.connect(self.url) as connection:
                 cursor = connection.cursor()
-                statement = "DELETE FROM CLASSES WHERE CL_ID = %s"
-                values = [cl_id]
+                statement = "DELETE FROM PAPERS WHERE PAPER_ID = %s"
+                values = [paper_id]
                 cursor.execute(statement, values)
                 cursor.close()
         except Exception as err:
-            print("Delete Classroom Error: ", err)
+            print("Delete paper error: ", err)
