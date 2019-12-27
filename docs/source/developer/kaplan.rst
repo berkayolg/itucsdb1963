@@ -274,6 +274,7 @@ buildings in the database.
 This returns the corresponding query result of the given building id as a list.
 
 .. code-block:: python
+
     def get_building(self, bu_id):
         """
 
@@ -299,6 +300,7 @@ This returns the corresponding query result of the given building id as a list.
 This returns multiple queries as a list of dictionaries.
 
 .. code-block:: python
+
     def get_buildings(self):
         """
 
@@ -465,7 +467,7 @@ This function takes club id as input and returns the corresponding entry as a li
 
 This function returns all the entries as a list of lists.
 
-.. code-block:: pyton
+.. code-block:: python
 
     def get_all_clubs(self):
         try:
@@ -823,6 +825,7 @@ There are 4 different functions for reading an entry or multiple entries from th
 This function takes faculty id as an argument and returns the corresponding entry as a list.
 
 .. code-block:: python
+
      def get_faculty(self, fac_id):
         """
         Gets faculty id as an input, returns query results.
@@ -881,6 +884,7 @@ as a list of dictionaries. Joins are used to ensure a human readable form in the
 This function returns all the rows of the faculty table as a list of lists.
 
 .. code-block:: python
+
         def get_all_faculties(self):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -902,6 +906,7 @@ This function returns the information of all the faculties in a human readable f
 of the returned list is a dictionary corresponding to one row of the faculties table.
 
 .. code-block:: python
+
         def get_faculty_as_text(self):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -1049,6 +1054,7 @@ There are 3 different functions that reads from the labs table.
 This function returns the row corresponding to given lab id as a list.
 
 .. code-block:: python
+
     def get_lab(self, lab_id):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -1070,6 +1076,7 @@ This function returns the row corresponding to given lab id as a list.
 This function returns all the labs as a list of lists.
 
 .. code-block:: python
+
     def get_all_labs(self):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -1091,6 +1098,7 @@ This function returns all the rows of labs table as a list of dictionaries. To a
 multiple joins are used in the select statement.
 
 .. code-block:: python
+
     def get_lab_info(self):
         try:
             with dbapi2.connect(self.url) as connection:
@@ -1283,6 +1291,7 @@ database and determines if there are other authors and adds them to the authors 
 is a single author, author list stays empty. Therefore, we check the length of the authors list and add the name of the given person.
 
 .. code-block:: python
+
     def get_paper_by_author(self, person):
         try:
             with dbapi2.connect(self.url) as connection:
