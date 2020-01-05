@@ -1,0 +1,1454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Uğur Ali Kaplan &mdash; ITUCSDB1963  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Mehmet Altuner" href="mehmet.html" />
+    <link rel="prev" title="Parts Implemented by Berkay Olgun" href="berkay.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1963
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#database-design">Database Design</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#code">Code</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="berkay.html">Parts Implemented by Berkay Olgun</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parts Implemented by Uğur Ali Kaplan</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#assistants">Assistants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#buildings">Buildings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#clubs">Clubs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#departments">Departments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#faculties">Faculties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#labs">Labs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="mehmet.html">Parts Implemented by Mehmet Altuner</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1963</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Uğur Ali Kaplan</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/kaplan.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-ugur-ali-kaplan">
+<h1>Parts Implemented by Uğur Ali Kaplan<a class="headerlink" href="#parts-implemented-by-ugur-ali-kaplan" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="assistants">
+<h2>Assistants<a class="headerlink" href="#assistants" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sql-table-creation">
+<h3>SQL Table Creation<a class="headerlink" href="#sql-table-creation" title="Permalink to this headline">¶</a></h3>
+<p>This is how Assistants table is defined in the database. As we are holding foreign keys, it is impossible to
+create an assistant entry before having the right values for foreign key attributes. Related information
+about how to create entries for those tables can be found in the other parts of this documentation.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">ASSISTANTS</span> <span class="p">(</span>
+    <span class="n">AS_ID</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">AS_PERSON</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">LAB</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">DEGREE</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">DEPARTMENT</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">FACULTY</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">AS_PERSON</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">LAB</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">LABS</span><span class="p">(</span><span class="n">LAB_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">DEPARTMENT</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">DEPARTMENTS</span><span class="p">(</span><span class="n">DEP_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">FACULTY</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">FACULTIES</span><span class="p">(</span><span class="n">FAC_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="assistant-class">
+<h3>Assistant Class<a class="headerlink" href="#assistant-class" title="Permalink to this headline">¶</a></h3>
+<p>Since it makes it easier to create, we have defined an assistant class for creating an entry into our database.
+Therefore, before adding a new assistant an object of class Assistant must be initialized. Here is the definition of
+the Assistant class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Assistant</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person</span><span class="p">,</span> <span class="n">lab</span><span class="p">,</span> <span class="n">degree</span><span class="p">,</span> <span class="n">department</span><span class="p">,</span> <span class="n">faculty</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">person</span> <span class="o">=</span> <span class="n">person</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lab</span> <span class="o">=</span> <span class="n">lab</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">degree</span> <span class="o">=</span> <span class="n">degree</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">department</span> <span class="o">=</span> <span class="n">department</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">faculty</span> <span class="o">=</span> <span class="n">faculty</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding">
+<h3>Adding<a class="headerlink" href="#adding" title="Permalink to this headline">¶</a></h3>
+<p>Adding an assistant into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_assistant() function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_assistant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">assistant</span><span class="p">):</span>
+     <span class="k">try</span><span class="p">:</span>
+         <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+             <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+             <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">assistant</span><span class="o">.</span><span class="n">person</span><span class="p">,</span> <span class="n">assistant</span><span class="o">.</span><span class="n">lab</span><span class="p">,</span> <span class="n">assistant</span><span class="o">.</span><span class="n">degree</span><span class="p">,</span> <span class="n">assistant</span><span class="o">.</span><span class="n">department</span><span class="p">,</span> <span class="n">assistant</span><span class="o">.</span><span class="n">faculty</span><span class="p">]</span>
+             <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO ASSISTANTS (AS_PERSON, LAB, DEGREE, DEPARTMENT, FACULTY) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add assistant Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reading">
+<h3>Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h3>
+<p>It turns out, reading assistants is not as straigthforward as creating an entry. There are multiple options.</p>
+<p><strong>Option 1: get_assistant</strong></p>
+<p>get_assistant takes assistant id as input and returns a dictionary. It also returns assistant’s name, email and photo from people
+table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_assistant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_id</span><span class="p">):</span>
+     <span class="k">try</span><span class="p">:</span>
+         <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+             <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+             <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT (a.as_id, p.name, p.email, p.photo, a.degree, a.as_person, a.lab, a.department, a.faculty) FROM assistants a JOIN people p ON a.as_person = p.p_id WHERE a.as_id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+             <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">as_id</span><span class="p">]</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+             <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+             <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+             <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                 <span class="n">datum</span> <span class="o">=</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                 <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                     <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                     <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                     <span class="s2">&quot;Email&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                     <span class="s2">&quot;Photo&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                     <span class="s2">&quot;Degree&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                     <span class="s2">&quot;Person&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="mi">5</span><span class="p">]),</span>
+                     <span class="s2">&quot;Lab&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="mi">6</span><span class="p">]),</span>
+                     <span class="s2">&quot;Dep&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="mi">7</span><span class="p">]),</span>
+                     <span class="s2">&quot;Fac&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span>
+                 <span class="p">}</span>
+                 <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+             <span class="k">return</span> <span class="n">retval</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get assistant DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+     <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>Option 2: get_assistants</strong></p>
+<p>Notice the “s” at the end of the function name. This is used to get all the assistants in the database.
+It returns the query result as a list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_assistants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+     <span class="k">try</span><span class="p">:</span>
+         <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+             <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+             <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM ASSISTANTS JOIN PEOPLE ON (ASSISTANTS.as_person = PEOPLE.p_id)&quot;</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+             <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+             <span class="k">return</span> <span class="n">data</span>
+     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete assistant Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Option 3: get_assistant_info</strong></p>
+<p>This is a combination of get_assistant and get_assistants. It returns a list of dictionaries where each dictionary is for an
+entry in the assistants table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_assistant_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT (a.as_id, p.name, p.email, p.photo, a.degree) FROM assistants a JOIN people p ON a.as_person = p.p_id&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">datum</span> <span class="o">=</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                    <span class="s2">&quot;Email&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="s2">&quot;Photo&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                    <span class="s2">&quot;Degree&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+                <span class="p">}</span>
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">retval</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Assistant Info(The one with the string parsing) DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="updating">
+<h3>Updating<a class="headerlink" href="#updating" title="Permalink to this headline">¶</a></h3>
+<p>To update an assistant, you have to supply assistant id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_assistant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;person&quot;</span><span class="p">:</span> <span class="s2">&quot;AS_PERSON&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lab&quot;</span><span class="p">:</span> <span class="s2">&quot;LAB&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;degree&quot;</span><span class="p">:</span> <span class="s2">&quot;DEGREE&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;department&quot;</span><span class="p">:</span> <span class="s2">&quot;DEPARTMENT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;faculty&quot;</span><span class="p">:</span> <span class="s2">&quot;FACULTY&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE ASSISTANTS SET &quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE AS_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">as_id</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update assistant Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deleting">
+<h3>Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">¶</a></h3>
+<p>To delete an assistant, you have to supply assistant id.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_assistant</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">as_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM ASSISTANTS WHERE AS_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">as_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete assistant Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="buildings">
+<h2>Buildings<a class="headerlink" href="#buildings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>SQL Table Creation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">BUILDINGS</span> <span class="p">(</span>
+    <span class="n">BU_ID</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">BU_NAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">BU_CODE</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="n">CAMPUS</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="building-class">
+<h3>Building Class<a class="headerlink" href="#building-class" title="Permalink to this headline">¶</a></h3>
+<p>Since it makes it easier to create, we have defined a building class for creating an entry into our database.
+Therefore, before adding a new building an object of class Building must be initialized. Here is the definition of
+the Building class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Building</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">campus</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">code</span> <span class="o">=</span> <span class="n">code</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">campus</span> <span class="o">=</span> <span class="n">campus</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h3>Adding<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>Adding a building into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_building() function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_building</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">building</span><span class="p">):</span>
+     <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">     :param building: A building object</span>
+<span class="sd">     :return:</span>
+<span class="sd">     &quot;&quot;&quot;</span>
+     <span class="k">try</span><span class="p">:</span>
+         <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+             <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+             <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">building</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">building</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">building</span><span class="o">.</span><span class="n">campus</span><span class="p">]</span>
+             <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO BUILDINGS (BU_NAME, BU_CODE, CAMPUS) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add Building Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Reading<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>There are two functions. One returns a specific entry for the given entry and the other one returns entries for all of the
+buildings in the database.</p>
+<p><strong>get_building()</strong></p>
+<p>This returns the corresponding query result of the given building id as a list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_building</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bu_id</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :param bu_id: ID of the building in the database</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT bu_id, bu_name, bu_code, campus FROM BUILDINGS WHERE BU_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">bu_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">data</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get building DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_buildings</strong></p>
+<p>This returns multiple queries as a list of dictionaries.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_buildings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :return: Information as dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM buildings&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="s2">&quot;Code&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="s2">&quot;Campus&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+                <span class="p">}</span>
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">retval</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Buildings DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Updating<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>To update a building, you have to supply building id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_building</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bu_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;BU_NAME&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="s2">&quot;BU_CODE&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;campus&quot;</span><span class="p">:</span> <span class="s2">&quot;CAMPUS&quot;</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE BUILDINGS SET &quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE BU_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bu_id</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update Building Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>Deleting<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>To delete a building, you have to supply building id.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_building</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bu_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM BUILDINGS WHERE BU_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">bu_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete building error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="clubs">
+<h2>Clubs<a class="headerlink" href="#clubs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>SQL Table Creation<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">CLUBS</span> <span class="p">(</span>
+    <span class="n">CLUB_ID</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">NAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">FACULTY</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">ADVISOR</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">CHAIRMAN</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">V_CHAIRMAN_1</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">V_CHAIRMAN_2</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">FACULTY</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">FACULTIES</span><span class="p">(</span><span class="n">FAC_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">ADVISOR</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">CHAIRMAN</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">V_CHAIRMAN_1</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">V_CHAIRMAN_2</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="club-class">
+<h3>Club Class<a class="headerlink" href="#club-class" title="Permalink to this headline">¶</a></h3>
+<p>Since it makes it easier to create, we have defined a club class for creating an entry into our database.
+Therefore, before adding a new class, an object of class Club must be initialized. Here is the definition of
+the Club class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Club</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">faculty</span><span class="p">,</span> <span class="n">advisor</span><span class="p">,</span> <span class="n">chairman</span><span class="p">,</span> <span class="n">vice_1</span><span class="p">,</span> <span class="n">vice_2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">faculty</span> <span class="o">=</span> <span class="n">faculty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">advisor</span> <span class="o">=</span> <span class="n">advisor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chairman</span> <span class="o">=</span> <span class="n">chairman</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vice_1</span> <span class="o">=</span> <span class="n">vice_1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vice_2</span> <span class="o">=</span> <span class="n">vice_2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>Adding<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Adding a club into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_club() function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_club</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">club</span><span class="p">):</span>
+     <span class="k">try</span><span class="p">:</span>
+         <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+             <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+             <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">club</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">faculty</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">advisor</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">chairman</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">vice_1</span><span class="p">,</span> <span class="n">club</span><span class="o">.</span><span class="n">vice_2</span><span class="p">]</span>
+             <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO CLUBS (NAME, FACULTY, ADVISOR, CHAIRMAN, V_CHAIRMAN_1, V_CHAIRMAN_2) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+             <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add Club Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>Reading<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>There are 3 options to read information from clubs page.</p>
+<p><strong>get_club()</strong></p>
+<p>This function takes club id as input and returns the corresponding entry as a list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_club</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">club_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM CLUBS WHERE CLUB_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">club_id</span><span class="p">]</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">datas</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">datas</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get club DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_all_clubs()</strong></p>
+<p>This function returns all the entries as a list of lists.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_all_clubs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM CLUBS&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Clubs Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_clubs_info_astext()</strong></p>
+<p>This function returns all the clubs as a list of dictionaries. Also, since entries include different numbers that corresponds to a key
+in a different table, we are using joins in the query so we can return all the related information in a human readable format.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_clubs_info_astext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+   <span class="k">try</span><span class="p">:</span>
+       <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+           <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+           <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT (c.club_id, c.name, f.fac_name, p1.name, p2.name, p3.name, p4.name) FROM clubs c JOIN faculties f ON c.faculty=f.fac_id JOIN people p1 ON c.advisor=p1.p_id JOIN people p2 ON c.chairman=p2.p_id JOIN people p3 ON c.v_chairman_1=p3.p_id JOIN people p4 ON c.v_chairman_2=p4.p_id&quot;</span>
+           <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+           <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+           <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+           <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+           <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+               <span class="n">datum</span> <span class="o">=</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+               <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                   <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                   <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                   <span class="s2">&quot;Faculty&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                   <span class="s2">&quot;Advisor&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                   <span class="s2">&quot;Chair&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                   <span class="s2">&quot;VChair1&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                   <span class="s2">&quot;VChair2&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+               <span class="p">}</span>
+               <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+           <span class="k">return</span> <span class="n">retval</span>
+   <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Clubs(All Text) DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>Updating<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>To update a club, you have to supply club id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_club</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">club_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;NAME&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;faculty&quot;</span><span class="p">:</span> <span class="s2">&quot;FACULTY&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;advisor&quot;</span><span class="p">:</span> <span class="s2">&quot;ADVISOR&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;chairman&quot;</span><span class="p">:</span> <span class="s2">&quot;CHAIRMAN&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vice_1&quot;</span><span class="p">:</span> <span class="s2">&quot;V_CHAIRMAN_1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vice_2&quot;</span><span class="p">:</span> <span class="s2">&quot;V_CHAIRMAN_2&quot;</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE CLUBS SET &quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE CLUB_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">club_id</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update Club Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>Deleting<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<p>To delete a club, you have to supply club id.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_club</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">club_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM CLUBS WHERE CLUB_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">club_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete club error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="departments">
+<h2>Departments<a class="headerlink" href="#departments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id11">
+<h3>SQL Table Creation<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">DEPARTMENTS</span> <span class="p">(</span>
+    <span class="n">DEP_ID</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">DEP_NAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">FACULTY</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">BUILDING</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">DEAN</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">BUILDING</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">BUILDINGS</span><span class="p">(</span><span class="n">BU_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">FACULTY</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">FACULTIES</span><span class="p">(</span><span class="n">FAC_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">DEAN</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="department-class">
+<h3>Department Class<a class="headerlink" href="#department-class" title="Permalink to this headline">¶</a></h3>
+<p>Since it makes it easier to create, we have defined a department class for creating an entry into our database.
+Therefore, before adding a new department, an object of class Department must be initialized. Here is the definition of
+the Department class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Department</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">faculty</span><span class="p">,</span> <span class="n">building</span><span class="p">,</span> <span class="n">dean</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">faculty</span> <span class="o">=</span> <span class="n">faculty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">building</span> <span class="o">=</span> <span class="n">building</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dean</span> <span class="o">=</span> <span class="n">dean</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>Adding<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<p>Adding a department into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_department() function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_department</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">department</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">department</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">department</span><span class="o">.</span><span class="n">faculty</span><span class="p">,</span> <span class="n">department</span><span class="o">.</span><span class="n">building</span><span class="p">,</span> <span class="n">department</span><span class="o">.</span><span class="n">dean</span><span class="p">]</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO DEPARTMENTS (DEP_NAME, FACULTY, BUILDING, DEAN) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Add department Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>Reading<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
+<p>There are 3 functions to read an entry or multiple entries from the database.</p>
+<p><strong>get_department()</strong></p>
+<p>This function takes department id as an argument and returns the corresponding entry as a list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_department</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dep_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM DEPARTMENTS WHERE DEP_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">dep_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">datas</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">datas</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get department DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_all_departments()</strong></p>
+<p>This function returns all the entries of departments table as a list of lists.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_all_departments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM DEPARTMENTS&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">data</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetching Departments Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_departments_text</strong></p>
+<p>This function returns all the entries of departments as a list of dictionaries. To get a human readable result, multiple
+joins are used.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_departments_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    :return: Information as dictionary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM departments INNER JOIN faculties ON departments.faculty = faculties.fac_id INNER JOIN buildings ON departments.building = buildings.bu_id INNER JOIN people ON departments.dean = people.p_id&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="s2">&quot;Faculty&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span>
+                    <span class="s2">&quot;Building&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span>
+                    <span class="s2">&quot;Chair&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span>
+                <span class="p">}</span>
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">retval</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Departments(All Text) DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>Updating<a class="headerlink" href="#id14" title="Permalink to this headline">¶</a></h3>
+<p>To update a deparment, you have to supply department id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_department</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dep_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;dep_name&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;faculty&quot;</span><span class="p">:</span> <span class="s2">&quot;faculty&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;building&quot;</span><span class="p">:</span> <span class="s2">&quot;building&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dean&quot;</span><span class="p">:</span> <span class="s2">&quot;dean&quot;</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE DEPARTMENTS SET &quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE DEP_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dep_id</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update Department Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h3>Deleting<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
+<p>To delete a department, you have to supply department id.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_department</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dep_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM DEPARTMENTS WHERE DEP_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">dep_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete Department Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="faculties">
+<h2>Faculties<a class="headerlink" href="#faculties" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id16">
+<h3>SQL Table Creation<a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">FACULTIES</span> <span class="p">(</span>
+    <span class="n">FAC_ID</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">FAC_NAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">FAC_BUILDING</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">DEAN</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">DEAN_ASST_1</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">DEAN_ASST_2</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">FAC_BUILDING</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">BUILDINGS</span><span class="p">(</span><span class="n">BU_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">DEAN</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">DEAN_ASST_1</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">DEAN_ASST_2</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="faculty-class">
+<h3>Faculty Class<a class="headerlink" href="#faculty-class" title="Permalink to this headline">¶</a></h3>
+<p>Since it makes it easier to create, we have defined a faculty class for creating an entry into our database.
+Therefore, before adding a new faculty, an object of class Faculty must be initialized. Here is the definition of
+the Faculty class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Faculty</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">building</span><span class="p">,</span> <span class="n">dean</span><span class="p">,</span> <span class="n">assistant_dean_1</span><span class="p">,</span> <span class="n">assistant_dean_2</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">building</span> <span class="o">=</span> <span class="n">building</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dean</span> <span class="o">=</span> <span class="n">dean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assistant_dean_1</span> <span class="o">=</span> <span class="n">assistant_dean_1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assistant_dean_2</span> <span class="o">=</span> <span class="n">assistant_dean_2</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h3>Adding<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<p>Adding a faculty into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_faculty() function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_faculty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">faculty</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">faculty</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">faculty</span><span class="o">.</span><span class="n">building</span><span class="p">,</span> <span class="n">faculty</span><span class="o">.</span><span class="n">dean</span><span class="p">,</span> <span class="n">faculty</span><span class="o">.</span><span class="n">assistant_dean_1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">faculty</span><span class="o">.</span><span class="n">assistant_dean_2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">faculty</span><span class="o">.</span><span class="n">assistant_dean_2</span><span class="p">)</span>
+                <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO FACULTIES (FAC_NAME, FAC_BUILDING, DEAN, DEAN_ASST_1, DEAN_ASST_2) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO FACULTIES (FAC_NAME, FAC_BUILDING, DEAN, DEAN_ASST_1) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add faculty Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>Reading<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<p>There are 4 different functions for reading an entry or multiple entries from the database.</p>
+<p><strong>get_faculty</strong></p>
+<p>This function takes faculty id as an argument and returns the corresponding entry as a list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_faculty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fac_id</span><span class="p">):</span>
+   <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Gets faculty id as an input, returns query results.</span>
+<span class="sd">   By: Uğur Ali Kaplan&quot;&quot;&quot;</span>
+   <span class="k">try</span><span class="p">:</span>
+       <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+           <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+           <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM FACULTIES WHERE FAC_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+           <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">fac_id</span><span class="p">]</span>
+           <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+           <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+           <span class="n">datas</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+           <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+           <span class="k">return</span> <span class="n">datas</span>
+   <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Faculty DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+   <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_faculties</strong></p>
+<p>This function returns ids, names, buildings the faculties belong to and codes of those buildings
+as a list of dictionaries. Joins are used to ensure a human readable form in the return values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_faculties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Joins faculty and buildings table, returns relevant columns as a dictionary.</span>
+<span class="sd">    :return:</span>
+
+<span class="sd">    By: Uğur Ali Kaplan</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM faculties INNER JOIN buildings ON faculties.fac_id = bu_id&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="s2">&quot;Building Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                    <span class="s2">&quot;Building Code&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+                <span class="p">}</span>
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">retval</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Faculties DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>get_all_faculties</strong></p>
+<p>This function returns all the rows of the faculty table as a list of lists.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_all_faculties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM FACULTIES&quot;</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fetch Faculties Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+<span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_faculty_as_text</strong></p>
+<p>This function returns the information of all the faculties in a human readable form with a list of dictionaries. Each element
+of the returned list is a dictionary corresponding to one row of the faculties table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_faculty_as_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT (f.fac_id, f.fac_name, b.bu_name, p1.name, p2.name, p3.name) FROM faculties f JOIN buildings b ON f.fac_building = b.bu_id JOIN people p1 ON f.dean = p1.p_id JOIN people p2 ON f.dean_asst_1 = p2.p_id LEFT JOIN people p3 ON f.dean_asst_2 = p3.p_id&quot;</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">datum</span> <span class="o">=</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                <span class="s2">&quot;Building&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                <span class="s2">&quot;Dean&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                <span class="s2">&quot;VDean1&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                <span class="s2">&quot;VDean2&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+            <span class="p">}</span>
+            <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">retval</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Faculty Info(The one with the string parsing) DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id19">
+<h3>Updating<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<p>To update a faculty, you have to supply faculty id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_faculty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fac_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;FAC_NAME&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;building&quot;</span><span class="p">:</span> <span class="s2">&quot;FAC_BUILDING&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dean&quot;</span><span class="p">:</span> <span class="s2">&quot;DEAN&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vdean_1&quot;</span><span class="p">:</span> <span class="s2">&quot;DEAN_ASST_1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;vdean_2&quot;</span><span class="p">:</span> <span class="s2">&quot;DEAN_ASST_2&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE FACULTIES SET &quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE FAC_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fac_id</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update Faculty Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id20">
+<h3>Deleting<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+<p>To delete a faculty, you have to supply faculty id.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_faculty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fac_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM FACULTIES WHERE FAC_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">fac_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete Faculty Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="labs">
+<h2>Labs<a class="headerlink" href="#labs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id21">
+<h3>SQL Table Creation<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">LABS</span> <span class="p">(</span>
+    <span class="n">LAB_ID</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">LAB_NAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">UNIQUE</span><span class="p">,</span>
+    <span class="n">DEPARTMENT</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">FACULTY</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">BUILDING</span>  <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">ROOM</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">INVESTIGATOR</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">BUILDING</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">BUILDINGS</span><span class="p">(</span><span class="n">BU_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">FACULTY</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">FACULTIES</span><span class="p">(</span><span class="n">FAC_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">DEPARTMENT</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">DEPARTMENTS</span><span class="p">(</span><span class="n">DEP_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">ROOM</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">ROOMS</span><span class="p">(</span><span class="n">ROOM_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">INVESTIGATOR</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lab-class">
+<h3>Lab Class<a class="headerlink" href="#lab-class" title="Permalink to this headline">¶</a></h3>
+<p>Since it makes it easier to create, we have defined a lab class for creating an entry into our database.
+Therefore, before adding a new lab, an object of class Lab must be initialized. Here is the definition of
+the Lab class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Lab</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">department</span><span class="p">,</span> <span class="n">faculty</span><span class="p">,</span> <span class="n">room</span><span class="p">,</span> <span class="n">investigator</span><span class="p">,</span> <span class="n">building</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">department</span> <span class="o">=</span> <span class="n">department</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">faculty</span> <span class="o">=</span> <span class="n">faculty</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">room</span> <span class="o">=</span> <span class="n">room</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">investigator</span> <span class="o">=</span> <span class="n">investigator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">building</span> <span class="o">=</span> <span class="n">building</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id22">
+<h3>Adding<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+<p>Adding a lab into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_lab() function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_lab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lab</span><span class="p">):</span>
+   <span class="k">try</span><span class="p">:</span>
+       <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+           <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+           <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">lab</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">lab</span><span class="o">.</span><span class="n">department</span><span class="p">,</span> <span class="n">lab</span><span class="o">.</span><span class="n">faculty</span><span class="p">,</span> <span class="n">lab</span><span class="o">.</span><span class="n">building</span><span class="p">,</span> <span class="n">lab</span><span class="o">.</span><span class="n">room</span><span class="p">,</span> <span class="n">lab</span><span class="o">.</span><span class="n">investigator</span><span class="p">]</span>
+           <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO LABS (LAB_NAME, DEPARTMENT, FACULTY, BUILDING, ROOM, INVESTIGATOR) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+           <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+           <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+   <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+       <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add lab Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id23">
+<h3>Reading<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<p>There are 3 different functions that reads from the labs table.</p>
+<p><strong>get_lab</strong></p>
+<p>This function returns the row corresponding to given lab id as a list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_lab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lab_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM LABS WHERE LAB_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">lab_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">datas</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">datas</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Lab DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_all_labs</strong></p>
+<p>This function returns all the labs as a list of lists.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_all_labs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM LABS&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">data</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete lab Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_lab_info</strong></p>
+<p>This function returns all the rows of labs table as a list of dictionaries. To achieve a human readable form in the returned dictionaries,
+multiple joins are used in the select statement.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_lab_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT (l.lab_id, l.lab_name, d.dep_name, f.fac_name, b.bu_name, r.room_name, p.name) FROM labs l JOIN departments d ON l.department=d.dep_id JOIN faculties f ON l.faculty = f.fac_id JOIN buildings b ON l.building=b.bu_id JOIN rooms r ON l.room = r.room_id JOIN people p ON l.investigator=p.p_id&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">datum</span> <span class="o">=</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                    <span class="s2">&quot;Department&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                    <span class="s2">&quot;Faculty&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                    <span class="s2">&quot;Building&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                    <span class="s2">&quot;Room&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                    <span class="s2">&quot;Investigator&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">)</span>
+                <span class="p">}</span>
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">retval</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Lab Info(The one with the string parsing) DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id24">
+<h3>Updating<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+<p>To update a lab, you have to supply lab id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_lab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lab_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;LAB_NAME&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;department&quot;</span><span class="p">:</span> <span class="s2">&quot;DEPARTMENT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;faculty&quot;</span><span class="p">:</span> <span class="s2">&quot;FACULTY&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;building&quot;</span><span class="p">:</span> <span class="s2">&quot;BUILDING&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;room&quot;</span><span class="p">:</span> <span class="s2">&quot;ROOM&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;investigator&quot;</span><span class="p">:</span> <span class="s2">&quot;INVESTIGATOR&quot;</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE LABS SET &quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE LAB_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lab_id</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update lab Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id25">
+<h3>Deleting<a class="headerlink" href="#id25" title="Permalink to this headline">¶</a></h3>
+<p>To delete a lab, you have to supply lab id.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_lab</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lab_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM LABS WHERE LAB_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">lab_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete lab Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="papers">
+<h4>Papers<a class="headerlink" href="#papers" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="id26">
+<h3>SQL Table Creation<a class="headerlink" href="#id26" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">PAPERS</span> <span class="p">(</span>
+    <span class="n">PAPER_ID</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">TITLE</span> <span class="nb">VARCHAR</span> <span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">PLAT</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">CITATION_COUNT</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">AUTHOR</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">CONFERENCE</span> <span class="nb">BOOLEAN</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">AUTHOR</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span><span class="p">(</span><span class="n">P_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">RESTRICT</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="paper-class">
+<h3>Paper Class<a class="headerlink" href="#paper-class" title="Permalink to this headline">¶</a></h3>
+<p>Since it makes it easier to create, we have defined a paper class for creating an entry into our database.
+Therefore, before adding a new paper an object of class Paper must be initialized. Here is the definition of
+the Paper class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Paper</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">platform</span><span class="p">,</span> <span class="n">citation</span><span class="p">,</span> <span class="n">author</span><span class="p">,</span> <span class="n">isConference</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">title</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">platform</span> <span class="o">=</span> <span class="n">platform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">citation</span> <span class="o">=</span> <span class="n">citation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">author</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">isConference</span> <span class="o">=</span> <span class="n">isConference</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h3>Adding<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<p>Adding a paper into the database is pretty straigthforward. You have to pass the object you have initialized
+into add_paper() function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_paper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paper</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">paper</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">paper</span><span class="o">.</span><span class="n">platform</span><span class="p">,</span> <span class="n">paper</span><span class="o">.</span><span class="n">citation</span><span class="p">,</span> <span class="n">paper</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="n">paper</span><span class="o">.</span><span class="n">isConference</span><span class="p">]</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO PAPERS (TITLE, PLAT, CITATION_COUNT, AUTHOR, CONFERENCE) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add Paper Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id28">
+<h3>Reading<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h3>
+<p>There are different methods for reading entries from the database.</p>
+<p><strong>get_authors</strong></p>
+<p>This function returns all the people in the database that has a written paper in the database as a list
+of dictionaries.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_authors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT DISTINCT author, name from papers join people on author=p_id;&quot;</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">}</span>
+            <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">retval</span>
+</pre></div>
+</div>
+<p><strong>get_paper</strong></p>
+<p>This function returns the relevant entry from the papers table according to given paper id as a list.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_paper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paper_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT * FROM PAPERS WHERE PAPER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">paper_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">data</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get paper DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>get_paper_by_author</strong></p>
+<p>This function returns all the papers written by a given author as a list of dictionaries. You have to supply person id
+to this function. First, it fetches all the papers written by this author. Then, it gets the papers with the same title from the
+database and determines if there are other authors and adds them to the authors list. Since we use inner join for this, if there
+is a single author, author list stays empty. Therefore, we check the length of the authors list and add the name of the given person.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_paper_by_author</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">person</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT (paper_id, title, plat, citation_count, conference) FROM papers WHERE papers.author = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">person</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">datum</span> <span class="o">=</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;(&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;Title&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                    <span class="s2">&quot;Platform&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">),</span>
+                    <span class="s2">&quot;Citation&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                    <span class="s2">&quot;Conference&quot;</span><span class="p">:</span> <span class="n">datum</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                    <span class="s2">&quot;Authors&quot;</span><span class="p">:</span> <span class="p">[]</span>
+                <span class="p">}</span>
+
+                <span class="k">if</span> <span class="n">val</span><span class="p">[</span><span class="s2">&quot;Conference&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;t&quot;</span><span class="p">:</span>
+                    <span class="n">val</span><span class="p">[</span><span class="s2">&quot;Conference&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">val</span><span class="p">[</span><span class="s2">&quot;Conference&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">retval</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT name FROM papers p1 JOIN papers p2 ON p1.title = p2.title JOIN people p3 ON p3.p_id = p1.author WHERE p1.author &lt;&gt; p2.author AND p1.title = </span><span class="si">%s</span><span class="s2">&quot;</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span><span class="p">[</span><span class="s2">&quot;Title&quot;</span><span class="p">]]</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">datum</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+                    <span class="n">val</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">datum</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">val</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">]))</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT name FROM papers p1 JOIN people p2 ON p1.author=p2.p_id WHERE title = </span><span class="si">%s</span><span class="s2">&quot;</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">val</span><span class="p">[</span><span class="s2">&quot;Title&quot;</span><span class="p">]]</span>
+                    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+                    <span class="n">val</span><span class="p">[</span><span class="s2">&quot;Authors&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+            <span class="k">return</span> <span class="n">retval</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Paper by Author DB Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id29">
+<h3>Updating<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<p>To update a paper, you have to supply paper id, an attributes list and corresponding values. Then, using
+this look-up table, corresponding entry in the database gets updated.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_paper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paper_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+    <span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;TITLE&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;platform&quot;</span><span class="p">:</span> <span class="s2">&quot;PLAT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;citation&quot;</span><span class="p">:</span> <span class="s2">&quot;CITATION_COUNT&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;AUTHOR&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;isConference&quot;</span><span class="p">:</span> <span class="s2">&quot;CONFERENCE&quot;</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE PAPERS SET &quot;</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE PAPER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">paper_id</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update Paper Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id30">
+<h3>Deleting<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<p>To delete a paper, you have to supply paper id.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_paper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paper_id</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM PAPERS WHERE PAPER_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">paper_id</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete paper error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mehmet.html" class="btn btn-neutral float-right" title="Parts Implemented by Mehmet Altuner" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="berkay.html" class="btn btn-neutral float-left" title="Parts Implemented by Berkay Olgun" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1963
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

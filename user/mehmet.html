@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Mehmet Altuner &mdash; ITUCSDB1963  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Developer Guide" href="../developer/index.html" />
+    <link rel="prev" title="Parts Implemented by Uğur Ali Kaplan" href="kaplan.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1963
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="berkay.html">Parts Implemented by Berkay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kaplan.html">Parts Implemented by Uğur Ali Kaplan</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parts Implemented by Mehmet Altuner</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#people">1. People</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adding-a-new-instructor">1.1. Adding a New Instructor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-an-existing-people-object">1.2. Updating an Existing People Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewing-and-deleting-existing-people">1.3. Viewing and Deleting Existing People</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#students">2. Students</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adding-a-new-student">2.1. Adding a New Student</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#updating-an-existing-student">2.2. Updating an Existing Student</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deleting-existing-rooms">2.3. Deleting Existing Rooms</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lessons">3. Lessons</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#enrolling">3.1. Enrolling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-a-new-lesson">3.2. Adding a New Lesson</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../developer/index.html">Developer Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1963</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">User Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Mehmet Altuner</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/user/mehmet.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-mehmet-altuner">
+<h1>Parts Implemented by Mehmet Altuner<a class="headerlink" href="#parts-implemented-by-mehmet-altuner" title="Permalink to this headline">¶</a></h1>
+<p>This page will be providing information on</p>
+<p>People
+Students
+Lessons</p>
+<div class="section" id="people">
+<h2>1. People<a class="headerlink" href="#people" title="Permalink to this headline">¶</a></h2>
+<p>People table is the base model that students, lecturers, assistants are inherited from.</p>
+<div class="section" id="adding-a-new-instructor">
+<h3>1.1. Adding a New Instructor<a class="headerlink" href="#adding-a-new-instructor" title="Permalink to this headline">¶</a></h3>
+<div class="figure align-default">
+<img alt="../_images/supage.png" src="../_images/supage.png" />
+</div>
+<dl class="field-list">
+<dt class="field-odd">scale</dt>
+<dd class="field-odd"><p>30 %</p>
+</dd>
+<dt class="field-even">alt</dt>
+<dd class="field-even"><p>Super User Page</p>
+</dd>
+<dt class="field-odd">align</dt>
+<dd class="field-odd"><p>center</p>
+<p>Super User Page</p>
+</dd>
+</dl>
+<p>This page contains bunch of html forms that makes super user be able to create entities. You cannot directly create a person object but students, instructors etc. will create a user before creating People object.</p>
+</div>
+<div class="section" id="updating-an-existing-people-object">
+<h3>1.2. Updating an Existing People Object<a class="headerlink" href="#updating-an-existing-people-object" title="Permalink to this headline">¶</a></h3>
+<p>If you are logged in as a super user account, you can update the information of the people you have selected.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you check more than one boxes you update only the first one with that operation</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Since you cannot update person object themselves, student update page is shown as an example</p>
+</div>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../_images/studentupdate.png"><img alt="Student Update Page" src="../_images/studentupdate.png" style="width: 960.0px; height: 374.7px;" /></a>
+<p class="caption"><span class="caption-text">Student Update Page</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="viewing-and-deleting-existing-people">
+<h3>1.3. Viewing and Deleting Existing People<a class="headerlink" href="#viewing-and-deleting-existing-people" title="Permalink to this headline">¶</a></h3>
+<p>If you are logged in as a super user account, you can delete the people you have selected.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you check more than one boxes you can delete all the objects you selected</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Since you cannot delete person object themselves, student update page is shown as an example</p>
+</div>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../_images/studentupdate.png"><img alt="Student Delete Page" src="../_images/studentupdate.png" style="width: 960.0px; height: 374.7px;" /></a>
+<p class="caption"><span class="caption-text">Student Delete Page</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="students">
+<h2>2. Students<a class="headerlink" href="#students" title="Permalink to this headline">¶</a></h2>
+<p>Navigate to Students page by clicking the <em>Student</em> button on the navbar.</p>
+<div class="figure align-default">
+<img alt="../_images/studentupdate.png" src="../_images/studentupdate.png" />
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">scale</dt>
+<dd class="field-odd"><p>30 %</p>
+</dd>
+<dt class="field-even">alt</dt>
+<dd class="field-even"><p>Students Page</p>
+</dd>
+<dt class="field-odd">align</dt>
+<dd class="field-odd"><p>center</p>
+</dd>
+</dl>
+<p>Students Page</p>
+<div class="section" id="adding-a-new-student">
+<h3>2.1. Adding a New Student<a class="headerlink" href="#adding-a-new-student" title="Permalink to this headline">¶</a></h3>
+<p>In order to add a new student, you must be logged in as an admin user. After logging in, navigate to the super user page in which you can create new students.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/supage.png"><img alt="Super User Page" src="../_images/supage.png" style="width: 552.3px; height: 477.59999999999997px;" /></a>
+</div>
+</div>
+<div class="section" id="updating-an-existing-student">
+<h3>2.2. Updating an Existing Student<a class="headerlink" href="#updating-an-existing-student" title="Permalink to this headline">¶</a></h3>
+<p>In the <em>Students</em> page, a different UI is shown to admins. Through the select boxes and update button, you can update students.
+.. tip:: If you check more than one boxes you update only the first one with that operation</p>
+<div class="figure align-center" id="id3">
+<a class="reference internal image-reference" href="../_images/studentupdate.png"><img alt="Student Update Page" src="../_images/studentupdate.png" style="width: 960.0px; height: 374.7px;" /></a>
+<p class="caption"><span class="caption-text">Student Update Page</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="deleting-existing-rooms">
+<h3>2.3. Deleting Existing Rooms<a class="headerlink" href="#deleting-existing-rooms" title="Permalink to this headline">¶</a></h3>
+<p>In the <em>Students</em> page, a different UI is shown to admins. Through the select boxes and delete button, you can delete students.
+.. tip:: If you check more than one boxes you delete only the first one with that operation</p>
+<div class="figure align-center" id="id4">
+<a class="reference internal image-reference" href="../_images/studentupdate.png"><img alt="Student Update Page" src="../_images/studentupdate.png" style="width: 960.0px; height: 374.7px;" /></a>
+<p class="caption"><span class="caption-text">Student Update Page</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+<div class="section" id="lessons">
+<h2>3. Lessons<a class="headerlink" href="#lessons" title="Permalink to this headline">¶</a></h2>
+<p>There is not a page in which you can list all of the lessons. Instead, we have implemented a search functionality that students can access in <em>Enroll</em> page. You can access to the <em>Enroll</em> page from the <em>Home</em> page if you are logged in as a student account.</p>
+<div class="figure align-center" id="id5">
+<a class="reference internal image-reference" href="../_images/enroll.png"><img alt="Enroll Page" src="../_images/enroll.png" style="width: 634.1999999999999px; height: 167.4px;" /></a>
+<p class="caption"><span class="caption-text">Enroll Page</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="enrolling">
+<h3>3.1. Enrolling<a class="headerlink" href="#enrolling" title="Permalink to this headline">¶</a></h3>
+<p>After you get to the <em>Enroll</em> page, first thing you need to do is to search for the lessons you want to enroll by either its crn or instructor’s name. If there is enough capacity, you can enroll to lessons by clicking Enroll button. You can also leave the lessons you are already enrolled within the same UI.</p>
+<div class="figure align-center" id="id6">
+<a class="reference internal image-reference" href="../_images/enroll.png"><img alt="Enroll Page" src="../_images/enroll.png" style="width: 634.1999999999999px; height: 167.4px;" /></a>
+<p class="caption"><span class="caption-text">Enroll Page</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="adding-a-new-lesson">
+<h3>3.2. Adding a New Lesson<a class="headerlink" href="#adding-a-new-lesson" title="Permalink to this headline">¶</a></h3>
+<p>In order to add a new lesson, you must be logged in as an admin user. After logging in, navigate to the super user page in which you can create new lessons.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="../_images/supage.png"><img alt="Super User Page" src="../_images/supage.png" style="width: 552.3px; height: 477.59999999999997px;" /></a>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../developer/index.html" class="btn btn-neutral float-right" title="Developer Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="kaplan.html" class="btn btn-neutral float-left" title="Parts Implemented by Uğur Ali Kaplan" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1963
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

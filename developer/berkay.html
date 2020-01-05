@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Parts Implemented by Berkay Olgun &mdash; ITUCSDB1963  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parts Implemented by Uğur Ali Kaplan" href="kaplan.html" />
+    <link rel="prev" title="Developer Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ITUCSDB1963
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../user/index.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Developer Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#database-design">Database Design</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#code">Code</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parts Implemented by Berkay Olgun</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#instructors">Instructors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rooms">Rooms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#classrooms">Classrooms</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="kaplan.html">Parts Implemented by Uğur Ali Kaplan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mehmet.html">Parts Implemented by Mehmet Altuner</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ITUCSDB1963</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Developer Guide</a> &raquo;</li>
+        
+      <li>Parts Implemented by Berkay Olgun</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/berkay.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="parts-implemented-by-berkay-olgun">
+<h1>Parts Implemented by Berkay Olgun<a class="headerlink" href="#parts-implemented-by-berkay-olgun" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="instructors">
+<h2>Instructors<a class="headerlink" href="#instructors" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All table creations exist in db_init.py file.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All SQL operations in python files are wrapped with try-except statements in order to avoid errors</p>
+</div>
+<div class="section" id="creation">
+<h3>1. Creation<a class="headerlink" href="#creation" title="Permalink to this headline">¶</a></h3>
+<p>Detailed informations about instructors are kept in tables that it refers.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">INSTRUCTORS</span><span class="p">(</span>
+    <span class="n">INS_ID</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">BACHELORS</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span>
+    <span class="n">MASTERS</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span>
+    <span class="n">DOCTORATES</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">90</span><span class="p">),</span>
+    <span class="n">DEPARTMENT</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">ROOM</span> <span class="nb">INTEGER</span> <span class="k">UNIQUE</span><span class="p">,</span>
+    <span class="n">LAB</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">DEPARTMENT</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">DEPARTMENTS</span><span class="p">(</span><span class="n">DEP_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">SET</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">ROOM</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">ROOMS</span><span class="p">(</span><span class="n">ROOM_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">SET</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">LAB</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">LABS</span><span class="p">(</span><span class="n">LAB_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">SET</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">INS_ID</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">PEOPLE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">CASCADE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding">
+<h3>2. Adding<a class="headerlink" href="#adding" title="Permalink to this headline">¶</a></h3>
+<p>Before adding an instructor if that person is not in table People he/she will be added to people before adding as instructor.
+Instructor id references the private key in the People table.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The room of an instructor should be added before it’s instructor.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_instructor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instructor</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO INSTRUCTORS (INS_ID, BACHELORS, MASTERS, DOCTORATES,</span>
+             <span class="n">DEPARTMENT</span><span class="p">,</span> <span class="n">ROOM</span><span class="p">,</span> <span class="n">LAB</span><span class="p">)</span> <span class="n">VALUES</span> <span class="p">(</span><span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">,</span> <span class="o">%</span><span class="n">s</span><span class="p">)</span><span class="s2">&quot;</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">instructor</span><span class="o">.</span><span class="n">instructor_id</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">bachelors</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">masters</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">doctorates</span><span class="p">,</span>
+                    <span class="n">instructor</span><span class="o">.</span><span class="n">department</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">room</span><span class="p">,</span> <span class="n">instructor</span><span class="o">.</span><span class="n">lab</span><span class="p">]</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add Instructor Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">instructor</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="reading">
+<h3>3. Reading<a class="headerlink" href="#reading" title="Permalink to this headline">¶</a></h3>
+<p>In order to get room name lab name and instructor name join operations must be performed since the tables are in normal form.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_instructors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT P_ID, NAME, ROOMS.ROOM_NAME, LABS.LAB_NAME, BACHELORS, MASTERS,</span>
+             <span class="n">DOCTORATES</span> <span class="n">FROM</span> <span class="n">INSTRUCTORS</span> <span class="n">JOIN</span> <span class="n">PEOPLE</span> <span class="n">ON</span> <span class="p">(</span><span class="n">INSTRUCTORS</span><span class="o">.</span><span class="n">INS_ID</span> <span class="o">=</span> <span class="n">PEOPLE</span><span class="o">.</span><span class="n">P_ID</span><span class="p">)</span>
+              <span class="n">JOIN</span> <span class="n">ROOMS</span> <span class="n">ON</span> <span class="p">(</span><span class="n">INSTRUCTORS</span><span class="o">.</span><span class="n">ROOM</span> <span class="o">=</span> <span class="n">ROOMS</span><span class="o">.</span><span class="n">ROOM_ID</span><span class="p">)</span>
+               <span class="n">LEFT</span> <span class="n">JOIN</span> <span class="n">LABS</span> <span class="n">ON</span> <span class="p">(</span><span class="n">INSTRUCTORS</span><span class="o">.</span><span class="n">LAB</span> <span class="o">=</span> <span class="n">LABS</span><span class="o">.</span><span class="n">LAB_ID</span><span class="p">)</span><span class="s2">&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">datas</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;ID&quot;</span><span class="p">:</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="s2">&quot;Room&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="s2">&quot;Lab&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                    <span class="s2">&quot;Bachelors&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                    <span class="s2">&quot;Masters&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span>
+                    <span class="s2">&quot;Doctorates&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+                <span class="p">}</span>
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">retval</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Instructors Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="updating">
+<h3>4. Updating<a class="headerlink" href="#updating" title="Permalink to this headline">¶</a></h3>
+<p>In order to update instructors, characteristic attribute id is enough to filter any of them.
+attrs_lookup_table is used with attrs and values list in order to restrict naming and ordering attribute confusions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_instructor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;department&quot;</span><span class="p">:</span> <span class="s2">&quot;DEPARTMENT&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;room&quot;</span><span class="p">:</span> <span class="s2">&quot;ROOM&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lab&quot;</span><span class="p">:</span> <span class="s2">&quot;LAB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bachelors&quot;</span><span class="p">:</span> <span class="s2">&quot;BACHELORS&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;masters&quot;</span><span class="p">:</span> <span class="s2">&quot;MASTERS&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;doctorates&quot;</span><span class="p">:</span> <span class="s2">&quot;DOCTORATES&quot;</span>
+<span class="p">}</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE INSTRUCTORS SET &quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span><span class="p">)</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+        <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE INS_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ins_id</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update Instructors Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deleting">
+<h3>5. Deleting<a class="headerlink" href="#deleting" title="Permalink to this headline">¶</a></h3>
+<p>In order to delete an instructor, simple DELETE query is sufficient.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_instructor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ins_id</span><span class="p">):</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM INSTRUCTORS WHERE INS_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">ins_id</span><span class="p">]</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete Instructor Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="rooms">
+<h2>Rooms<a class="headerlink" href="#rooms" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>1. Creation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">ROOMS</span> <span class="p">(</span>
+    <span class="n">ROOM_ID</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">BUILDING</span> <span class="nb">INTEGER</span><span class="p">,</span>
+    <span class="n">ROOM_NAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">UNIQUE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">AVAILABLE</span> <span class="n">BOOL</span> <span class="k">DEFAULT</span> <span class="k">TRUE</span><span class="p">,</span>
+    <span class="k">CLASS</span> <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">FALSE</span><span class="p">,</span>
+    <span class="n">LAB</span> <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">FALSE</span><span class="p">,</span>
+    <span class="n">ROOM</span> <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">FALSE</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">BUILDING</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">BUILDINGS</span><span class="p">(</span><span class="n">BU_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">CASCADE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Building key references the building that room is in.</p>
+</div>
+<div class="section" id="id2">
+<h3>2. Adding<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Before adding a room a building must exist to refer with a foreign key.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">room</span><span class="p">):</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO ROOMS (BUILDING, ROOM_NAME, AVAILABLE, CLASS, LAB, ROOM) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">room</span><span class="o">.</span><span class="n">building</span><span class="p">,</span> <span class="n">room</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">room</span><span class="o">.</span><span class="n">availability</span><span class="p">,</span> <span class="n">room</span><span class="o">.</span><span class="n">classroom</span><span class="p">,</span> <span class="n">room</span><span class="o">.</span><span class="n">lab</span><span class="p">,</span> <span class="n">room</span><span class="o">.</span><span class="n">room</span><span class="p">]</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT ROOM_ID FROM ROOMS WHERE ROOM_NAME = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">room</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">room</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add Room Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">room</span>
+</pre></div>
+</div>
+<p>After adding a room its id is taken to include it in return.</p>
+</div>
+<div class="section" id="id3">
+<h3>3. Reading<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>In order to get the name of the room’s building a join operation must be performed.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_rooms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT ROOM_ID, BU_NAME, ROOM_NAME FROM ROOMS JOIN BUILDINGS ON(ROOMS.BUILDING = BUILDINGS.BU_ID)&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">datas</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;ID&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="s2">&quot;Building&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="p">}</span>
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">retval</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Rooms Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Rooms are returned with a list of dictionaries</p>
+</div>
+<div class="section" id="id4">
+<h3>4. Updating<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>Attributes are taken from the lookup table values and names are compared with given parameters and new values are written on the instance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">room_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;building&quot;</span><span class="p">:</span> <span class="s2">&quot;BUILDING&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;room_name&quot;</span><span class="p">:</span> <span class="s2">&quot;ROOM_NAME&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;CLASS&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;lab&quot;</span><span class="p">:</span> <span class="s2">&quot;LAB&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;room&quot;</span><span class="p">:</span> <span class="s2">&quot;ROOM&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;available&quot;</span><span class="p">:</span> <span class="s2">&quot;AVAILABLE&quot;</span>
+<span class="p">}</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE ROOMS SET &quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+        <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE ROOM_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">room_id</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update Rooms Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h3>5. Deleting<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Simple DELETE query with a room id is sufficient to delete any room from the application.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_room</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">room_id</span><span class="p">):</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM ROOMS WHERE room_id = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">room_id</span><span class="p">]</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete Room Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="classrooms">
+<h2>Classrooms<a class="headerlink" href="#classrooms" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>1. Creation<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Private and foreign key class id refers to the room id that the class in.
+.. note:: In our structure every classroom is a (inside a) room.</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="n">CLASSES</span><span class="p">(</span>
+    <span class="n">CL_ID</span> <span class="nb">INTEGER</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">CAP</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="k">TYPE</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;Lecture&#39;</span><span class="p">,</span>
+    <span class="n">AIR_CONDITIONER</span> <span class="n">BOOL</span><span class="p">,</span>
+    <span class="n">LAST_RESTORATION</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
+    <span class="n">BOARD_TYPE</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">&#39;Mixed&#39;</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">CL_ID</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">ROOMS</span><span class="p">(</span><span class="n">ROOM_ID</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">CASCADE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id7">
+<h3>2. Adding<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
+<p>Before adding a classroom a room is added if not exists, with the proper values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">add_classroom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classroom</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+                <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+                <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;INSERT INTO CLASSES (CL_ID, TYPE, AIR_CONDITIONER, LAST_RESTORATION, BOARD_TYPE, CAP) VALUES (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">classroom</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">classroom</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">classroom</span><span class="o">.</span><span class="n">conditioner</span><span class="p">,</span> <span class="n">classroom</span><span class="o">.</span><span class="n">restoration_date</span><span class="p">,</span> <span class="n">classroom</span><span class="o">.</span><span class="n">board_type</span><span class="p">,</span> <span class="n">classroom</span><span class="o">.</span><span class="n">cap</span><span class="p">]</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Add Classroom Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">classroom</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>3. Reading<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
+<p>Selecting all the values by the name in order to avoid ordering problems when giving them to attributes dictioanary.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_classrooms</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;SELECT CLASSES.CL_ID, ROOMS.ROOM_NAME, CLASSES.CAP, CLASSES.TYPE, BUILDINGS.BU_NAME FROM CLASSES JOIN ROOMS ON CL_ID = ROOM_ID JOIN BUILDINGS ON BUILDINGS.BU_ID = ROOMS.BUILDING&quot;</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+            <span class="n">datas</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+            <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">retval</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;ID&quot;</span><span class="p">:</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="s2">&quot;Capacity&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                    <span class="s2">&quot;Class Type&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
+                    <span class="s2">&quot;Building Name&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                <span class="p">}</span>
+                <span class="n">retval</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">retval</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Get Classrooms Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id9">
+<h3>4. Updating<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<p>Same update process is applied to classrooms. Attribute names and their values are given parameters from the form.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_classroom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_id</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+<span class="n">attrs_lookup_table</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;TYPE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;air_conditioner&quot;</span><span class="p">:</span> <span class="s2">&quot;AIR_CONDITIONER&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;last_restoration&quot;</span><span class="p">:</span> <span class="s2">&quot;LAST_RESTORATION&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;board_type&quot;</span><span class="p">:</span> <span class="s2">&quot;BOARD_TYPE&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;cap&quot;</span><span class="p">:</span> <span class="s2">&quot;CAP&quot;</span>
+<span class="p">}</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;UPDATE CLASSES SET &quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> ,&quot;</span>
+        <span class="n">statement</span> <span class="o">+=</span> <span class="n">attrs_lookup_table</span><span class="p">[</span><span class="n">attrs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="s2">&quot; = </span><span class="si">%s</span><span class="s2"> WHERE CL_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">class_id</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Update Classroom Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>5. Deleting<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By the cascade nature if referred room is deleted the classroom is deleted.</p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">delete_classroom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl_id</span><span class="p">):</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">dbapi2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">connection</span><span class="p">:</span>
+        <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="n">statement</span> <span class="o">=</span> <span class="s2">&quot;DELETE FROM CLASSES WHERE CL_ID = </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">cl_id</span><span class="p">]</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Delete Classroom Error: &quot;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="kaplan.html" class="btn btn-neutral float-right" title="Parts Implemented by Uğur Ali Kaplan" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Developer Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, ITUCSDB1963
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
